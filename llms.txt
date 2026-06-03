@@ -1,0 +1,92 @@
+# Howard Chan
+
+HSPS-trained institutional thinker. Technical builder. Product-minded executor.
+
+Howard Chan's public profile, projects, research, awards & certifications, and contact links.
+
+## Pages
+- Home: https://howardchan.me/
+- About: https://howardchan.me/about/
+- Projects: https://howardchan.me/projects/
+- Research: https://howardchan.me/research/
+- Awards & Certifications: https://howardchan.me/awards-certifications/
+- Contact: https://howardchan.me/contact/
+
+## About
+- I am Chak Hang (Howard) Chan, a Tokyo-based builder and incoming HSPS student at Peterhouse, University of Cambridge. I am interested in how institutions behave under pressure, how incentives shape decisions, and how technical systems can reduce friction in the real world. Across the work I do, the common thread is coordination. I like problems where a better system makes the work easier to repeat, easier to hand off, and easier to trust. That is why my projects sit across service leadership, research, and product infrastructure rather than in one narrow lane. Long term, I want to build at the point where institutions, incentives, and technical systems meet, whether through company-building and venture or through early-career finance paths that sharpen commercial judgment and execution.
+
+## Professional Experience
+- Founder and President, Kiwanis Voice Club of Nippon: Founded the first Voice Club representing Japan and built youth service, continuity, and stakeholder coordination across health, education, caregiving, and community resilience.
+- Founder and Immediate Past President, KIST Key Club: Built the club to 40+ members and 5 executives, with service across health, caregiving, food insecurity, and youth service.
+- Researcher, Lumiere Education: Top-5% Lumiere project on ambiguous emoji interpretation across Japanese and Chinese users, with publication support toward NHSJS.
+- Independent Researcher: Research writing on emoji semiotics, cognitive aging, and semiconductor supply-chain resilience.
+- President, Japan Cancer Society, KIST: Organized a 10-kilometer walkathon with 500+ participants and led donation drives for cancer awareness and support.
+- President, Recycling Initiative, KIST: Tripled membership to 60 and introduced Quality Inspector roles that improved oversight and recycling efficiency by 40%.
+
+## Education
+- Peterhouse, University of Cambridge: Incoming undergraduate.
+- K. International School Tokyo: Biology HL, English A HL, Chemistry HL, Mathematics AA SL, Japanese ab initio SL, Economics SL.
+- HarvardX MCB63X Principles of Biochemistry: Biochemistry coursework completed through HarvardX.
+- Johns Hopkins CTY AP Biology: Advanced biology coursework completed through Johns Hopkins CTY.
+- HKUST Dual Program in gifted education: Additional gifted-programme coursework referenced in application materials.
+
+## Projects
+### Products
+- ElevateOS: AI-enabled education platform that unifies tutoring operations, worksheet generation, past-paper simulation, admissions support, and parent-facing execution into one system for IB, AP, SAT, and counseling workflows.
+- Kiwanis Pulse @ Manila Convention 2026: Mobile convention companion that surfaces schedules, venue navigation, sessions, and announcements in a format attendees can use instantly on their phones.
+- Katalyst: Centralized volunteering backend and coordination platform for service organisations, designed to support institutional memory, operational continuity, and cross-branch collaboration.
+- Prior Moves: Live tool that predicts the next moves of well-known investors by modelling 13F filings, then tracks each call against what actually happened.
+- Tatemori: B2B tool helping Japanese organisations operationalize the October 2026 kasuhara (customer-harassment) law and protect frontline staff.
+- nobill: Local-first subscription tracker that scans Gmail receipts for recurring charges and links straight to each merchant’s cancel page.
+
+### Civic initiatives
+- Mottainai Initiative: Food-waste initiative that redirects edible but visually rejected produce into usable food and community action.
+- Stand Tall Project: Assistive wheelchair add-on designed to reduce caregiver strain and improve transfers for elderly users in care-home settings.
+
+### Infrastructure
+- Crystal Century: Live commerce and recovery work focused on stability, trust, and dependable revenue flow across European and US markets.
+
+## Research
+- Hofstede’s Dimensions and Generational Effects on Ambiguous Emoji Semiotics: Cross-Cultural Analysis of Japanese and Chinese Digital Communication (Preprint · 2025): Preprint on ambiguous emoji interpretation across Japanese and Chinese digital communication.
+- Unraveling Cognitive Aging: A Comprehensive Narrative Review Integrating Six Decades of the Seattle Longitudinal Study with Contemporary Advances (Research review · 2025): Narrative review on education, occupational complexity, and digital engagement in cognition.
+- Semiconductor supply-chain resilience concept paper (Concept paper · 2025): Concept paper on resilience planning using big data analytics and quantum-enhanced blockchain.
+
+## Awards & Certifications
+### Academic profile
+- Peterhouse, University of Cambridge offer: Offer to enter in 2026.
+- IB predicted 45/45: Official transcript shows all six subjects predicted at 7.
+- SAT 1550 · DET 160 · UCAT 2410 Band 2: Strong testing profile across language and admissions exams.
+
+### Recognition
+- Harvard College Debate Union Regional Rounds Japan 2026: Certificate of Achievement for debate competition performance.
+- Best Delegate, ASIJ MUN 2025: Model United Nations recognition.
+- Diplomatic Commendation, JMMUN 2024: Model United Nations recognition.
+- KPASS Junior Varsity Debate 2025: Debate competition recognition.
+- Certificate of Distinction in the Annual Avogadro Exam: Annual chemistry competition recognition.
+- Edexcel IGCSE Certificate of Excellence: Excellence recognition across IGCSE results.
+- Honor Roll, International Research Olympiad 2025: Academic recognition tied to the research profile.
+- High School Wrestling: Athletic competition recognition.
+
+### Certifications
+- Claude Code in Action: Technical certification for Claude Code workflows.
+- MCB63X: Principles of Biochemistry: Biochemistry coursework certification.
+- English Proficiency Certificate, 160 / CEFR C2: English proficiency certification valid through Aug 2027.
+- The Complete AI Guide: Learn ChatGPT, Generative AI & More: Applied AI course completion.
+- Investing In Stocks The Complete Course!: Markets and investing course completion.
+- Stock Market Investing for Beginners: Introductory investing course completion.
+
+## Links
+- Codeberg: https://codeberg.org/imjusthoward
+- GitLab: https://gitlab.com/howard53
+- Wantedly: https://www.wantedly.com/id/chakhang_chan
+- LinkedIn: https://www.linkedin.com/in/howardchan2008/
+- Email: mailto:chakhanghowardchan2008@gmail.com
+- ElevateOS: https://elevateos.org
+- Prior Moves: https://priormoves.com
+- Tatemori: https://tatemori.com
+- nobill: https://nobill.app
+- Kiwanis Pulse @ Manila Convention 2026: https://pulse-kiwanis-2026-309064718968.us-west1.run.app/
+- Crystal Century: https://crystalcentury.com
+- WhatsApp: https://wa.me/85293442294
+- Facebook: https://www.facebook.com/imjusthoward
+- Instagram: https://www.instagram.com/imjusthoward/
