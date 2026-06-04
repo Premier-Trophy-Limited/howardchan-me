@@ -97,8 +97,7 @@ export const site = {
     emailHref: emailUrl,
     groups: [
       { group: 'Professional', items: [
-        { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl },
-        { label: 'Wantedly', href: wantedlyUrl }, { label: 'Email', href: emailUrl } ] },
+        { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl } ] },
       { group: 'Live / Projects', items: [
         { label: 'ElevateOS', href: elevateosUrl }, { label: 'Prior Moves', href: priormovesUrl },
         { label: 'Tatemori', href: tatemoriUrl }, { label: 'nobill', href: nobillUrl }, { label: 'Premier Trophy', href: crystalcenturyUrl }, { label: 'Think College Level — IB & admissions guides ↗', href: tclUrl } ] },
@@ -108,12 +107,10 @@ export const site = {
   },
 
   contactLinks: [
-    { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl },
-    { label: 'Wantedly', href: wantedlyUrl }, { label: 'Email', href: emailUrl },
+    { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl }, { label: 'Email', href: emailUrl },
   ],
   footerLinks: [
-    { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl },
-    { label: 'Wantedly', href: wantedlyUrl }, { label: 'Email', href: emailUrl },
+    { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl }, { label: 'Email', href: emailUrl },
   ],
   // Owned web properties — cross-linked on every page for an interlinked SEO network.
   network: [
