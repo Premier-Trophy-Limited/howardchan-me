@@ -1,275 +1,90 @@
-import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { site } from './site-data.mjs';
 
 const root = process.cwd();
 const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Tokyo' }).format(new Date());
-const guides = [];
-const ELEVATEOS_CTA = 'https://elevateos.org/partner-demo';
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Projects', href: '/projects/' },
+  { label: 'Index', href: '/' },
+  { label: 'Ventures', href: '/ventures/' },
   { label: 'Research', href: '/research/' },
-  { label: 'Awards & Certifications', href: '/awards-certifications/' },
+  { label: 'About', href: '/about/' },
   { label: 'Contact', href: '/contact/' },
 ];
 
-const canonicalPages = [
-  {
-    path: '/',
-    file: 'index.html',
-    title: site.homeTitle || site.name,
-    description: site.homeMetaDescription || site.description,
-    bodyClass: 'page-home',
-    render: renderHome,
-  },
-  {
-    path: '/about/',
-    file: path.join('about', 'index.html'),
-    title: `About · ${site.name}`,
-    description:
-      'About Howard Chan — a Tokyo-based builder and incoming Cambridge HSPS student at Peterhouse, with experience across service leadership, research, and product infrastructure.',
-    bodyClass: 'page-about',
-    render: renderAbout,
-  },
-  {
-    path: '/projects/',
-    file: path.join('projects', 'index.html'),
-    title: `Projects · ${site.name}`,
-    description:
-      'Projects by Howard Chan — products including ElevateOS, Prior Moves, Tatemori, and nobill, plus civic initiatives and production infrastructure built to work in real conditions.',
-    bodyClass: 'page-projects',
-    render: renderProjects,
-  },
-  {
-    path: '/research/',
-    file: path.join('research', 'index.html'),
-    title: `Research · ${site.name}`,
-    description:
-      'Research by Howard Chan on emoji semiotics across Japanese and Chinese communication, cognitive aging and the Seattle Longitudinal Study, and semiconductor supply-chain resilience.',
-    bodyClass: 'page-research',
-    render: renderResearchIndex,
-  },
-  {
-    path: '/awards-certifications/',
-    file: path.join('awards-certifications', 'index.html'),
-    title: `Awards & Certifications · ${site.name}`,
-    description:
-      'Awards and certifications for Howard Chan — Peterhouse (Cambridge) HSPS offer, IB predicted 45/45, SAT 1550, debate and MUN honours, and technical certifications.',
-    bodyClass: 'page-awards',
-    render: renderAwards,
-  },
-  {
-    path: '/contact/',
-    file: path.join('contact', 'index.html'),
-    title: `Contact · ${site.name}`,
-    description:
-      'Contact Howard Chan — Codeberg, GitLab, Wantedly, and LinkedIn for professional work, email for longer messages, plus live project and social links.',
-    bodyClass: 'page-contact',
-    render: renderContact,
-  },
-  {
-    path: '/404/',
-    file: '404.html',
-    title: `Not found · ${site.name}`,
-    description: 'The page you were looking for is not here.',
-    bodyClass: 'page-404',
-    render: renderNotFound,
-  },
-];
-
-const researchPages = site.research.map((item) => ({
-  path: `/research/${item.slug}/`,
-  file: path.join('research', item.slug, 'index.html'),
-  title: `${item.title} · ${site.name}`,
-  description: item.summary,
-  bodyClass: 'page-post',
-  render: () => renderResearchArticle(item),
-}));
-
-const guideIndexPage = {
-  path: '/guides/',
-  file: path.join('guides', 'index.html'),
-  title: `Guides · ${site.name}`,
-  description: 'Honest guides to the IB and UK/US/HK university admissions for international students.',
-  bodyClass: 'page-guides',
-  render: renderGuidesIndex,
+const STATUS = {
+  live: { label: 'Live', color: 'var(--status-live)' },
+  pilot: { label: 'In pilot', color: 'var(--status-pilot)' },
+  research: { label: 'Research', color: 'var(--status-research)' },
 };
-
-const guidePages = guides.map((g) => ({
-  path: `/guides/${g.slug}/`,
-  file: path.join('guides', g.slug, 'index.html'),
-  title: `${g.title} · ${site.name}`,
-  description: g.metaDescription,
-  bodyClass: 'page-post',
-  render: () => renderGuideArticle(g),
-}));
-
-const legacyRedirectPages = [
-  {
-    path: '/portfolio/',
-    file: path.join('portfolio', 'index.html'),
-    title: `Projects · ${site.name}`,
-    target: '/projects/',
-  },
-  {
-    path: '/blog/',
-    file: path.join('blog', 'index.html'),
-    title: `Research · ${site.name}`,
-    target: '/research/',
-  },
-  {
-    path: '/awards/',
-    file: path.join('awards', 'index.html'),
-    title: `Awards & Certifications · ${site.name}`,
-    target: '/awards-certifications/',
-  },
-];
-
-const legacyResearchRedirects = site.research.map((item) => ({
-  path: `/blog/${item.slug}/`,
-  file: path.join('blog', item.slug, 'index.html'),
-  title: `${item.title} · ${site.name}`,
-  target: `/research/${item.slug}/`,
-}));
-
-await main();
 
 async function main() {
   await cleanupGeneratedRoutes();
-  await cleanupMediaAssets();
-
-  for (const page of [...canonicalPages, ...researchPages]) {
-    await writeOutput(page.file, page.render(page));
-  }
-
-  for (const page of [...legacyRedirectPages, ...legacyResearchRedirects]) {
-    await writeOutput(page.file, renderRedirect(page.title, page.target));
-  }
-
+  await writeOutput('index.html', renderHome());
+  await writeOutput(path.join('ventures', 'index.html'), renderVentures());
+  await writeOutput(path.join('research', 'index.html'), renderResearch());
+  await writeOutput(path.join('about', 'index.html'), renderAbout());
+  await writeOutput(path.join('contact', 'index.html'), renderContact());
+  await writeOutput('404.html', renderNotFound());
+  // legacy /projects/ → /ventures/
+  await writeOutput(path.join('projects', 'index.html'), renderRedirect('/ventures/'));
   await writeOutput('robots.txt', renderRobots());
-  await writeOutput('llms.txt', renderLlms());
   await writeOutput('sitemap.xml', renderSitemap());
   await writeOutput('CNAME', 'howardchan.me\n');
 }
 
-function esc(input = '') {
-  return String(input)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+function esc(s = '') {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
+const attr = esc;
+function urlFor(route) { return route === '/' ? `${site.url}/` : `${site.url}${route}`; }
 
-function attr(input = '') {
-  return esc(input);
-}
-
-function urlFor(route) {
-  return route === '/' ? `${site.url}/` : `${site.url}${route}`;
-}
-
-function renderLink(href, label, currentPath) {
-  const active = currentPath === href ? ' aria-current="page"' : '';
-  return `<a href="${attr(href)}"${active}>${esc(label)}</a>`;
-}
-
-function renderNav(currentPath) {
-  return navItems.map((item) => renderLink(item.href, item.label, currentPath)).join('');
-}
-
-function renderLogo() {
-  return `
-    <img
-      class="brand-mark"
-      src="${attr(site.logo.src)}"
-      alt="${attr(site.logo.alt)}"
-      width="1024"
-      height="921"
-      loading="eager"
-      decoding="async"
-    >
-  `;
-}
-
-function renderHeader(currentPath) {
-  return `
-    <header class="site-header">
-      <div class="site-header-inner">
-        <a class="brand" href="/">
-          ${renderLogo()}
-          <span class="brand-copy">
-            <strong>${esc(site.name)}</strong>
-            <small>${esc(site.tagline)}</small>
-          </span>
-        </a>
-        <nav class="site-nav" aria-label="Primary">
-          ${renderNav(currentPath)}
-        </nav>
-      </div>
-    </header>
-  `;
+function renderHeader(current) {
+  return `<header class="site-header"><div class="site-header-inner">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="${attr(site.logo.src)}" alt="${attr(site.logo.alt)}" width="38" height="35" decoding="async">
+      <span class="brand-copy"><strong>${esc(site.name)}</strong><small>${esc(site.brandSub)}</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      ${navItems.map((n) => `<a href="${attr(n.href)}"${current === n.href ? ' aria-current="page"' : ''}>${esc(n.label)}</a>`).join('')}
+    </nav>
+  </div></header>`;
 }
 
 function renderFooter() {
-  return `
-    <footer class="site-footer">
-      <div class="site-footer-inner">
-        <p>${esc(site.author)}, ${esc(site.location)}</p>
-        <p class="footer-links">
-          ${site.footerLinks.map((link) => `<a href="${attr(link.href)}">${esc(link.label)}</a>`).join('')}
-        </p>
-        <p>© 2026 ${esc(site.author)}</p>
-      </div>
-    </footer>
-  `;
+  return `<footer class="site-footer"><div class="site-footer-inner">
+    <div class="loc"><span>${esc(site.name)} — ${esc(site.location)}</span><span>© 2026 · Built static, deployed on Cloudflare Pages</span></div>
+    <nav class="footer-links" aria-label="Footer">${site.footerLinks.map((l) => `<a href="${attr(l.href)}">${esc(l.label)}</a>`).join('')}</nav>
+  </div></footer>`;
 }
 
-function renderPage({
-  title,
-  description,
-  canonicalPath,
-  bodyClass,
-  content,
-  jsonLd,
-  ogType = 'website',
-  metaRobots,
-}) {
+function renderPage({ title, description, canonicalPath, content, jsonLd, ogType = 'website' }) {
+  const ld = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${attr(description)}">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#F6F3EC">
   <link rel="canonical" href="${attr(urlFor(canonicalPath))}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/assets/styles.css">
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-  ${metaRobots ? `<meta name="robots" content="${attr(metaRobots)}">` : ''}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="${attr(ogType)}">
-  <meta property="og:site_name" content="${attr(site.name)}">
   <meta property="og:title" content="${attr(title)}">
   <meta property="og:description" content="${attr(description)}">
   <meta property="og:url" content="${attr(urlFor(canonicalPath))}">
-  <meta property="og:image" content="${attr(site.url + site.ogImage)}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${attr(title)}">
-  <meta name="twitter:description" content="${attr(description)}">
-  <meta name="twitter:image" content="${attr(site.url + site.ogImage)}">
   <title>${esc(title)}</title>
-  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+  <script type="application/ld+json">${JSON.stringify(ld.length === 1 ? ld[0] : ld)}</script>
 </head>
-<body class="${attr(bodyClass)}">
-  <a class="skip-link" href="#main-content">Skip to content</a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
     ${renderHeader(canonicalPath)}
-    <main id="main-content" class="page-main">
-      ${content}
-    </main>
+    <main id="main" class="page-main">${content}</main>
     ${renderFooter()}
   </div>
 </body>
@@ -277,562 +92,152 @@ function renderPage({
 `;
 }
 
-function renderRedirect(title, targetPath) {
-  const targetUrl = urlFor(targetPath);
-  return `<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=${attr(targetUrl)}">
-  <meta name="robots" content="noindex,follow">
-  <link rel="canonical" href="${attr(targetUrl)}">
-  <title>${esc(title)}</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #fff;
-      color: #000;
-    }
-    main {
-      max-width: 42rem;
-      margin: 0 auto;
-      padding: 2rem 1.25rem;
-    }
-    a {
-      color: inherit;
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <p>Redirecting to <a href="${attr(targetUrl)}">${esc(title)}</a>.</p>
-    <script>location.replace(${JSON.stringify(targetUrl)});</script>
-  </main>
-</body>
-</html>
-`;
+function statusChip(status) {
+  const s = STATUS[status] || STATUS.research;
+  return `<span class="chip"><span class="dot" style="background:${s.color}"></span>${esc(s.label)}</span>`;
 }
 
-function renderIntro(title, subtitle) {
-  return `
-    <header class="page-intro">
-      <h1>${esc(title)}</h1>
-      ${subtitle ? `<p class="intro-subtitle">${esc(subtitle)}</p>` : ''}
-    </header>
-  `;
-}
-
-function renderSection(title, body, id) {
-  return `
-    <section class="page-section"${id ? ` id="${attr(id)}"` : ''}>
-      <div class="section-head">
-        <h2>${esc(title)}</h2>
-      </div>
-      ${body}
-    </section>
-  `;
-}
-
-function renderProse(paragraphs) {
-  return `<div class="prose">${paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('')}</div>`;
-}
-
-function renderPillars(items) {
-  return `
-    <div class="pillar-grid">
-      ${items
-        .map(
-          (item) => `
-            <article class="pillar">
-              <h3>${esc(item.title)}</h3>
-              <p>${esc(item.summary)}</p>
-            </article>
-          `
-        )
-        .join('')}
+function ventureCard(v) {
+  return `<article class="vcard">
+    <div class="vcard-top">
+      <h3>${esc(v.name)}${v.jp ? `<span class="jp">${esc(v.jp)}</span>` : ''}</h3>
+      ${statusChip(v.status)}
     </div>
-  `;
-}
-
-function renderEntries(items) {
-  return `
-    <div class="entry-list">
-      ${items
-        .map(
-          (item) => `
-            <article class="entry"${item.id ? ` id="${attr(item.id)}"` : ''}>
-              <div class="entry-head">
-                <h3>${item.href ? `<a href="${attr(item.href)}">${esc(item.title)}</a>` : esc(item.title)}</h3>
-                ${item.meta ? `<span class="entry-meta">${esc(item.meta)}</span>` : ''}
-              </div>
-              ${item.org ? `<p class="entry-org">${esc(item.org)}</p>` : ''}
-              ${item.summary ? `<p class="entry-summary">${esc(item.summary)}</p>` : ''}
-              ${
-                Array.isArray(item.details) && item.details.length
-                  ? `<ul class="entry-points">${item.details.map((point) => `<li>${esc(point)}</li>`).join('')}</ul>`
-                  : ''
-              }
-            </article>
-          `
-        )
-        .join('')}
+    <p>${esc(v.summary)}</p>
+    <ul class="vdetails">${(v.details || []).map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
+    <div class="vcard-foot">
+      ${v.href ? `<a class="vcard-link" href="${attr(v.href)}" target="_blank" rel="noopener">${esc(v.domain)} ↗</a>` : `<span class="vcard-link" style="color:var(--ink-3)">${esc(v.domain)}</span>`}
     </div>
-  `;
+  </article>`;
 }
 
-function renderLinkRow(items) {
-  return `
-    <p class="link-row">
-      ${items.map((item) => `<a href="${attr(item.href)}">${esc(item.label)}</a>`).join('<span aria-hidden="true">·</span>')}
-    </p>
-  `;
+function ventureGrid(list) {
+  return `<div class="grid">${list.map(ventureCard).join('')}</div>`;
 }
 
-function renderLinkGroups(groups) {
-  return `
-    <div class="link-groups">
-      ${groups
-        .map(
-          (group) => `
-            <section class="link-group">
-              <h3>${esc(group.group)}</h3>
-              ${renderLinkRow(group.items)}
-            </section>
-          `
-        )
-        .join('')}
+function researchEntry(r) {
+  return `<article class="rentry">
+    <div class="rentry-head">
+      <h3>${r.href ? `<a class="cite-link" href="${attr(r.href)}" target="_blank" rel="noopener">${esc(r.title)}</a>` : esc(r.title)}</h3>
+      <span class="meta">${esc(r.meta)}</span>
     </div>
-  `;
+    <p class="sum">${esc(r.summary)}</p>
+    <div class="body">${(r.body || []).map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+  </article>`;
+}
+
+function secHead(num, eyebrow) {
+  return `<div class="sec-head"><span class="sec-num">${esc(num)}</span><span class="eyebrow">${esc(eyebrow)}</span></div>`;
 }
 
 function renderHome() {
-  const intro = renderIntro(site.heroHeadline, site.homeSummary);
-  const selectedWork = renderSection('Selected work', renderEntries(site.homeSelectedWork), 'selected-work');
-
+  const h = site.hero;
+  const content = `
+    <header class="page-intro" style="padding-top:clamp(20px,4vw,48px)">
+      <p class="hero-eyebrow">${esc(h.eyebrow)}</p>
+      <h1>${esc(h.headline)}</h1>
+      <p class="intro-subtitle">${esc(h.lead)}</p>
+      <div class="hero-links">${h.links.map((l) => `<a href="${attr(l.href)}"${l.href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(l.label)}</a>`).join('')}</div>
+      <div class="pillars">${site.pillars.map((p) => `<div class="pillar"><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p></div>`).join('')}</div>
+    </header>
+    ${secHead('02', 'Selected ventures')}
+    ${ventureGrid(site.ventures.slice(0, 4))}
+    <a class="more-link" href="/ventures/">All ventures →</a>
+    ${secHead('03', 'Published research')}
+    <div class="research-list">${site.research.map(researchEntry).join('')}</div>
+  `;
   return renderPage({
-    title: site.homeTitle || site.name,
-    description: site.homeMetaDescription || site.description,
+    title: `${site.name} — ${site.brandSub}`,
+    description: site.description,
     canonicalPath: '/',
-    bodyClass: 'page-home',
-    content: `<article class="page-article">${intro}${renderProse(site.homeParagraphs)}${renderPillars(site.homePillars)}${selectedWork}${renderLinkRow(site.homeLinks)}</article>`,
-    ogType: 'website',
+    content,
     jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: site.fullName || site.author,
-      alternateName: site.author,
-      url: site.url,
-      image: site.url + site.ogImage,
-      jobTitle: site.jobTitle,
-      description: site.tagline,
-      // sameAs: identity profiles only (no email/phone/product sites).
-      sameAs: (site.profileLinks || site.contactLinks).map((link) => link.href),
-      // Incoming undergraduate — Cambridge is a current affiliation, prior
-      // school is alumniOf.
-      affiliation: {
-        '@type': 'CollegeOrUniversity',
-        name: 'Peterhouse, University of Cambridge',
-        url: 'https://www.cam.ac.uk/',
-      },
-      alumniOf: {
-        '@type': 'EducationalOrganization',
-        name: 'K. International School Tokyo',
-      },
-      homeLocation: {
-        '@type': 'Place',
-        name: site.location,
-      },
+      '@context': 'https://schema.org', '@type': 'Person', name: site.fullName, url: site.url,
+      jobTitle: 'Founder', sameAs: site.contactLinks.map((l) => l.href).filter((h) => h.startsWith('http')),
+      alumniOf: ['University of Cambridge', 'K. International School Tokyo'], description: site.tagline,
     },
+  });
+}
+
+function renderVentures() {
+  const content = `${secHead('02', 'Ventures')}${ventureGrid(site.ventures)}`;
+  return renderPage({
+    title: `Ventures · ${site.name}`, description: 'Products and ventures Howard Chan has built and shipped.',
+    canonicalPath: '/ventures/', content,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${site.name} — Ventures` },
+  });
+}
+
+function renderResearch() {
+  const content = `${secHead('03', 'Published research')}<div class="research-list">${site.research.map(researchEntry).join('')}</div>`;
+  return renderPage({
+    title: `Research · ${site.name}`, description: 'Published research by Howard Chan on communication, cognition, and institutional systems.',
+    canonicalPath: '/research/', content,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: `${site.name} — Research` },
   });
 }
 
 function renderAbout() {
-  const intro = renderIntro('About Me');
-
+  const a = site.about;
+  const content = `${secHead('04', 'About')}
+    <div class="about-grid">
+      <div class="about-prose">${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
+      <figure class="portrait"><img src="/assets/media/pfp.png" alt="Howard Chan" width="230" height="287" decoding="async"><figcaption>Sumida-ku, Tokyo</figcaption></figure>
+    </div>
+    <div class="timeline">
+      <span class="eyebrow">Experience &amp; education</span>
+      <div style="margin-top:14px">${a.timeline.map((t) => `<div class="tline"><h4>${esc(t.title)}</h4><span class="tmeta">${esc(t.meta)}</span><p class="tsum">${esc(t.sum)}</p></div>`).join('')}</div>
+    </div>
+    ${a.honors ? `<div class="timeline"><span class="eyebrow">Selected honors</span><div style="margin-top:14px">${a.honors.map((x) => `<div class="tline"><h4 style="font-weight:500">${esc(x)}</h4></div>`).join('')}</div></div>` : ''}`;
   return renderPage({
-    title: `About · ${site.name}`,
-    description:
-      'About Howard Chan — a Tokyo-based builder and incoming Cambridge HSPS student at Peterhouse, with experience across service leadership, research, and product infrastructure.',
-    canonicalPath: '/about/',
-    bodyClass: 'page-about',
-    content: `<article class="page-article">${intro}${renderProse(site.aboutParagraphs)}${renderSection(
-      'Professional Experience',
-      renderEntries(site.experience),
-      'experience'
-    )}${renderSection('Education', renderEntries(site.education), 'education')}${renderLinkRow(site.homeLinks)}</article>`,
-    ogType: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'ProfilePage',
-      mainEntity: {
-        '@type': 'Person',
-        name: site.fullName || site.author,
-        jobTitle: site.jobTitle,
-        sameAs: (site.profileLinks || site.contactLinks).map((link) => link.href),
-        description: site.tagline,
-      },
-    },
-  });
-}
-
-function renderProjects() {
-  const intro = renderIntro('Projects', 'Products, civic initiatives, and infrastructure built to work in real conditions.');
-
-  const sections = site.projects.map((group) =>
-    renderSection(group.group, renderEntries(group.items), group.group.toLowerCase().replace(/[^a-z0-9]+/g, '-'))
-  );
-
-  return renderPage({
-    title: `Projects · ${site.name}`,
-    description:
-      'Projects by Howard Chan — products including ElevateOS, Prior Moves, Tatemori, and nobill, plus civic initiatives and production infrastructure built to work in real conditions.',
-    canonicalPath: '/projects/',
-    bodyClass: 'page-projects',
-    content: `<article class="page-article">${intro}${sections.join('')}</article>`,
-    ogType: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: `${site.name} Projects`,
-      description: 'Products, civic initiatives, and infrastructure.',
-    },
-  });
-}
-
-function renderResearchIndex() {
-  const intro = renderIntro('Research', 'Research on communication, cognition, and institutional systems.');
-
-  return renderPage({
-    title: `Research · ${site.name}`,
-    description:
-      'Research by Howard Chan on emoji semiotics across Japanese and Chinese communication, cognitive aging and the Seattle Longitudinal Study, and semiconductor supply-chain resilience.',
-    canonicalPath: '/research/',
-    bodyClass: 'page-research',
-    content: `<article class="page-article">${intro}${renderEntries(site.research)}</article>`,
-    ogType: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: `${site.name} Research`,
-      description: 'Research on communication, cognition, and institutional systems.',
-    },
-  });
-}
-
-function renderResearchArticle(post) {
-  const intro = renderIntro(post.title, post.summary);
-
-  return renderPage({
-    title: `${post.title} · ${site.name}`,
-    description: post.summary,
-    canonicalPath: `/research/${post.slug}/`,
-    bodyClass: 'page-post',
-    content: `<article class="page-article">${intro}${renderSection('Notes', renderProse(post.body), 'notes')}</article>`,
-    ogType: 'article',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'ScholarlyArticle',
-      headline: post.title,
-      datePublished: post.dateIso || today,
-      author: { '@type': 'Person', name: site.fullName || site.author },
-      description: post.summary,
-      mainEntityOfPage: `${site.url}/research/${post.slug}/`,
-    },
-  });
-}
-
-function renderGuidesIndex() {
-  const intro = renderIntro('Guides', 'Honest, specific guides to the IB and to UK, US, and Hong Kong university admissions — written by an incoming Cambridge HSPS student who did it from an international school in Tokyo.');
-  return renderPage({
-    title: `Guides · ${site.name}`,
-    description: 'Honest guides to the IB and university admissions for international students — by an incoming Cambridge HSPS student.',
-    canonicalPath: '/guides/',
-    bodyClass: 'page-guides',
-    content: `<article class="page-article">${intro}${renderEntries(
-      guides.map((g) => ({ title: g.title, href: `/guides/${g.slug}/`, summary: g.metaDescription }))
-    )}</article>`,
-    ogType: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: `${site.name} Guides`,
-      description: 'Guides to the IB and university admissions for international students.',
-    },
-  });
-}
-
-function renderGuideArticle(g) {
-  const related = guides.filter((x) => x.slug !== g.slug).slice(0, 4);
-  const faqBlock =
-    Array.isArray(g.faq) && g.faq.length
-      ? renderSection(
-          'Frequently asked questions',
-          `<div class="prose">${g.faq.map((f) => `<h3>${esc(f.q)}</h3><p>${esc(f.a)}</p>`).join('')}</div>`,
-          'faq'
-        )
-      : '';
-  const body = `
-    ${renderIntro(g.title, g.metaDescription)}
-    ${renderProse(g.intro || [])}
-    ${(g.sections || []).map((s) => renderSection(s.h2, renderProse(s.paragraphs || []))).join('')}
-    ${faqBlock}
-    ${g.takeaway ? renderSection('The takeaway', renderProse([g.takeaway])) : ''}
-    <aside class="guide-cta">
-      <p>Run a tutoring or admissions agency? <a href="${attr(ELEVATEOS_CTA)}">ElevateOS</a> turns a tutor's 60-second note into a parent-ready report in seconds.</p>
-    </aside>
-    ${renderSection(
-      'Keep reading',
-      renderEntries(related.map((r) => ({ title: r.title, href: `/guides/${r.slug}/`, summary: r.metaDescription })))
-    )}
-  `;
-  return renderPage({
-    title: `${g.title} · ${site.name}`,
-    description: g.metaDescription,
-    canonicalPath: `/guides/${g.slug}/`,
-    bodyClass: 'page-post',
-    content: `<article class="page-article">${body}</article>`,
-    ogType: 'article',
-    jsonLd: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: g.title,
-        datePublished: g.dateIso || today,
-        dateModified: today,
-        author: { '@type': 'Person', name: site.fullName || site.author, url: site.url },
-        publisher: { '@type': 'Organization', name: site.name, url: site.url },
-        description: g.metaDescription,
-        mainEntityOfPage: `${site.url}/guides/${g.slug}/`,
-      },
-      ...(Array.isArray(g.faq) && g.faq.length
-        ? [
-            {
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: g.faq.map((f) => ({
-                '@type': 'Question',
-                name: f.q,
-                acceptedAnswer: { '@type': 'Answer', text: f.a },
-              })),
-            },
-          ]
-        : []),
-    ],
-  });
-}
-
-function renderAwards() {
-  const intro = renderIntro('Awards & Certifications', 'Academic profile, recognition, and certifications.');
-
-  const sections = site.awardsCertifications.map((group, index) =>
-    renderSection(group.group, renderEntries(group.items), index === 0 ? 'academic-profile' : group.group.toLowerCase().replace(/[^a-z0-9]+/g, '-'))
-  );
-
-  return renderPage({
-    title: `Awards & Certifications · ${site.name}`,
-    description:
-      'Awards and certifications for Howard Chan — Peterhouse (Cambridge) HSPS offer, IB predicted 45/45, SAT 1550, debate and MUN honours, and technical certifications.',
-    canonicalPath: '/awards-certifications/',
-    bodyClass: 'page-awards',
-    content: `<article class="page-article">${intro}${sections.join('')}</article>`,
-    ogType: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: `${site.name} Awards and Certifications`,
-      description: 'Academic profile, recognition, and certifications.',
-    },
+    title: `About · ${site.name}`, description: 'About Howard Chan — Tokyo-based builder and researcher, incoming Cambridge HSPS.',
+    canonicalPath: '/about/', content,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'ProfilePage', mainEntity: { '@type': 'Person', name: site.fullName, description: site.tagline } },
   });
 }
 
 function renderContact() {
-  const intro = renderIntro('Contact', site.contactIntro);
-
+  const c = site.contact;
+  const content = `${secHead('05', 'Contact')}
+    <p class="contact-intro">${esc(c.intro)}</p>
+    <div class="cgroups">${c.groups.map((g) => `<div class="cgroup"><h4>${esc(g.group)}</h4><ul>${g.items.map((it) => `<li><a href="${attr(it.href)}"${it.href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(it.label)}</a></li>`).join('')}</ul></div>`).join('')}</div>
+    <div class="copybar"><a class="copybtn" href="${attr(c.emailHref)}">Email me</a><span class="eyebrow" style="text-transform:none;letter-spacing:0">${esc(c.email)}</span></div>`;
   return renderPage({
-    title: `Contact · ${site.name}`,
-    description:
-      'Contact Howard Chan — Codeberg, GitLab, Wantedly, and LinkedIn for professional work, email for longer messages, plus live project and social links.',
-    canonicalPath: '/contact/',
-    bodyClass: 'page-contact',
-    content: `<article class="page-article">${intro}${renderLinkGroups(site.linkGroups)}</article>`,
-    ogType: 'website',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'ContactPage',
-      mainEntity: {
-        '@type': 'Person',
-        name: site.fullName || site.author,
-        url: site.url,
-        sameAs: (site.profileLinks || site.contactLinks).map((link) => link.href),
-      },
-    },
+    title: `Contact · ${site.name}`, description: 'Get in touch with Howard Chan — Codeberg, Wantedly, LinkedIn, email.',
+    canonicalPath: '/contact/', content,
+    jsonLd: { '@context': 'https://schema.org', '@type': 'ContactPage', mainEntity: { '@type': 'Person', name: site.fullName, email: site.contact.email } },
   });
 }
 
 function renderNotFound() {
-  const intro = renderIntro('Page not found', 'Use Home, About, Projects, Research, Awards & Certifications, or Contact.');
-
-  return renderPage({
-    title: `Not found · ${site.name}`,
-    description: 'The page you were looking for is not here.',
-    canonicalPath: '/404/',
-    bodyClass: 'page-404',
-    content: `<article class="page-article">${intro}${renderSection(
-      'Pages',
-      renderLinkGroups([
-        {
-          group: 'Navigation',
-          items: navItems,
-        },
-      ])
-    )}</article>`,
-    ogType: 'website',
-    metaRobots: 'noindex,follow',
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: `Not found - ${site.name}`,
-    },
-  });
+  const content = `<header class="page-intro"><p class="hero-eyebrow">404</p><h1>Page not found.</h1><p class="intro-subtitle">Try the <a class="vcard-link" href="/">index</a>, <a class="vcard-link" href="/ventures/">ventures</a>, or <a class="vcard-link" href="/contact/">contact</a>.</p></header>`;
+  return renderPage({ title: `Not found · ${site.name}`, description: 'Page not found.', canonicalPath: '/404/', content, jsonLd: { '@context': 'https://schema.org', '@type': 'WebPage', name: 'Not found' } });
 }
 
-function renderRobots() {
-  return `User-agent: *
-Allow: /
-Sitemap: ${site.url}/sitemap.xml
-`;
+function renderRedirect(target) {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=${attr(target)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${attr(urlFor(target))}"><title>Redirecting…</title></head><body><script>location.replace(${JSON.stringify(target)});</script><p>Redirecting to <a href="${attr(target)}">${esc(target)}</a>.</p></body></html>`;
 }
 
-function renderLlms() {
-  return `# ${site.name}
-
-${site.tagline}
-
-Howard Chan's public profile, projects, research, awards & certifications, and contact links.
-
-## Pages
-- Home: ${site.url}/
-- About: ${site.url}/about/
-- Projects: ${site.url}/projects/
-- Research: ${site.url}/research/
-- Awards & Certifications: ${site.url}/awards-certifications/
-- Contact: ${site.url}/contact/
-
-## About
-- ${site.aboutParagraphs.join(' ')}
-
-## Professional Experience
-${site.experience.map((item) => `- ${item.title}: ${item.summary}`).join('\n')}
-
-## Education
-${site.education.map((item) => `- ${item.title}: ${item.summary}`).join('\n')}
-
-## Projects
-${site.projects
-  .map(
-    (group) =>
-      `### ${group.group}\n${group.items
-        .map((item) => `- ${item.title}: ${item.summary}`)
-        .join('\n')}`
-  )
-  .join('\n\n')}
-
-## Research
-${site.research.map((item) => `- ${item.title} (${item.meta}): ${item.summary}`).join('\n')}
-
-## Awards & Certifications
-${site.awardsCertifications
-  .map(
-    (group) =>
-      `### ${group.group}\n${group.items.map((item) => `- ${item.title}: ${item.summary}`).join('\n')}`
-  )
-  .join('\n\n')}
-
-## Links
-${site.contactLinks.map((link) => `- ${link.label}: ${link.href}`).join('\n')}
-`;
-}
+function renderRobots() { return `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`; }
 
 function renderSitemap() {
-  const entries = [
-    '/',
-    '/about/',
-    '/projects/',
-    '/research/',
-    '/awards-certifications/',
-    '/contact/',
-    ...site.research.map((post) => `/research/${post.slug}/`),
-  ];
-
+  const routes = ['/', '/ventures/', '/research/', '/about/', '/contact/'];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${entries
-  .map(
-    (route) =>
-      `  <url><loc>${site.url}${route === '/' ? '/' : route}</loc><lastmod>${today}</lastmod><changefreq>${
-        route.startsWith('/research/') && route !== '/research/' ? 'monthly' : 'weekly'
-      }</changefreq><priority>${
-        route === '/'
-          ? '1.0'
-          : route === '/research/'
-            ? '0.9'
-            : route === '/projects/'
-              ? '0.85'
-              : route === '/awards-certifications/'
-                ? '0.75'
-                : route === '/about/'
-                  ? '0.65'
-                  : route === '/contact/'
-                    ? '0.55'
-                    : '0.7'
-      }</priority></url>`
-  )
-  .join('\n')}
+${routes.map((r) => `  <url><loc>${site.url}${r === '/' ? '/' : r}</loc><lastmod>${today}</lastmod><priority>${r === '/' ? '1.0' : '0.7'}</priority></url>`).join('\n')}
 </urlset>
 `;
 }
 
-async function cleanupMediaAssets() {
-  const mediaDir = path.join(root, 'assets', 'media');
-  let entries;
-
-  try {
-    entries = await readdir(mediaDir, { withFileTypes: true });
-  } catch (error) {
-    if (error?.code === 'ENOENT') {
-      return;
-    }
-    throw error;
-  }
-
-  await Promise.all(
-    entries
-      .filter((entry) => entry.isFile() && entry.name !== 'pfp.png' && entry.name !== 'hc-logo.png')
-      .map((entry) => rm(path.join(mediaDir, entry.name), { force: true }))
-  );
-}
-
 async function cleanupGeneratedRoutes() {
-  const routeDirs = ['about', 'projects', 'research', 'awards-certifications', 'contact', 'portfolio', 'blog', 'awards', 'guides'];
-
-  await Promise.all(routeDirs.map((dir) => rm(path.join(root, dir), { recursive: true, force: true })));
+  const dirs = ['ventures', 'research', 'about', 'contact', 'projects', 'awards-certifications', 'portfolio', 'blog', 'guides', 'awards'];
+  await Promise.all(dirs.map((d) => rm(path.join(root, d), { recursive: true, force: true })));
 }
 
-async function writeOutput(relativePath, content) {
-  const target = path.join(root, relativePath);
-  const normalized = String(content).replace(/[ \t]+$/gm, '');
+async function writeOutput(rel, content) {
+  const target = path.join(root, rel);
   await mkdir(path.dirname(target), { recursive: true });
-  try {
-    const existing = await readFile(target, 'utf8');
-    if (existing === normalized) {
-      return;
-    }
-  } catch (error) {
-    if (error?.code !== 'ENOENT') {
-      throw error;
-    }
-  }
-  await writeFile(target, normalized, 'utf8');
+  await writeFile(target, String(content).replace(/[ \t]+$/gm, ''), 'utf8');
 }
+
+await main();
