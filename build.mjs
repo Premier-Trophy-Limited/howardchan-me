@@ -19,11 +19,15 @@ const STATUS = {
   research: { label: 'Research', color: 'var(--status-research)' },
 };
 
+function vslug(v) { return v.slug || v.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+
 async function main() {
   await cleanupGeneratedRoutes();
   await writeOutput('index.html', renderHome());
   await writeOutput(path.join('ventures', 'index.html'), renderVentures());
   await writeOutput(path.join('research', 'index.html'), renderResearch());
+  for (const v of site.ventures) await writeOutput(path.join('ventures', vslug(v), 'index.html'), renderVentureDetail(v));
+  for (const r of site.research) await writeOutput(path.join('research', r.slug, 'index.html'), renderResearchDetail(r));
   await writeOutput(path.join('about', 'index.html'), renderAbout());
   await writeOutput(path.join('contact', 'index.html'), renderContact());
   await writeOutput('404.html', renderNotFound());
@@ -100,12 +104,13 @@ function statusChip(status) {
 function ventureCard(v) {
   return `<article class="vcard">
     <div class="vcard-top">
-      <h3>${esc(v.name)}${v.jp ? `<span class="jp">${esc(v.jp)}</span>` : ''}</h3>
+      <h3><a href="/ventures/${vslug(v)}/" style="color:inherit">${esc(v.name)}</a>${v.jp ? `<span class="jp">${esc(v.jp)}</span>` : ''}</h3>
       ${statusChip(v.status)}
     </div>
     <p>${esc(v.summary)}</p>
     <ul class="vdetails">${(v.details || []).map((d) => `<li>${esc(d)}</li>`).join('')}</ul>
     <div class="vcard-foot">
+      <a class="vcard-link" href="/ventures/${vslug(v)}/">Overview →</a>
       ${v.href ? `<a class="vcard-link" href="${attr(v.href)}" target="_blank" rel="noopener">${esc(v.domain)} ↗</a>` : `<span class="vcard-link" style="color:var(--ink-3)">${esc(v.domain)}</span>`}
     </div>
   </article>`;
@@ -118,7 +123,7 @@ function ventureGrid(list) {
 function researchEntry(r) {
   return `<article class="rentry">
     <div class="rentry-head">
-      <h3>${r.href ? `<a class="cite-link" href="${attr(r.href)}" target="_blank" rel="noopener">${esc(r.title)}</a>` : esc(r.title)}</h3>
+      <h3><a href="/research/${esc(r.slug)}/" style="color:inherit">${esc(r.title)}</a></h3>
       <span class="meta">${esc(r.meta)}</span>
     </div>
     <p class="sum">${esc(r.summary)}</p>
@@ -209,6 +214,41 @@ function renderContact() {
   });
 }
 
+function renderVentureDetail(v) {
+  const others = site.ventures.filter((x) => x !== v).slice(0, 3);
+  const content = `
+    <p class="backlink"><a href="/ventures/">← Ventures</a></p>
+    <header class="page-intro" style="padding-top:8px">
+      <div class="detail-meta">${statusChip(v.status)}${v.href ? `<a class="vcard-link" href="${attr(v.href)}" target="_blank" rel="noopener">${esc(v.domain)} ↗</a>` : `<span class="vcard-link" style="color:var(--ink-3)">${esc(v.domain)}</span>`}</div>
+      <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">${esc(v.name)}${v.jp ? ` <span class="jp" style="font-size:0.55em;color:var(--ink-3)">${esc(v.jp)}</span>` : ''}</h1>
+      <p class="intro-subtitle">${esc(v.summary)}</p>
+    </header>
+    <section class="page-section"><span class="eyebrow">What it does</span><ul class="vdetails" style="margin-top:14px;max-width:62ch">${(v.details || []).map((d) => `<li>${esc(d)}</li>`).join('')}</ul></section>
+    <section class="page-section"><span class="eyebrow">More ventures</span><div class="grid" style="margin-top:18px">${others.map(ventureCard).join('')}</div></section>
+  `;
+  return renderPage({
+    title: `${v.name} · ${site.name}`, description: v.summary, canonicalPath: `/ventures/${vslug(v)}/`, content, ogType: 'article',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'CreativeWork', name: v.name, url: v.href || site.url, author: { '@type': 'Person', name: site.fullName }, description: v.summary },
+  });
+}
+
+function renderResearchDetail(r) {
+  const content = `
+    <p class="backlink"><a href="/research/">← Research</a></p>
+    <header class="page-intro" style="padding-top:8px">
+      <p class="hero-eyebrow">${esc(r.meta)}</p>
+      <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:26ch">${esc(r.title)}</h1>
+      <p class="intro-subtitle">${esc(r.summary)}</p>
+      ${r.href ? `<div class="hero-links"><a href="${attr(r.href)}" target="_blank" rel="noopener">Read the paper ↗</a></div>` : ''}
+    </header>
+    <section class="page-section" style="max-width:68ch"><span class="eyebrow">Summary</span><div class="about-prose" style="margin-top:14px">${(r.body || []).map((p) => `<p>${esc(p)}</p>`).join('')}</div></section>
+  `;
+  return renderPage({
+    title: `${r.title} · ${site.name}`, description: r.summary, canonicalPath: `/research/${r.slug}/`, content, ogType: 'article',
+    jsonLd: { '@context': 'https://schema.org', '@type': 'ScholarlyArticle', headline: r.title, datePublished: '2025', author: { '@type': 'Person', name: site.fullName }, description: r.summary, mainEntityOfPage: `${site.url}/research/${r.slug}/` },
+  });
+}
+
 function renderNotFound() {
   const content = `<header class="page-intro"><p class="hero-eyebrow">404</p><h1>Page not found.</h1><p class="intro-subtitle">Try the <a class="vcard-link" href="/">index</a>, <a class="vcard-link" href="/ventures/">ventures</a>, or <a class="vcard-link" href="/contact/">contact</a>.</p></header>`;
   return renderPage({ title: `Not found · ${site.name}`, description: 'Page not found.', canonicalPath: '/404/', content, jsonLd: { '@context': 'https://schema.org', '@type': 'WebPage', name: 'Not found' } });
@@ -221,7 +261,8 @@ function renderRedirect(target) {
 function renderRobots() { return `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`; }
 
 function renderSitemap() {
-  const routes = ['/', '/ventures/', '/research/', '/about/', '/contact/'];
+  const routes = ['/', '/ventures/', '/research/', '/about/', '/contact/',
+    ...site.ventures.map((v) => `/ventures/${vslug(v)}/`), ...site.research.map((r) => `/research/${r.slug}/`)];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${routes.map((r) => `  <url><loc>${site.url}${r === '/' ? '/' : r}</loc><lastmod>${today}</lastmod><priority>${r === '/' ? '1.0' : '0.7'}</priority></url>`).join('\n')}

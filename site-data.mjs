@@ -65,10 +65,10 @@ export const site = {
   ],
 
   research: [
-    { title: 'Hofstede’s Dimensions and Generational Effects on Ambiguous Emoji Semiotics: Cross-Cultural Analysis of Japanese and Chinese Digital Communication', meta: 'Preprint · 2025', href: 'https://www.preprints.org/',
+    { title: 'Hofstede’s Dimensions and Generational Effects on Ambiguous Emoji Semiotics: Cross-Cultural Analysis of Japanese and Chinese Digital Communication', meta: 'Preprint · 2025', slug: 'emoji-semiotics', href: 'https://www.preprints.org/',
       summary: 'How ambiguous emojis shift meaning across Japanese and Chinese digital communication.',
       body: ['Examines interpretation as a cultural and generational problem, not just a symbol problem.', 'Uses Hofstede’s dimensions to frame the JP/CN comparison.', 'Shows how small digital signals reveal larger patterns in communication and social expectation.'] },
-    { title: 'Unraveling Cognitive Aging: A Comprehensive Narrative Review Integrating Six Decades of the Seattle Longitudinal Study with Contemporary Advances', meta: 'Review · 2025',
+    { title: 'Unraveling Cognitive Aging: A Comprehensive Narrative Review Integrating Six Decades of the Seattle Longitudinal Study with Contemporary Advances', meta: 'Review · 2025', slug: 'cognitive-aging',
       summary: 'Education, occupational complexity, and digital engagement in cognition.',
       body: ['Synthesizes six decades of the Seattle Longitudinal Study with newer work on education and occupational complexity.', 'A bridge between long-run cognitive-aging research and contemporary questions about learning and work.', 'Synthesis-heavy; a reference point for broader cognitive-systems thinking.'] },
   ],

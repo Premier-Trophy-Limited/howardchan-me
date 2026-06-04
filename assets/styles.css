@@ -59,7 +59,11 @@ p { margin: 0; }
 
 /* Section head + intro */
 .page-intro { padding: clamp(36px,6vw,72px) 0 16px; }
-.page-intro h1 { font-family: var(--serif-display); font-weight: 500; font-size: var(--t-display); line-height: 0.94; letter-spacing: -0.04em; margin: 18px 0 0; max-width: 16ch; }
+.page-intro h1 { font-family: var(--serif-display); font-weight: 600; font-size: var(--t-display); line-height: 0.92; letter-spacing: -0.046em; margin: 18px 0 0; max-width: 16ch; }
+.backlink { font-family: var(--mono); font-size: 0.76rem; margin: 0 0 4px; }
+.backlink a { color: var(--ink-3); }
+.backlink a:hover { color: var(--accent); }
+.detail-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .intro-subtitle { font-family: var(--sans); font-size: var(--t-lead); line-height: 1.5; color: var(--ink-2); margin: 26px 0 0; max-width: 60ch; }
 .sec-head { display: flex; align-items: baseline; gap: 16px; border-top: 2px solid var(--ink); padding-top: 12px; margin: 64px 0 28px; }
 .sec-num { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-3); }
