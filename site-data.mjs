@@ -92,28 +92,28 @@ export const site = {
   },
 
   contact: {
-    intro: 'Codeberg and Wantedly are the clearest proof of the work. Email is best for longer messages.',
+    intro: 'Codeberg and the live products are the clearest proof of the work. LinkedIn for the professional picture; email is best for longer messages.',
     email: 'chakhanghowardchan2008@gmail.com',
     emailHref: emailUrl,
     groups: [
-      { group: 'Core / Professional', items: [
-        { label: 'Codeberg', href: codebergUrl }, { label: 'GitLab', href: gitlabUrl },
-        { label: 'Wantedly', href: wantedlyUrl }, { label: 'LinkedIn', href: linkedinUrl }, { label: 'Email', href: emailUrl } ] },
+      { group: 'Professional', items: [
+        { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl },
+        { label: 'Wantedly', href: wantedlyUrl }, { label: 'Email', href: emailUrl } ] },
       { group: 'Live / Projects', items: [
         { label: 'ElevateOS', href: elevateosUrl }, { label: 'Prior Moves', href: priormovesUrl },
-        { label: 'Tatemori', href: tatemoriUrl }, { label: 'nobill', href: nobillUrl }, { label: 'Premier Trophy', href: crystalcenturyUrl }, { label: 'Think College Level — IB & admissions guides ↗', href: 'https://thinkcollegelevel.com' } ] },
-      { group: 'Social / Personal', items: [
-        { label: 'WhatsApp', href: whatsappUrl }, { label: 'Facebook', href: facebookUrl }, { label: 'Instagram', href: instagramUrl } ] },
+        { label: 'Tatemori', href: tatemoriUrl }, { label: 'nobill', href: nobillUrl }, { label: 'Premier Trophy', href: crystalcenturyUrl }, { label: 'Think College Level — IB & admissions guides ↗', href: tclUrl } ] },
+      { group: 'Direct', items: [
+        { label: 'Email', href: emailUrl }, { label: 'WhatsApp', href: whatsappUrl } ] },
     ],
   },
 
   contactLinks: [
-    { label: 'Codeberg', href: codebergUrl }, { label: 'GitLab', href: gitlabUrl },
-    { label: 'Wantedly', href: wantedlyUrl }, { label: 'LinkedIn', href: linkedinUrl }, { label: 'Email', href: emailUrl },
+    { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl },
+    { label: 'Wantedly', href: wantedlyUrl }, { label: 'Email', href: emailUrl },
   ],
   footerLinks: [
-    { label: 'Codeberg', href: codebergUrl }, { label: 'GitLab', href: gitlabUrl },
-    { label: 'Wantedly', href: wantedlyUrl }, { label: 'LinkedIn', href: linkedinUrl }, { label: 'Email', href: emailUrl },
+    { label: 'LinkedIn', href: linkedinUrl }, { label: 'Codeberg', href: codebergUrl },
+    { label: 'Wantedly', href: wantedlyUrl }, { label: 'Email', href: emailUrl },
   ],
   // Owned web properties — cross-linked on every page for an interlinked SEO network.
   network: [

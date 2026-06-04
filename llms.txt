@@ -23,8 +23,7 @@ Chak Hang (Howard) Chan — founder, builder, and researcher; incoming Universit
 - https://howardchan.me/contact/  — contact
 
 ## Links
-- Codeberg: https://codeberg.org/imjusthoward
-- GitLab: https://gitlab.com/howard53
-- Wantedly: https://www.wantedly.com/id/chakhang_chan
 - LinkedIn: https://www.linkedin.com/in/howardchan2008/
+- Codeberg: https://codeberg.org/imjusthoward
+- Wantedly: https://www.wantedly.com/id/chakhang_chan
 - Email: mailto:chakhanghowardchan2008@gmail.com

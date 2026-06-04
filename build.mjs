@@ -224,7 +224,7 @@ function renderContact() {
     <div class="cgroups">${c.groups.map((g) => `<div class="cgroup"><h4>${esc(g.group)}</h4><ul>${g.items.map((it) => `<li><a href="${attr(it.href)}"${it.href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${esc(it.label)}</a></li>`).join('')}</ul></div>`).join('')}</div>
     <div class="copybar"><a class="copybtn" href="${attr(c.emailHref)}">Email me</a><span class="eyebrow" style="text-transform:none;letter-spacing:0">${esc(c.email)}</span></div>`;
   return renderPage({
-    title: `Contact · ${site.name}`, description: 'Get in touch with Howard Chan — Codeberg, Wantedly, LinkedIn, email.',
+    title: `Contact · ${site.name}`, description: 'Get in touch with Howard Chan — LinkedIn, Codeberg, email.',
     canonicalPath: '/contact/', content,
     jsonLd: { '@context': 'https://schema.org', '@type': 'ContactPage', mainEntity: { '@type': 'Person', name: site.fullName, email: site.contact.email } },
   });
