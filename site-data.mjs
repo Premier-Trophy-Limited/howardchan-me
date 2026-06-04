@@ -71,6 +71,9 @@ export const site = {
     { title: 'Unraveling Cognitive Aging: A Comprehensive Narrative Review Integrating Six Decades of the Seattle Longitudinal Study with Contemporary Advances', meta: 'Review · 2025', slug: 'cognitive-aging',
       summary: 'Education, occupational complexity, and digital engagement in cognition.',
       body: ['Synthesizes six decades of the Seattle Longitudinal Study with newer work on education and occupational complexity.', 'A bridge between long-run cognitive-aging research and contemporary questions about learning and work.', 'Synthesis-heavy; a reference point for broader cognitive-systems thinking.'] },
+    { title: 'Semiconductor Supply-Chain Resilience', meta: 'Concept paper · 2025', slug: 'supply-chain-resilience',
+      summary: 'Structural fragility and resilience across the global semiconductor supply chain.',
+      body: ['Frames resilience as a coordination and incentive problem spanning fabrication, packaging, and logistics rather than a single bottleneck.', 'Maps where single points of failure concentrate and how shocks propagate downstream.', 'Connects supply-chain stress to institutional and policy responses — a systems lens on a strategic industry.'] },
   ],
 
   about: {
@@ -100,7 +103,7 @@ export const site = {
         { label: 'Wantedly', href: wantedlyUrl }, { label: 'LinkedIn', href: linkedinUrl }, { label: 'Email', href: emailUrl } ] },
       { group: 'Live / Projects', items: [
         { label: 'ElevateOS', href: elevateosUrl }, { label: 'Prior Moves', href: priormovesUrl },
-        { label: 'Tatemori', href: tatemoriUrl }, { label: 'nobill', href: nobillUrl }, { label: 'Premier Trophy', href: crystalcenturyUrl } ] },
+        { label: 'Tatemori', href: tatemoriUrl }, { label: 'nobill', href: nobillUrl }, { label: 'Premier Trophy', href: crystalcenturyUrl }, { label: 'Think College Level — IB & admissions guides ↗', href: 'https://thinkcollegelevel.com' } ] },
       { group: 'Social / Personal', items: [
         { label: 'WhatsApp', href: whatsappUrl }, { label: 'Facebook', href: facebookUrl }, { label: 'Instagram', href: instagramUrl } ] },
     ],
