@@ -81,11 +81,13 @@ export const site = {
     ],
     timeline: [
       { title: 'Peterhouse, University of Cambridge', meta: 'HSPS · 2026–2029', sum: 'Incoming undergraduate, Human, Social, and Political Sciences. Predicted IB 45/45.' },
-      { title: 'Director of Operations, Premier Trophy', meta: '2024–Present', sum: 'Operations and reliability for a vertically-integrated Hong Kong custom-awards manufacturer.' },
+      { title: 'Founder Institute', meta: 'Apr 2026–Present', sum: 'Selected for the Summer 2026 (Vietnam) cohort of the pre-seed accelerator; developing ElevateOS through structured build-and-validation milestones.' },
+      { title: 'Director of Operations, Premier Trophy', meta: '2024–Present', sum: 'Operations and reliability for a vertically-integrated Hong Kong custom-awards manufacturer (since 1990).' },
       { title: 'Founder & President, Kiwanis Voice Club of Nippon', meta: '2026–Present', sum: 'First Voice Club representing Japan; youth service, continuity, and stakeholder coordination.' },
+      { title: 'Founder & President, KIST Key Club', meta: '2024–2026', sum: 'Scaled to 40+ members and five executives; ¥200,000+ raised; Kiwanis Dolls and Stand Tall assistive-device initiatives.' },
       { title: 'Researcher, Lumiere Education', meta: '2025', sum: 'Top-5% project (full scholarship, UCSD credit) on ambiguous-emoji interpretation across Japanese and Chinese users.' },
     ],
-    honors: ['Predicted IB 45/45', 'SAT 1550', 'Lumiere Research Scholar (full scholarship)', 'Harvard College Debate Union — Japan Regional Winner 2026', 'HKUST Technology & Management — full-scholarship admit'],
+    honors: ['Predicted IB 45/45 · SAT 1550 · GPA 3.96', 'University offers: Cambridge (committed) · HKU · HKUST (full scholarship) · UC Berkeley · UCLA · UCSD · Edinburgh · King’s · UCL', 'Lumiere Research Scholar — full scholarship, UCSD credit', 'Harvard College Debate Union — Japan Regional Winner 2026'],
   },
 
   contact: {
