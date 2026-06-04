@@ -203,7 +203,7 @@ function renderAbout() {
   const content = `${secHead('04', 'About')}
     <div class="about-grid">
       <div class="about-prose">${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}</div>
-      <figure class="portrait"><img src="/assets/media/pfp.png" alt="Howard Chan" width="230" height="287" decoding="async"><figcaption>Sumida-ku, Tokyo</figcaption></figure>
+      <figure class="portrait"><img src="/assets/media/pfp.png" alt="Howard Chan" width="300" height="300" decoding="async"><figcaption>Sumida-ku, Tokyo</figcaption></figure>
     </div>
     <div class="timeline">
       <span class="eyebrow">Experience &amp; education</span>
