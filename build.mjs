@@ -35,6 +35,7 @@ async function main() {
   await writeOutput(path.join('projects', 'index.html'), renderRedirect('/ventures/'));
   await writeOutput('robots.txt', renderRobots());
   await writeOutput('sitemap.xml', renderSitemap());
+  await writeOutput('llms.txt', renderLlms());
   await writeOutput('CNAME', 'howardchan.me\n');
 }
 
@@ -81,6 +82,14 @@ function renderPage({ title, description, canonicalPath, content, jsonLd, ogType
   <meta property="og:title" content="${attr(title)}">
   <meta property="og:description" content="${attr(description)}">
   <meta property="og:url" content="${attr(urlFor(canonicalPath))}">
+  <meta property="og:site_name" content="${attr(site.name)}">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="${site.url}/assets/media/pfp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${attr(title)}">
+  <meta name="twitter:description" content="${attr(description)}">
+  <meta name="twitter:image" content="${site.url}/assets/media/pfp.png">
+  <meta name="author" content="${attr(site.fullName)}">
   <title>${esc(title)}</title>
   <script type="application/ld+json">${JSON.stringify(ld.length === 1 ? ld[0] : ld)}</script>
 </head>
@@ -157,9 +166,12 @@ function renderHome() {
     canonicalPath: '/',
     content,
     jsonLd: {
-      '@context': 'https://schema.org', '@type': 'Person', name: site.fullName, url: site.url,
+      '@context': 'https://schema.org', '@type': 'Person', name: site.fullName, alternateName: 'Howard Chan', url: site.url,
       jobTitle: 'Founder', sameAs: site.contactLinks.map((l) => l.href).filter((h) => h.startsWith('http')),
       alumniOf: ['University of Cambridge', 'K. International School Tokyo'], description: site.tagline,
+      knowsAbout: ['Product Management', 'Software Engineering', 'EdTech', 'Quantitative Research', 'Operations Management', 'Regulatory Compliance'],
+      worksFor: { '@type': 'Organization', name: 'ElevateOS', url: 'https://elevateos.org' },
+      homeLocation: { '@type': 'Place', name: 'Tokyo, Japan' }, nationality: 'Hong Kong',
     },
   });
 }
@@ -256,6 +268,30 @@ function renderNotFound() {
 
 function renderRedirect(target) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=${attr(target)}"><meta name="robots" content="noindex,follow"><link rel="canonical" href="${attr(urlFor(target))}"><title>Redirecting…</title></head><body><script>location.replace(${JSON.stringify(target)});</script><p>Redirecting to <a href="${attr(target)}">${esc(target)}</a>.</p></body></html>`;
+}
+
+function renderLlms() {
+  return `# ${site.name}
+${site.tagline}
+
+${site.fullName} — founder, builder, and researcher; incoming University of Cambridge HSPS (Peterhouse).
+
+## Ventures
+${site.ventures.map((v) => `- ${v.name}${v.domain && v.domain.includes('.') ? ` (${v.domain})` : ''}: ${v.summary}`).join('\n')}
+
+## Research
+${site.research.map((r) => `- ${r.title} (${r.meta})`).join('\n')}
+
+## Pages
+- ${site.url}/  — index
+- ${site.url}/ventures/  — ventures
+- ${site.url}/research/  — published research
+- ${site.url}/about/  — about + experience
+- ${site.url}/contact/  — contact
+
+## Links
+${site.contactLinks.map((l) => `- ${l.label}: ${l.href}`).join('\n')}
+`;
 }
 
 function renderRobots() { return `User-agent: *\nAllow: /\nSitemap: ${site.url}/sitemap.xml\n`; }

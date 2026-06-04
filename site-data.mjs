@@ -60,7 +60,7 @@ export const site = {
       summary: 'A mobile convention companion surfacing schedules, venues, sessions, and announcements attendees can use instantly on their phones.',
       details: ['Built for real convention conditions — senior and non-English-first attendees.', 'A live information layer, not a replacement for official communication.', 'Mobile-first hierarchy designed for speed and clarity.'] },
     { name: 'Premier Trophy', status: 'live', domain: 'crystalcentury.com', href: crystalcenturyUrl,
-      summary: 'Operations and reliability for a 35-year-old Hong Kong custom-awards manufacturer — trophies, awards, crystal, and corporate gifts. The operational side of building.',
+      summary: 'Operations and reliability for a Hong Kong custom-awards manufacturer (founded 2008) — trophies, awards, crystal, and corporate gifts. The operational side of building.',
       details: ['Vertically integrated: own factory in mainland China, finishing in Hong Kong.', 'Thousands of business customers; a 5.0 Google rating across 220+ reviews.', 'Keeping real systems healthy under real traffic.'] },
   ],
 
@@ -82,7 +82,7 @@ export const site = {
     timeline: [
       { title: 'Peterhouse, University of Cambridge', meta: 'HSPS · 2026–2029', sum: 'Incoming undergraduate, Human, Social, and Political Sciences. Predicted IB 45/45.' },
       { title: 'Founder Institute', meta: 'Apr 2026–Present', sum: 'Selected for the Summer 2026 (Vietnam) cohort of the pre-seed accelerator; developing ElevateOS through structured build-and-validation milestones.' },
-      { title: 'Director of Operations, Premier Trophy', meta: '2024–Present', sum: 'Operations and reliability for a vertically-integrated Hong Kong custom-awards manufacturer (since 1990).' },
+      { title: 'Director of Operations, Premier Trophy', meta: '2024–Present', sum: 'Operations and reliability for a vertically-integrated Hong Kong custom-awards manufacturer (since 2008).' },
       { title: 'Founder & President, Kiwanis Voice Club of Nippon', meta: '2026–Present', sum: 'First Voice Club representing Japan; youth service, continuity, and stakeholder coordination.' },
       { title: 'Founder & President, KIST Key Club', meta: '2024–2026', sum: 'Scaled to 40+ members and five executives; ¥200,000+ raised; Kiwanis Dolls and Stand Tall assistive-device initiatives.' },
       { title: 'Researcher, Lumiere Education', meta: '2025', sum: 'Top-5% project (full scholarship, UCSD credit) on ambiguous-emoji interpretation across Japanese and Chinese users.' },
