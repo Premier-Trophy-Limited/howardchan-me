@@ -22,8 +22,14 @@ export const site = {
   url: siteUrl,
   title: 'Howard Chan',
   tagline: 'HSPS-trained institutional thinker. Technical builder. Product-minded executor.',
+  jobTitle: 'Founder & Software Builder',
   description:
     "Howard Chan's public profile, projects, research, awards & certifications, and contact links.",
+  // SEO: descriptive, keyworded homepage title + meta (kept honest to real content).
+  homeTitle: 'Howard Chan — Founder & Cambridge HSPS Student',
+  homeMetaDescription:
+    'Howard Chan is an incoming Cambridge HSPS student and Tokyo-based founder building edtech and software — ElevateOS, Prior Moves, Tatemori — with research on cognition and institutions.',
+  ogImage: '/assets/media/pfp.png',
   location: 'Sumida-ku, Tokyo, Japan',
   logo: {
     src: '/assets/media/hc-logo.png',
@@ -36,6 +42,28 @@ export const site = {
     'I work on problems where coordination breaks first. My role is usually the same: map the workflow, identify the friction, and build something people can actually use.',
     'Current work includes ElevateOS, Prior Moves, Tatemori, nobill, Pulse Manila 2026, and research on communication, cognition, and institutional systems.',
     'Long term, I want to build at the point where institutions, incentives, and technical systems meet, whether through company-building and venture or through early-career finance paths that sharpen commercial judgment and execution.',
+  ],
+  // SEO + UX: short, internally-linked summaries surfaced on the homepage so the
+  // page is not thin and search engines can crawl into the deeper sections.
+  homeSelectedWork: [
+    {
+      title: 'Projects',
+      href: '/projects/',
+      summary:
+        'ElevateOS (AI tutoring-operations platform), Prior Moves (13F-driven investor-move predictions), Tatemori (Japan kasuhara-law compliance), nobill, Katalyst, and Crystal Century.',
+    },
+    {
+      title: 'Research',
+      href: '/research/',
+      summary:
+        'Preprints and reviews on ambiguous emoji semiotics across Japanese and Chinese communication, cognitive aging from the Seattle Longitudinal Study, and semiconductor supply-chain resilience.',
+    },
+    {
+      title: 'Awards & Certifications',
+      href: '/awards-certifications/',
+      summary:
+        'IB predicted 45/45, SAT 1550, a Peterhouse (Cambridge) HSPS offer, plus debate, MUN, and research recognitions and technical certifications.',
+    },
   ],
   homePillars: [
     {
@@ -414,6 +442,17 @@ export const site = {
   ],
   contactIntro:
     'Codeberg and Wantedly are the clearest proof of the work. Email is best for longer messages. WhatsApp is for quick coordination.',
+  // SEO: schema.org sameAs should reference Howard's own identity profiles on
+  // other sites — real social/professional pages only (no email, phone, or
+  // project product sites).
+  profileLinks: [
+    { label: 'Codeberg', href: codebergUrl },
+    { label: 'GitLab', href: gitlabUrl },
+    { label: 'Wantedly', href: wantedlyUrl },
+    { label: 'LinkedIn', href: linkedinUrl },
+    { label: 'Facebook', href: facebookUrl },
+    { label: 'Instagram', href: instagramUrl },
+  ],
   homeLinks: [
     { label: 'Codeberg', href: codebergUrl },
     { label: 'GitLab', href: gitlabUrl },

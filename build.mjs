@@ -20,8 +20,8 @@ const canonicalPages = [
   {
     path: '/',
     file: 'index.html',
-    title: site.name,
-    description: site.description,
+    title: site.homeTitle || site.name,
+    description: site.homeMetaDescription || site.description,
     bodyClass: 'page-home',
     render: renderHome,
   },
@@ -29,7 +29,8 @@ const canonicalPages = [
     path: '/about/',
     file: path.join('about', 'index.html'),
     title: `About · ${site.name}`,
-    description: 'About Howard Chan.',
+    description:
+      'About Howard Chan — a Tokyo-based builder and incoming Cambridge HSPS student at Peterhouse, with experience across service leadership, research, and product infrastructure.',
     bodyClass: 'page-about',
     render: renderAbout,
   },
@@ -37,7 +38,8 @@ const canonicalPages = [
     path: '/projects/',
     file: path.join('projects', 'index.html'),
     title: `Projects · ${site.name}`,
-    description: 'Products, civic initiatives, and infrastructure.',
+    description:
+      'Projects by Howard Chan — products including ElevateOS, Prior Moves, Tatemori, and nobill, plus civic initiatives and production infrastructure built to work in real conditions.',
     bodyClass: 'page-projects',
     render: renderProjects,
   },
@@ -45,7 +47,8 @@ const canonicalPages = [
     path: '/research/',
     file: path.join('research', 'index.html'),
     title: `Research · ${site.name}`,
-    description: 'Research on communication, cognition, and institutional systems.',
+    description:
+      'Research by Howard Chan on emoji semiotics across Japanese and Chinese communication, cognitive aging and the Seattle Longitudinal Study, and semiconductor supply-chain resilience.',
     bodyClass: 'page-research',
     render: renderResearchIndex,
   },
@@ -53,7 +56,8 @@ const canonicalPages = [
     path: '/awards-certifications/',
     file: path.join('awards-certifications', 'index.html'),
     title: `Awards & Certifications · ${site.name}`,
-    description: 'Academic profile, recognition, and certifications.',
+    description:
+      'Awards and certifications for Howard Chan — Peterhouse (Cambridge) HSPS offer, IB predicted 45/45, SAT 1550, debate and MUN honours, and technical certifications.',
     bodyClass: 'page-awards',
     render: renderAwards,
   },
@@ -61,7 +65,8 @@ const canonicalPages = [
     path: '/contact/',
     file: path.join('contact', 'index.html'),
     title: `Contact · ${site.name}`,
-    description: 'GitHub, Wantedly, LinkedIn, email, project links, and social links.',
+    description:
+      'Contact Howard Chan — Codeberg, GitLab, Wantedly, and LinkedIn for professional work, email for longer messages, plus live project and social links.',
     bodyClass: 'page-contact',
     render: renderContact,
   },
@@ -246,9 +251,15 @@ function renderPage({
   <link rel="apple-touch-icon" href="/favicon.png">
   ${metaRobots ? `<meta name="robots" content="${attr(metaRobots)}">` : ''}
   <meta property="og:type" content="${attr(ogType)}">
+  <meta property="og:site_name" content="${attr(site.name)}">
   <meta property="og:title" content="${attr(title)}">
   <meta property="og:description" content="${attr(description)}">
   <meta property="og:url" content="${attr(urlFor(canonicalPath))}">
+  <meta property="og:image" content="${attr(site.url + site.ogImage)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${attr(title)}">
+  <meta name="twitter:description" content="${attr(description)}">
+  <meta name="twitter:image" content="${attr(site.url + site.ogImage)}">
   <title>${esc(title)}</title>
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
@@ -398,22 +409,41 @@ function renderLinkGroups(groups) {
 
 function renderHome() {
   const intro = renderIntro(site.heroHeadline, site.homeSummary);
+  const selectedWork = renderSection('Selected work', renderEntries(site.homeSelectedWork), 'selected-work');
 
   return renderPage({
-    title: site.name,
-    description: site.description,
+    title: site.homeTitle || site.name,
+    description: site.homeMetaDescription || site.description,
     canonicalPath: '/',
     bodyClass: 'page-home',
-    content: `<article class="page-article">${intro}${renderProse(site.homeParagraphs)}${renderPillars(site.homePillars)}${renderLinkRow(site.homeLinks)}</article>`,
+    content: `<article class="page-article">${intro}${renderProse(site.homeParagraphs)}${renderPillars(site.homePillars)}${selectedWork}${renderLinkRow(site.homeLinks)}</article>`,
     ogType: 'website',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'Person',
       name: site.fullName || site.author,
+      alternateName: site.author,
       url: site.url,
-      sameAs: site.contactLinks.map((link) => link.href),
-      alumniOf: ['University of Cambridge', 'K. International School Tokyo'],
+      image: site.url + site.ogImage,
+      jobTitle: site.jobTitle,
       description: site.tagline,
+      // sameAs: identity profiles only (no email/phone/product sites).
+      sameAs: (site.profileLinks || site.contactLinks).map((link) => link.href),
+      // Incoming undergraduate — Cambridge is a current affiliation, prior
+      // school is alumniOf.
+      affiliation: {
+        '@type': 'CollegeOrUniversity',
+        name: 'Peterhouse, University of Cambridge',
+        url: 'https://www.cam.ac.uk/',
+      },
+      alumniOf: {
+        '@type': 'EducationalOrganization',
+        name: 'K. International School Tokyo',
+      },
+      homeLocation: {
+        '@type': 'Place',
+        name: site.location,
+      },
     },
   });
 }
@@ -423,7 +453,8 @@ function renderAbout() {
 
   return renderPage({
     title: `About · ${site.name}`,
-    description: 'About Howard Chan.',
+    description:
+      'About Howard Chan — a Tokyo-based builder and incoming Cambridge HSPS student at Peterhouse, with experience across service leadership, research, and product infrastructure.',
     canonicalPath: '/about/',
     bodyClass: 'page-about',
     content: `<article class="page-article">${intro}${renderProse(site.aboutParagraphs)}${renderSection(
@@ -438,7 +469,8 @@ function renderAbout() {
       mainEntity: {
         '@type': 'Person',
         name: site.fullName || site.author,
-        sameAs: site.contactLinks.map((link) => link.href),
+        jobTitle: site.jobTitle,
+        sameAs: (site.profileLinks || site.contactLinks).map((link) => link.href),
         description: site.tagline,
       },
     },
@@ -454,7 +486,8 @@ function renderProjects() {
 
   return renderPage({
     title: `Projects · ${site.name}`,
-    description: 'Products, civic initiatives, and infrastructure.',
+    description:
+      'Projects by Howard Chan — products including ElevateOS, Prior Moves, Tatemori, and nobill, plus civic initiatives and production infrastructure built to work in real conditions.',
     canonicalPath: '/projects/',
     bodyClass: 'page-projects',
     content: `<article class="page-article">${intro}${sections.join('')}</article>`,
@@ -473,7 +506,8 @@ function renderResearchIndex() {
 
   return renderPage({
     title: `Research · ${site.name}`,
-    description: 'Research on communication, cognition, and institutional systems.',
+    description:
+      'Research by Howard Chan on emoji semiotics across Japanese and Chinese communication, cognitive aging and the Seattle Longitudinal Study, and semiconductor supply-chain resilience.',
     canonicalPath: '/research/',
     bodyClass: 'page-research',
     content: `<article class="page-article">${intro}${renderEntries(site.research)}</article>`,
@@ -598,7 +632,8 @@ function renderAwards() {
 
   return renderPage({
     title: `Awards & Certifications · ${site.name}`,
-    description: 'Academic profile, recognition, and certifications.',
+    description:
+      'Awards and certifications for Howard Chan — Peterhouse (Cambridge) HSPS offer, IB predicted 45/45, SAT 1550, debate and MUN honours, and technical certifications.',
     canonicalPath: '/awards-certifications/',
     bodyClass: 'page-awards',
     content: `<article class="page-article">${intro}${sections.join('')}</article>`,
@@ -617,7 +652,8 @@ function renderContact() {
 
   return renderPage({
     title: `Contact · ${site.name}`,
-    description: 'GitHub, Wantedly, LinkedIn, email, project links, and social links.',
+    description:
+      'Contact Howard Chan — Codeberg, GitLab, Wantedly, and LinkedIn for professional work, email for longer messages, plus live project and social links.',
     canonicalPath: '/contact/',
     bodyClass: 'page-contact',
     content: `<article class="page-article">${intro}${renderLinkGroups(site.linkGroups)}</article>`,
@@ -628,7 +664,8 @@ function renderContact() {
       mainEntity: {
         '@type': 'Person',
         name: site.fullName || site.author,
-        sameAs: site.contactLinks.map((link) => link.href),
+        url: site.url,
+        sameAs: (site.profileLinks || site.contactLinks).map((link) => link.href),
       },
     },
   });
