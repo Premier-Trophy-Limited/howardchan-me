@@ -58,7 +58,11 @@ function renderHeader(current) {
 }
 
 function renderFooter() {
+  const network = site.network
+    ? `<nav class="footer-network" aria-label="Howard Chan network"><span class="eyebrow">More from Howard</span><ul>${site.network.map((l) => `<li><a href="${attr(l.href)}" target="_blank" rel="noopener"><strong>${esc(l.label)}</strong>${l.note ? `<span>${esc(l.note)}</span>` : ''}</a></li>`).join('')}</ul></nav>`
+    : '';
   return `<footer class="site-footer"><div class="site-footer-inner">
+    ${network}
     <div class="loc"><span>${esc(site.name)} — ${esc(site.location)}</span><span>© 2026 · Built static, deployed on Cloudflare Pages</span></div>
     <nav class="footer-links" aria-label="Footer">${site.footerLinks.map((l) => `<a href="${attr(l.href)}">${esc(l.label)}</a>`).join('')}</nav>
   </div></footer>`;

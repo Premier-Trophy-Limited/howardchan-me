@@ -4,6 +4,7 @@ const tatemoriUrl = 'https://tatemori.com';
 const priormovesUrl = 'https://priormoves.com';
 const nobillUrl = 'https://nobill.app';
 const crystalcenturyUrl = 'https://crystalcentury.com';
+const tclUrl = 'https://thinkcollegelevel.com';
 const pulseUrl = 'https://pulse-kiwanis-2026-309064718968.us-west1.run.app/';
 const linkedinUrl = 'https://www.linkedin.com/in/howardchan2008/';
 const codebergUrl = 'https://codeberg.org/imjusthoward';
@@ -71,9 +72,6 @@ export const site = {
     { title: 'Unraveling Cognitive Aging: A Comprehensive Narrative Review Integrating Six Decades of the Seattle Longitudinal Study with Contemporary Advances', meta: 'Review · 2025', slug: 'cognitive-aging',
       summary: 'Education, occupational complexity, and digital engagement in cognition.',
       body: ['Synthesizes six decades of the Seattle Longitudinal Study with newer work on education and occupational complexity.', 'A bridge between long-run cognitive-aging research and contemporary questions about learning and work.', 'Synthesis-heavy; a reference point for broader cognitive-systems thinking.'] },
-    { title: 'Semiconductor Supply-Chain Resilience', meta: 'Concept paper · 2025', slug: 'supply-chain-resilience',
-      summary: 'Structural fragility and resilience across the global semiconductor supply chain.',
-      body: ['Frames resilience as a coordination and incentive problem spanning fabrication, packaging, and logistics rather than a single bottleneck.', 'Maps where single points of failure concentrate and how shocks propagate downstream.', 'Connects supply-chain stress to institutional and policy responses — a systems lens on a strategic industry.'] },
   ],
 
   about: {
@@ -116,5 +114,14 @@ export const site = {
   footerLinks: [
     { label: 'Codeberg', href: codebergUrl }, { label: 'GitLab', href: gitlabUrl },
     { label: 'Wantedly', href: wantedlyUrl }, { label: 'LinkedIn', href: linkedinUrl }, { label: 'Email', href: emailUrl },
+  ],
+  // Owned web properties — cross-linked on every page for an interlinked SEO network.
+  network: [
+    { label: 'ElevateOS', href: elevateosUrl, note: 'Tutoring-agency software' },
+    { label: 'Tatemori 盾守', href: tatemoriUrl, note: 'Japan kasuhara compliance' },
+    { label: 'Prior Moves', href: priormovesUrl, note: 'Top-investor weekly signal' },
+    { label: 'nobill', href: nobillUrl, note: 'Subscription finder' },
+    { label: 'Premier Trophy', href: crystalcenturyUrl, note: 'HK custom-awards maker' },
+    { label: 'Think College Level', href: tclUrl, note: 'IB & admissions guides' },
   ],
 };
