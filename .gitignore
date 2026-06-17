@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 .codex-reviews/
 sitemap.xml
+dashboards/
+**/__pycache__/
+*.pyc

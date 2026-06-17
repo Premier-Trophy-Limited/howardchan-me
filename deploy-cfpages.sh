@@ -28,8 +28,8 @@ rsync -a \
   --exclude='.gbrain-source' \
   --exclude='CNAME' \
   --exclude='LICENSE' \
-  --exclude='dashboards/_inventory.json' \
-  --exclude='dashboards/build_dashboards.py' \
+  --exclude='dashboards' \
+  --exclude='__pycache__' \
   ./ "$DIST/"
 
 export CLOUDFLARE_API_TOKEN="$(security find-generic-password -s cloudflare-api-token -w)"
