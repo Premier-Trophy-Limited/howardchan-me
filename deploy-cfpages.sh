@@ -28,6 +28,8 @@ rsync -a \
   --exclude='.gbrain-source' \
   --exclude='CNAME' \
   --exclude='LICENSE' \
+  --exclude='dashboards/_inventory.json' \
+  --exclude='dashboards/build_dashboards.py' \
   ./ "$DIST/"
 
 export CLOUDFLARE_API_TOKEN="$(security find-generic-password -s cloudflare-api-token -w)"
@@ -36,4 +38,4 @@ export CLOUDFLARE_ACCOUNT_ID="$ACCOUNT"
 wrangler pages deploy "$DIST" --project-name "$PROJECT" --branch main --commit-dirty=true
 
 rm -rf "$DIST"
-echo "Deployed. Live: https://thinkcollegelevel.com  (preview: https://$PROJECT.pages.dev)"
+echo "Deployed. Live: https://howardchan.me  (preview: https://$PROJECT.pages.dev)"
