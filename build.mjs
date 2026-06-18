@@ -23,7 +23,13 @@ async function loadWriting() {
     }
   }
   return posts
-    .filter((p) => p && p.slug && p.title && Array.isArray(p.body))
+    .filter(
+      (p) =>
+        p &&
+        p.slug &&
+        p.title &&
+        (Array.isArray(p.body) || Array.isArray(p.sections)),
+    )
     .sort((a, b) => String(b.date).localeCompare(String(a.date)));
 }
 
@@ -475,8 +481,62 @@ function renderWriting() {
   });
 }
 
+// Render a fenced code/config snippet from the content engine. Strips the language
+// fence the model sometimes leaves on (```js ... ```), since we control the <pre><code> shell.
+function codeBlock(raw) {
+  if (!raw || typeof raw !== "string") return "";
+  let code = raw.trim();
+  const fence = code.match(/^```[^\n]*\n([\s\S]*?)\n?```$/);
+  if (fence) code = fence[1];
+  return `<pre class="code-block"><code>${esc(code)}</code></pre>`;
+}
+
+function tldrBox(tldr) {
+  if (!tldr) return "";
+  return `<div class="tldr" style="border-left:3px solid var(--accent);padding:12px 18px;margin:18px 0;background:var(--surface-2,rgba(0,0,0,0.02))"><span class="eyebrow">TL;DR</span><p style="margin:6px 0 0">${esc(tldr)}</p></div>`;
+}
+
+function writingSections(sections) {
+  return (sections || [])
+    .map(
+      (s) =>
+        `<section class="writing-section" style="margin-top:26px"><h2 style="font-size:clamp(1.25rem,2.4vw,1.6rem);max-width:42ch">${esc(s.h2)}</h2><div class="about-prose" style="margin-top:8px">${(s.body || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div>${s.code ? codeBlock(s.code) : ""}</section>`,
+    )
+    .join("");
+}
+
+function faqBlock(faqs) {
+  if (!faqs || !faqs.length) return "";
+  const items = faqs
+    .map(
+      (f) =>
+        `<details class="faq-item" style="border-top:1px solid var(--rule,rgba(0,0,0,0.08));padding:10px 0"><summary style="cursor:pointer;font-weight:600">${esc(f.q)}</summary><div class="about-prose" style="margin-top:8px"><p>${esc(f.a)}</p></div></details>`,
+    )
+    .join("");
+  return `<section class="page-section"><span class="eyebrow">FAQ</span><div class="faq" style="margin-top:12px">${items}</div></section>`;
+}
+
+// "Related" list: prefer the slugs the content engine suggested (resolved against published
+// posts), falling back to plain recency so the section always renders something useful.
+function relatedWriting(w) {
+  let related = [];
+  if (Array.isArray(w.related_slugs) && w.related_slugs.length) {
+    related = w.related_slugs
+      .map((slug) => writing.find((x) => x.slug === slug && x.slug !== w.slug))
+      .filter(Boolean);
+  }
+  if (!related.length) {
+    related = writing.filter((x) => x.slug !== w.slug).slice(0, 3);
+  }
+  return related.slice(0, 3);
+}
+
 function renderWritingDetail(w) {
-  const more = writing.filter((x) => x.slug !== w.slug).slice(0, 3);
+  const hasSections = Array.isArray(w.sections) && w.sections.length > 0;
+  const more = relatedWriting(w);
+  const bodyHtml = hasSections
+    ? `${tldrBox(w.tldr)}${writingSections(w.sections)}${faqBlock(w.faqs)}`
+    : `<section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px">${(w.body || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div></section>`;
   const content = `
     <p class="backlink"><a href="/writing/">← Writing</a></p>
     <header class="page-intro" style="padding-top:8px">
@@ -484,26 +544,46 @@ function renderWritingDetail(w) {
       <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:30ch">${esc(w.title)}</h1>
       ${w.description ? `<p class="intro-subtitle">${esc(w.description)}</p>` : ""}
     </header>
-    <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px">${(w.body || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div></section>
+    ${hasSections ? `<div style="max-width:68ch">${bodyHtml}</div>` : bodyHtml}
     ${more.length ? `<section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px">${more.map(writingEntry).join("")}</div></section>` : ""}
   `;
+
+  const blogPosting = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: w.title,
+    datePublished: w.date,
+    dateModified: w.date,
+    author: { "@type": "Person", name: site.fullName, url: site.url },
+    publisher: { "@type": "Person", name: site.fullName },
+    description: w.description || w.title,
+    mainEntityOfPage: `${site.url}/writing/${w.slug}/`,
+  };
+  // Emit an FAQPage alongside the BlogPosting when the article carries FAQs, so the page is
+  // eligible for the FAQ rich result in search. Both objects ship in the same ld+json array.
+  const jsonLd =
+    hasSections && Array.isArray(w.faqs) && w.faqs.length
+      ? [
+          blogPosting,
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: w.faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        ]
+      : blogPosting;
+
   return renderPage({
     title: `${w.title} · ${site.name}`,
     description: w.description || w.title,
     canonicalPath: `/writing/${w.slug}/`,
     content,
     ogType: "article",
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      headline: w.title,
-      datePublished: w.date,
-      dateModified: w.date,
-      author: { "@type": "Person", name: site.fullName, url: site.url },
-      publisher: { "@type": "Person", name: site.fullName },
-      description: w.description || w.title,
-      mainEntityOfPage: `${site.url}/writing/${w.slug}/`,
-    },
+    jsonLd,
   });
 }
 
