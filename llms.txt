@@ -8,7 +8,7 @@ Chak Hang (Howard) Chan — founder, builder, and researcher; incoming Universit
 - Tatemori (tatemori.com): Compliance tooling for Japan’s customer-harassment (kasuhara) law, an employer obligation from October 2026: one-tap incident capture and an audit-ready evidence record.
 - Prior Moves (priormoves.com): A live tool that turns top investors’ 13F filings into one weekly signal of what they’re buying next, with a public track record.
 - nobill (nobill.app): A local-first subscription tracker that scans your own receipts for recurring charges and links straight to each merchant’s cancel page — your data never leaves your device.
-- Kiwanis Pulse: A mobile convention companion surfacing schedules, venues, sessions, and announcements attendees can use instantly on their phones.
+- Kiwanis Pulse (pulse.kvcn.org): A mobile convention companion surfacing schedules, venues, sessions, and announcements attendees can use instantly on their phones.
 - Premier Trophy (crystalcentury.com): Operations and reliability for a Hong Kong custom-awards manufacturer (founded 2008) — trophies, awards, crystal, and corporate gifts. The operational side of building.
 
 ## Research

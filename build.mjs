@@ -264,6 +264,14 @@ function renderHome() {
         name: "ElevateOS",
         url: "https://elevateos.org",
       },
+      // Founder/affiliate of the NGO — the semantically correct edge (not
+      // sameAs, which would assert the NGO *is* Howard). Pairs with the
+      // rel="me author" backlink in the KVCN footers to form a verified graph.
+      affiliation: {
+        "@type": "NGO",
+        name: "Kiwanis Voices Club of Nippon",
+        url: "https://kvcn.org/",
+      },
       homeLocation: { "@type": "Place", name: "Tokyo, Japan" },
       nationality: "Hong Kong",
     },
@@ -364,6 +372,18 @@ function renderVentureDetail(v) {
       <p class="intro-subtitle">${esc(v.summary)}</p>
     </header>
     <section class="page-section"><span class="eyebrow">What it does</span><ul class="vdetails" style="margin-top:14px;max-width:62ch">${(v.details || []).map((d) => `<li>${esc(d)}</li>`).join("")}</ul></section>
+    ${
+      v.network && v.org
+        ? `<section class="page-section"><span class="eyebrow">Part of ${esc(v.org.name)}</span>
+      <p class="intro-subtitle" style="max-width:62ch">A youth-service NGO chartered under Kiwanis International, Japan District. I build and run its digital platform — ${v.network.length} surfaces sharing one design system.</p>
+      <ul class="vdetails" style="margin-top:14px;max-width:62ch">${v.network
+        .map(
+          (n) =>
+            `<li><a href="${attr(n.href)}" target="_blank" rel="noopener">${esc(n.label)} ↗</a>${n.note ? ` — ${esc(n.note)}` : ""}</li>`,
+        )
+        .join("")}</ul></section>`
+        : ""
+    }
     <section class="page-section"><span class="eyebrow">More ventures</span><div class="grid" style="margin-top:18px">${others.map(ventureCard).join("")}</div></section>
   `;
   return renderPage({
@@ -379,6 +399,15 @@ function renderVentureDetail(v) {
       url: v.href || site.url,
       author: { "@type": "Person", name: site.fullName },
       description: v.summary,
+      ...(v.org
+        ? {
+            isPartOf: {
+              "@type": "NGO",
+              name: v.org.name,
+              url: v.org.url,
+            },
+          }
+        : {}),
     },
   });
 }
