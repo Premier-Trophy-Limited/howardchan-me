@@ -110,6 +110,14 @@ function esc(s = "") {
     .replace(/'/g, "&#39;");
 }
 const attr = esc;
+// Serialize JSON-LD so a stray "</script>" (or HTML comment) in any field can't break out of the
+// <script> tag. Escapes <, >, & to their valid JSON \u-escapes (stays valid JSON-LD).
+function jsonLdSafe(obj) {
+  return JSON.stringify(obj)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026");
+}
 function urlFor(route) {
   return route === "/" ? `${site.url}/` : `${site.url}${route}`;
 }
@@ -171,7 +179,7 @@ function renderPage({
   <meta name="twitter:image" content="${site.url}/assets/media/pfp.png">
   <meta name="author" content="${attr(site.fullName)}">
   <title>${esc(title)}</title>
-  <script type="application/ld+json">${JSON.stringify(ld.length === 1 ? ld[0] : ld)}</script>
+  <script type="application/ld+json">${jsonLdSafe(ld.length === 1 ? ld[0] : ld)}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
