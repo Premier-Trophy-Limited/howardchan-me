@@ -1,0 +1,56 @@
+{
+  "title": "one source of truth for repos, services, creds, automations",
+  "slug": "one-source-of-truth-for-repos-services-creds-aut",
+  "date": "2026-06-18",
+  "description": "A single source of truth keeps repos, services, access details, and automations in sync by updating the record with the change.",
+  "tldr": "The fix is to update the record in the same cycle as the change. When the truth moves and the record stays behind, drift shows up as a bug.",
+  "sections": [
+    {
+      "h2": "why do docs go stale even when everyone means well?",
+      "body": [
+        "I stopped treating stale docs like a writing problem. They usually go stale because the update is a later task, and later slips once the change is already shipped.",
+        "That is the part I care about: the truth moved, the record did not, and now the bug is drift."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what changes when the source of truth lives with the change?",
+      "body": [
+        "I keep one source of truth for repos, services, access details, and automations, and I update it in the same cycle as the change. That keeps the record attached to the work instead of trailing it.",
+        "The point is simple. If the thing changed, the written version changes with it. Same commit, same cycle, same reality."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what gets damaged when drift keeps building?",
+      "body": [
+        "Hidden drift between what is running and what is written is expensive because it hides in plain sight. The next person starts from a map that no longer matches the place.",
+        "Broken handoffs follow from that. So does tribal knowledge, because the real answer lives in one head until that person is gone."
+      ],
+      "code": null
+    },
+    {
+      "h2": "how do i know the source of truth is actually working?",
+      "body": [
+        "I use one test: can someone other than me act on it without DMing me? If they can, the source of truth is doing its job.",
+        "If they cannot, I have a problem that will cost me later. That is the failure mode I try to catch early."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "why do docs rot after a change ships?",
+      "a": "Because the update gets treated like a separate later task. Once it is separate, it slips, and the record stays behind the change."
+    },
+    {
+      "q": "what does drift look like in practice?",
+      "a": "It looks like a service that moved, a handoff that points to the wrong place, or a gap between what is running and what is written."
+    },
+    {
+      "q": "how do i tell whether the source of truth is working?",
+      "a": "Ask whether someone other than you can act on it without asking you first. If they can, the record is carrying real weight. If they cannot, the handoff failed."
+    }
+  ],
+  "related_slugs": []
+}
