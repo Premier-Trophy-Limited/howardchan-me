@@ -155,6 +155,18 @@ export const site = {
           note: "Voices Academy tutoring program",
         },
       ],
+      // Service impact (figures from the club; the photos + full story live on
+      // the NGO's own page, kept off this personal hub). Rendered as a small
+      // impact strip linking kvcn.org/#impact.
+      impact: {
+        href: `${kvcnUrl}/#impact`,
+        stats: [
+          { n: "500+", label: "students reached" },
+          { n: "100", label: "meals distributed" },
+          { n: "20", label: "in the tutoring pilot" },
+          { n: "10", label: "volunteer tutors" },
+        ],
+      },
     },
     {
       name: "Premier Trophy",

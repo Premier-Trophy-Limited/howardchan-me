@@ -390,6 +390,18 @@ function renderVentureDetail(v) {
         .join("")}</ul></section>`
         : ""
     }
+    ${
+      v.impact
+        ? `<section class="page-section"><span class="eyebrow">Service impact</span>
+      <div style="display:flex;flex-wrap:wrap;gap:24px;margin:14px 0 10px">${v.impact.stats
+        .map(
+          (s) =>
+            `<div><span style="font-size:1.5rem;font-weight:800">${esc(s.n)}</span> <span style="font-size:0.85rem;color:var(--ink-3)">${esc(s.label)}</span></div>`,
+        )
+        .join("")}</div>
+      <a class="vcard-link" href="${attr(v.impact.href)}" target="_blank" rel="noopener">See the club's service impact ↗</a></section>`
+        : ""
+    }
     <section class="page-section"><span class="eyebrow">More ventures</span><div class="grid" style="margin-top:18px">${others.map(ventureCard).join("")}</div></section>
   `;
   return renderPage({
