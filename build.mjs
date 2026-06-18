@@ -278,7 +278,9 @@ function renderHome() {
       sameAs: site.contactLinks
         .map((l) => l.href)
         .filter((h) => h.startsWith("http")),
-      alumniOf: ["University of Cambridge", "K. International School Tokyo"],
+      // Cambridge is incoming (matriculates Oct 2026); listing it as alumniOf
+      // now overclaims against the visible "incoming" copy. Add it on enrolment.
+      alumniOf: ["K. International School Tokyo"],
       description: site.tagline,
       knowsAbout: [
         "Product Management",

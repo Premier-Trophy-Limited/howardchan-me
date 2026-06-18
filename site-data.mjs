@@ -218,7 +218,6 @@ export const site = {
         "Hofstede’s Dimensions and Generational Effects on Ambiguous Emoji Semiotics: Cross-Cultural Analysis of Japanese and Chinese Digital Communication",
       meta: "Preprint · 2025",
       slug: "emoji-semiotics",
-      href: "https://www.preprints.org/",
       summary:
         "How ambiguous emojis shift meaning across Japanese and Chinese digital communication.",
       body: [

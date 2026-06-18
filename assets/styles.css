@@ -10,7 +10,7 @@
 :root {
   color-scheme: light;
   --paper: #F6F3EC; --paper-2: #FBF9F3; --paper-3: #EFEBE1;
-  --ink: #1A1815; --ink-2: #514C42; --ink-3: #837C6F;
+  --ink: #1A1815; --ink-2: #514C42; --ink-3: #645F54;
   --line: rgba(26,24,21,0.13); --line-soft: rgba(26,24,21,0.08); --line-strong: rgba(26,24,21,0.30);
   --accent: #1E3A5F; --accent-hover: #142A47; --accent-tint: rgba(30,58,95,0.08);
   --oxblood: #76302B; --oxblood-tint: rgba(118,48,43,0.08);
