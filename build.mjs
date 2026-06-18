@@ -41,9 +41,10 @@ const today = new Intl.DateTimeFormat("en-CA", {
 const navItems = [
   { label: "Index", href: "/" },
   { label: "Ventures", href: "/ventures/" },
-  { label: "Research", href: "/research/" },
+  { label: "Gallery", href: "/gallery/" },
   { label: "Writing", href: "/writing/" },
   { label: "About", href: "/about/" },
+  { label: "Research", href: "/research/" },
   { label: "Contact", href: "/contact/" },
 ];
 
@@ -69,6 +70,7 @@ async function main() {
   await writeOutput("index.html", renderHome());
   await writeOutput(path.join("ventures", "index.html"), renderVentures());
   await writeOutput(path.join("research", "index.html"), renderResearch());
+  await writeOutput(path.join("gallery", "index.html"), renderGallery());
   if (writing.length) {
     await writeOutput(path.join("writing", "index.html"), renderWriting());
     for (const w of writing)
@@ -251,7 +253,7 @@ function renderHome() {
   const h = site.hero;
   const content = `
     <header class="page-intro hero" style="padding-top:clamp(16px,3vw,36px)">
-      <div class="masthead"><span class="masthead-l">Founder · Builder · Researcher</span><span class="masthead-r">${esc(h.eyebrow)}</span></div>
+      <div class="masthead"><span class="masthead-l">Founder · Builder</span><span class="masthead-r">${esc(h.eyebrow)}</span></div>
       <h1>${esc(h.headline)}</h1>
       <p class="intro-subtitle">${esc(h.lead)}</p>
       <div class="hero-links">${h.links.map((l) => `<a href="${attr(l.href)}"${l.href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${esc(l.label)}</a>`).join("")}</div>
@@ -260,8 +262,8 @@ function renderHome() {
     ${secHead("02", "Ventures")}
     ${ventureGrid(site.ventures)}
     ${moreProjectsBlock()}
-    ${secHead("03", "Published research")}
-    <div class="research-list">${site.research.map(researchEntry).join("")}</div>
+    ${secHead("03", "Gallery")}
+    ${galleryPreview(6)}
   `;
   return renderPage({
     title: `${site.name} — ${site.brandSub}`,
@@ -336,6 +338,45 @@ function renderResearch() {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       name: `${site.name} — Research`,
+    },
+  });
+}
+
+function galleryPreview(n) {
+  const items = (site.gallery || []).slice(0, n);
+  if (!items.length) return "";
+  const figs = items
+    .map(
+      (g) =>
+        `<figure class="gphoto"><a href="/gallery/"><img src="${attr(g.src)}" alt="${attr(g.alt)}" loading="lazy" decoding="async"></a></figure>`,
+    )
+    .join("");
+  return `<div class="gallery-grid">${figs}</div><p style="margin-top:16px"><a class="vcard-link" href="/gallery/">See the full gallery →</a></p>`;
+}
+
+function renderGallery() {
+  const items = site.gallery || [];
+  const figures = items
+    .map((g) => {
+      const inner = `<img src="${attr(g.src)}" alt="${attr(g.alt)}" loading="lazy" decoding="async">`;
+      const cap = `<figcaption>${esc(g.caption)}${g.href ? ` <a href="${attr(g.href)}" target="_blank" rel="noopener">${esc(g.domain || "live ↗")}</a>` : ""}</figcaption>`;
+      return `<figure class="gphoto">${inner}${cap}</figure>`;
+    })
+    .join("");
+  const content = `${secHead("03", "Gallery")}
+    <p class="contact-intro" style="margin-bottom:18px">Things I’ve built and shipped — the products, the Kiwanis service platform, and finished work from the family manufacturer.</p>
+    <div class="gallery-grid">${figures}</div>`;
+  return renderPage({
+    title: `Gallery · ${site.name}`,
+    description:
+      "A visual gallery of Howard Chan’s work — ElevateOS, Tatemori, Prior Moves, nobill, Kiwanis Pulse, and Premier Trophy.",
+    canonicalPath: "/gallery/",
+    content,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      name: `${site.name} — Gallery`,
+      url: `${site.url}/gallery/`,
     },
   });
 }
@@ -661,6 +702,7 @@ ${site.research.map((r) => `- ${r.title} (${r.meta})`).join("\n")}
 ## Pages
 - ${site.url}/  — index
 - ${site.url}/ventures/  — ventures
+- ${site.url}/gallery/  — project gallery
 - ${site.url}/research/  — published research
 - ${site.url}/about/  — about + experience
 - ${site.url}/contact/  — contact
@@ -678,6 +720,7 @@ function renderSitemap() {
   const routes = [
     "/",
     "/ventures/",
+    "/gallery/",
     "/research/",
     "/about/",
     "/contact/",
@@ -700,6 +743,7 @@ async function cleanupGeneratedRoutes() {
   const dirs = [
     "ventures",
     "research",
+    "gallery",
     "about",
     "contact",
     "projects",

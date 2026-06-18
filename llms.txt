@@ -1,5 +1,5 @@
 # Howard Chan
-Builder and researcher — Tokyo, incoming Cambridge HSPS.
+Founder and builder — Tokyo, incoming Cambridge HSPS.
 
 Chak Hang (Howard) Chan — founder, builder, and researcher; incoming University of Cambridge HSPS (Peterhouse).
 
@@ -24,6 +24,7 @@ Chak Hang (Howard) Chan — founder, builder, and researcher; incoming Universit
 ## Pages
 - https://howardchan.me/  — index
 - https://howardchan.me/ventures/  — ventures
+- https://howardchan.me/gallery/  — project gallery
 - https://howardchan.me/research/  — published research
 - https://howardchan.me/about/  — about + experience
 - https://howardchan.me/contact/  — contact

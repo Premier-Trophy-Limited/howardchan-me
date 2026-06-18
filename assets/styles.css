@@ -176,3 +176,14 @@ p { margin: 0; }
   .brand-copy small { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
+
+/* Gallery (added 2026-06-18) — editorial masonry, theme-matched */
+.gallery-grid{columns:3;column-gap:var(--space-5,24px);margin-top:var(--space-4,16px)}
+@media(max-width:880px){.gallery-grid{columns:2}}
+@media(max-width:540px){.gallery-grid{columns:1}}
+.gphoto{break-inside:avoid;margin:0 0 var(--space-5,24px);display:block}
+.gphoto img{width:100%;height:auto;display:block;border:1px solid var(--line,rgba(26,24,21,0.13));border-radius:var(--radius-2,4px);background:var(--paper-2,#FBF9F3)}
+.gphoto a{display:block}
+.gphoto figcaption{font-size:var(--t-small,0.86rem);color:var(--ink-3,#645F54);margin-top:8px;line-height:1.5}
+.gphoto figcaption a{color:var(--accent,#1E3A5F);text-decoration:none;white-space:nowrap}
+.gphoto figcaption a:hover{text-decoration:underline}

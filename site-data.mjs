@@ -24,17 +24,17 @@ export const site = {
   author: "Howard Chan",
   fullName: "Chak Hang (Howard) Chan",
   url: siteUrl,
-  brandSub: "Builder · Researcher",
-  tagline: "Builder and researcher — Tokyo, incoming Cambridge HSPS.",
+  brandSub: "Founder · Builder",
+  tagline: "Founder and builder — Tokyo, incoming Cambridge HSPS.",
   description:
-    "Howard Chan — founder, builder, and researcher (incoming Cambridge HSPS, Peterhouse). Ventures, published research, and contact.",
+    "Howard Chan — founder and builder (incoming Cambridge HSPS, Peterhouse). Live ventures, a project gallery, and contact.",
   location: "Sumida-ku, Tokyo, Japan",
   logo: { src: "/assets/media/hc-logo-ink.png", alt: "HC" },
 
   hero: {
     eyebrow: "Tokyo · Incoming Cambridge HSPS",
     headline: "I build systems where coordination breaks first.",
-    lead: "Founder, builder, and researcher. I map the workflow, find the friction, and ship something people can actually use, hand off, and trust. I’d rather show you a live URL than a slide.",
+    lead: "Founder and builder. I map the workflow, find the friction, and ship something people can actually use, hand off, and trust. I’d rather show you a live URL than a slide.",
     links: [
       { label: "ElevateOS ↗", href: elevateosUrl },
       { label: "Prior Moves ↗", href: priormovesUrl },
@@ -94,7 +94,7 @@ export const site = {
       summary:
         "A live tool that turns top investors’ 13F filings into one weekly signal of what they’re buying next, with a public track record.",
       details: [
-        "A 23-quarter backtest beat the S&P 500 by ~5.4 points/quarter.",
+        "A public 23-quarter backtest, with the method and its limits shown openly.",
         "Picks now tracked on a live paper-trading account — research and education only.",
         "The surface of a broader quantitative-research system.",
       ],
@@ -238,6 +238,74 @@ export const site = {
         "A bridge between long-run cognitive-aging research and contemporary questions about learning and work.",
         "Synthesis-heavy; a reference point for broader cognitive-systems thinking.",
       ],
+    },
+  ],
+
+  // Visual gallery — products, the Kiwanis service platform, and finished work
+  // from the family manufacturer. Images optimized into /assets/media/gallery/.
+  gallery: [
+    {
+      src: "/assets/media/gallery/elevateos.png",
+      alt: "ElevateOS operating dashboard for tutoring agencies",
+      caption:
+        "ElevateOS — the operating dashboard for tutoring and admissions agencies.",
+      href: elevateosUrl,
+      domain: "elevateos.org ↗",
+    },
+    {
+      src: "/assets/media/gallery/tatemori.png",
+      alt: "Tatemori landing page — Japan customer-harassment compliance",
+      caption:
+        "Tatemori — kasuhara compliance for Japanese employers, ahead of the Oct 2026 deadline.",
+      href: tatemoriUrl,
+      domain: "tatemori.com ↗",
+    },
+    {
+      src: "/assets/media/gallery/priormoves.png",
+      alt: "Prior Moves landing page — top-investor 13F signal",
+      caption:
+        "Prior Moves — what the best investors are buying next, with an open backtest.",
+      href: priormovesUrl,
+      domain: "priormoves.com ↗",
+    },
+    {
+      src: "/assets/media/gallery/nobill.png",
+      alt: "nobill landing page — local-first subscription tracker",
+      caption:
+        "nobill — see every subscription, cancel in one click; your data stays on your device.",
+      href: nobillUrl,
+      domain: "nobill.app ↗",
+    },
+    {
+      src: "/assets/media/gallery/pulse.png",
+      alt: "Kiwanis Pulse convention companion — delegate board",
+      caption:
+        "Pulse — the mobile convention companion for the Kiwanis Manila 2026 convention.",
+      href: pulseUrl,
+      domain: "pulse.kvcn.org ↗",
+    },
+    {
+      src: "/assets/media/gallery/kvcn.png",
+      alt: "Kiwanis Voices Club of Nippon homepage",
+      caption:
+        "Kiwanis Voices Club of Nippon — the youth-service NGO and its platform.",
+      href: kvcnUrl,
+      domain: "kvcn.org ↗",
+    },
+    {
+      src: "/assets/media/gallery/premier-trophy-plaque.jpg",
+      alt: "A finished acrylic service-recognition award made by Premier Trophy",
+      caption:
+        "Premier Trophy — a finished service-recognition award, made in-house.",
+      href: crystalcenturyUrl,
+      domain: "crystalcentury.com ↗",
+    },
+    {
+      src: "/assets/media/gallery/premier-trophy-flags.jpg",
+      alt: "Premier Trophy custom flag and display product range",
+      caption: "Premier Trophy — part of the custom flag and display range.",
+      href: crystalcenturyUrl,
+      domain: "crystalcentury.com ↗",
     },
   ],
 
