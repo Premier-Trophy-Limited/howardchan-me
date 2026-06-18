@@ -71,6 +71,10 @@ p { margin: 0; }
 .page-section { margin-top: 56px; }
 
 /* Hero */
+.masthead { display: flex; justify-content: space-between; align-items: baseline; gap: 14px 24px; flex-wrap: wrap; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); padding: 11px 0 10px; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; }
+.masthead-l { color: var(--ink-2); font-weight: 500; }
+.masthead-r { color: var(--ink-3); }
+.page-intro.hero h1 { margin-top: 30px; }
 .hero-eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
 .hero-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 30px; }
 .hero-links a { font-family: var(--mono); font-size: 0.84rem; letter-spacing: 0.02em; color: var(--accent); }
@@ -84,9 +88,13 @@ p { margin: 0; }
 
 /* Ventures grid */
 .grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
-.vcard { background: var(--paper-2); border: 1px solid var(--line); border-radius: 4px; padding: 22px 22px 18px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
-.vcard:hover { box-shadow: var(--shadow-2); border-color: var(--line-strong); }
+.vcard { position: relative; background: var(--paper-2); border: 1px solid var(--line); border-radius: 4px; padding: 22px 22px 18px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease), transform var(--dur) var(--ease); }
+.vcard::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--accent); border-radius: 4px 4px 0 0; opacity: 0; transition: opacity var(--dur) var(--ease); }
+.vcard:hover { box-shadow: var(--shadow-2); border-color: var(--line-strong); transform: translateY(-2px); }
+.vcard:hover::before { opacity: 1; }
 .vcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.vcard-id { display: flex; align-items: baseline; gap: 11px; min-width: 0; }
+.vcard-num { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; color: var(--ink-3); padding-top: 3px; flex: 0 0 auto; }
 .vcard h3 { font-family: var(--serif-display); font-weight: 500; font-size: 1.4rem; letter-spacing: -0.02em; margin: 0; }
 .vcard h3 .jp { font-family: var(--serif-display); font-weight: 400; color: var(--ink-3); font-size: 1.1rem; margin-left: 6px; }
 .vcard p { font-size: 0.92rem; line-height: 1.55; color: var(--ink-2); }
@@ -98,6 +106,17 @@ p { margin: 0; }
 .vcard-link:hover { color: var(--accent-hover); }
 .chip { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; padding-top: 3px; }
 .chip .dot { width: 7px; height: 7px; border-radius: 999px; flex: 0 0 auto; }
+
+/* More projects — ledger linking every remaining owned property */
+.moreproj { list-style: none; margin: 16px 0 0; padding: 0; display: grid; }
+.moreproj li { border-top: 1px solid var(--line); }
+.moreproj li:last-child { border-bottom: 1px solid var(--line); }
+.moreproj a { display: flex; align-items: baseline; gap: 8px 18px; padding: 13px 2px; flex-wrap: wrap; transition: padding-left var(--dur) var(--ease); }
+.moreproj a:hover { padding-left: 8px; }
+.moreproj a strong { font-family: var(--serif-display); font-weight: 500; font-size: 1.08rem; letter-spacing: -0.01em; color: var(--ink); transition: color var(--dur-fast) var(--ease); }
+.moreproj a:hover strong { color: var(--accent); }
+.moreproj .mp-note { font-size: 0.88rem; color: var(--ink-2); }
+.moreproj .mp-dom { margin-left: auto; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.02em; color: var(--accent); white-space: nowrap; }
 
 /* Research */
 .research-list { display: grid; gap: 0; }

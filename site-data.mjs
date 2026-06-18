@@ -183,6 +183,35 @@ export const site = {
     },
   ],
 
+  // Everything else Howard builds or runs, linked as a compact ledger under the
+  // venture cards so every owned property is one click away (home + ventures page).
+  moreProjects: [
+    {
+      label: "Think College Level",
+      domain: "thinkcollegelevel.com",
+      href: tclUrl,
+      note: "IB & admissions guides for students",
+    },
+    {
+      label: "Voices Academy",
+      domain: "academy.kvcn.org",
+      href: academyUrl,
+      note: "Free tutoring program (KVCN)",
+    },
+    {
+      label: "Katalyst",
+      domain: "katalyst.kvcn.org",
+      href: katalystUrl,
+      note: "Service-project & volunteer board",
+    },
+    {
+      label: "KVCN Learn",
+      domain: "learn.kvcn.org",
+      href: learnUrl,
+      note: "Free learning-resource directory",
+    },
+  ],
+
   research: [
     {
       title:
@@ -338,6 +367,21 @@ export const site = {
       label: "Kiwanis Voices Club of Nippon",
       href: kvcnUrl,
       note: "Youth-service NGO · Japan",
+    },
+    {
+      label: "Voices Academy",
+      href: academyUrl,
+      note: "Free tutoring program",
+    },
+    {
+      label: "Katalyst",
+      href: katalystUrl,
+      note: "Service-project & volunteer board",
+    },
+    {
+      label: "KVCN Learn",
+      href: learnUrl,
+      note: "Free learning-resource directory",
     },
   ],
 };

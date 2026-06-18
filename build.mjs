@@ -199,9 +199,11 @@ function statusChip(status) {
 }
 
 function ventureCard(v) {
+  const i = site.ventures.indexOf(v);
+  const num = i >= 0 ? String(i + 1).padStart(2, "0") : "";
   return `<article class="vcard">
     <div class="vcard-top">
-      <h3><a href="/ventures/${vslug(v)}/" style="color:inherit">${esc(v.name)}</a>${v.jp ? `<span class="jp">${esc(v.jp)}</span>` : ""}</h3>
+      <div class="vcard-id">${num ? `<span class="vcard-num">${num}</span>` : ""}<h3><a href="/ventures/${vslug(v)}/" style="color:inherit">${esc(v.name)}</a>${v.jp ? `<span class="jp">${esc(v.jp)}</span>` : ""}</h3></div>
       ${statusChip(v.status)}
     </div>
     <p>${esc(v.summary)}</p>
@@ -215,6 +217,19 @@ function ventureCard(v) {
 
 function ventureGrid(list) {
   return `<div class="grid">${list.map(ventureCard).join("")}</div>`;
+}
+
+// Compact ledger linking every other owned property (TCL + the KVCN platform),
+// so the site links to all of Howard's projects, not only the six venture cards.
+function moreProjectsBlock() {
+  if (!site.moreProjects || !site.moreProjects.length) return "";
+  return `<section class="page-section"><span class="eyebrow">Also building</span>
+    <ul class="moreproj">${site.moreProjects
+      .map(
+        (p) =>
+          `<li><a href="${attr(p.href)}" target="_blank" rel="noopener"><strong>${esc(p.label)}</strong><span class="mp-note">${esc(p.note)}</span><span class="mp-dom">${esc(p.domain)} ↗</span></a></li>`,
+      )
+      .join("")}</ul></section>`;
 }
 
 function researchEntry(r) {
@@ -235,16 +250,16 @@ function secHead(num, eyebrow) {
 function renderHome() {
   const h = site.hero;
   const content = `
-    <header class="page-intro" style="padding-top:clamp(20px,4vw,48px)">
-      <p class="hero-eyebrow">${esc(h.eyebrow)}</p>
+    <header class="page-intro hero" style="padding-top:clamp(16px,3vw,36px)">
+      <div class="masthead"><span class="masthead-l">Founder · Builder · Researcher</span><span class="masthead-r">${esc(h.eyebrow)}</span></div>
       <h1>${esc(h.headline)}</h1>
       <p class="intro-subtitle">${esc(h.lead)}</p>
       <div class="hero-links">${h.links.map((l) => `<a href="${attr(l.href)}"${l.href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${esc(l.label)}</a>`).join("")}</div>
       <div class="pillars">${site.pillars.map((p) => `<div class="pillar"><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p></div>`).join("")}</div>
     </header>
-    ${secHead("02", "Selected ventures")}
-    ${ventureGrid(site.ventures.slice(0, 4))}
-    <a class="more-link" href="/ventures/">All ventures →</a>
+    ${secHead("02", "Ventures")}
+    ${ventureGrid(site.ventures)}
+    ${moreProjectsBlock()}
     ${secHead("03", "Published research")}
     <div class="research-list">${site.research.map(researchEntry).join("")}</div>
   `;
@@ -293,7 +308,7 @@ function renderHome() {
 }
 
 function renderVentures() {
-  const content = `${secHead("02", "Ventures")}${ventureGrid(site.ventures)}`;
+  const content = `${secHead("02", "Ventures")}${ventureGrid(site.ventures)}${moreProjectsBlock()}`;
   return renderPage({
     title: `Ventures · ${site.name}`,
     description: "Products and ventures Howard Chan has built and shipped.",
@@ -634,6 +649,9 @@ ${site.fullName} — founder, builder, and researcher; incoming University of Ca
 
 ## Ventures
 ${site.ventures.map((v) => `- ${v.name}${v.domain && v.domain.includes(".") ? ` (${v.domain})` : ""}: ${v.summary}`).join("\n")}
+
+## More projects
+${(site.moreProjects || []).map((p) => `- ${p.label} (${p.domain}): ${p.note}`).join("\n")}
 
 ## Research
 ${site.research.map((r) => `- ${r.title} (${r.meta})`).join("\n")}
