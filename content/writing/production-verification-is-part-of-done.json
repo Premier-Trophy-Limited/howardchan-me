@@ -1,0 +1,56 @@
+{
+  "title": "production verification is part of done",
+  "slug": "production-verification-is-part-of-done",
+  "date": "2026-06-19",
+  "description": "production verification belongs in the definition of done, because the live check is where the answer shows up.",
+  "tldr": "a merged commit is only part of the finish. the real receipt is a live check in production, because that is where the answer shows up.",
+  "sections": [
+    {
+      "h2": "why does a merged commit still feel unfinished?",
+      "body": [
+        "i keep seeing teams treat the commit as the finish line. the merge is real progress, but it is not the full answer.",
+        "the product still has to survive production. until that live check happens, the work is still carrying risk."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what does a live check in production actually tell you?",
+      "body": [
+        "the live check is the receipt. it is the point where the real answer shows up, because production is where the product has to hold together.",
+        "without that check, you can ship code and still be guessing. that is how progress gets mistaken for certainty."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should 'done' mean for builders?",
+      "body": [
+        "builders need a hard finish line. for me, that line includes validation in prod every time.",
+        "if a team wants a cleaner definition of done, this is the standard I would push on: code merged, product checked where it matters, then call it finished."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what question should teams ask themselves?",
+      "body": [
+        "the simplest check is the one at the end: what does your team call done?",
+        "if the answer stops at merge, there is still a gap between shipping and knowing."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "why is production verification part of done?",
+      "a": "Because the merge only says the code is in. The production check is where you learn whether the product actually survives where it matters."
+    },
+    {
+      "q": "what does a live check add after the commit is merged?",
+      "a": "It gives you the receipt. That is the moment the real answer shows up, instead of leaving you with a guess."
+    },
+    {
+      "q": "what does 'done' mean in this article?",
+      "a": "Done means the code is merged and the product has been validated in production. The finish line includes the live check."
+    }
+  ],
+  "related_slugs": []
+}
