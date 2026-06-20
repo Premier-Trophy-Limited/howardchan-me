@@ -307,6 +307,11 @@ export const site = {
       href: crystalcenturyUrl,
       domain: "crystalcentury.com ↗",
     },
+    {
+      src: "/assets/media/gallery/howard-tokyo.jpg",
+      alt: "Howard Chan in Tokyo",
+      caption: "Howard — Tokyo.",
+    },
   ],
 
   about: {

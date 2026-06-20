@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://howardchan.me/</loc><lastmod>2026-06-18</lastmod><priority>1.0</priority></url>
-  <url><loc>https://howardchan.me/ventures/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/gallery/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/research/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/about/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/contact/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/elevateos/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/tatemori/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/prior-moves/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/nobill/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/kiwanis-pulse/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/premier-trophy/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/research/emoji-semiotics/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/research/cognitive-aging/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/writing/</loc><lastmod>2026-06-18</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/</loc><lastmod>2026-06-20</lastmod><priority>1.0</priority></url>
+  <url><loc>https://howardchan.me/ventures/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/gallery/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/research/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/about/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/contact/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/elevateos/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/tatemori/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/prior-moves/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/nobill/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/kiwanis-pulse/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/premier-trophy/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/research/emoji-semiotics/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/research/cognitive-aging/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/writing/</loc><lastmod>2026-06-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/writing/production-verification-is-part-of-done/</loc><lastmod>2026-06-19</lastmod><priority>0.6</priority></url>
+  <url><loc>https://howardchan.me/writing/one-source-of-truth-for-repos-services-creds-aut/</loc><lastmod>2026-06-18</lastmod><priority>0.6</priority></url>
   <url><loc>https://howardchan.me/writing/moved-every-secret-out-of-our-app-env-files-into/</loc><lastmod>2026-06-17</lastmod><priority>0.6</priority></url>
 </urlset>
