@@ -1,0 +1,56 @@
+{
+  "title": "shipped a feature last week",
+  "slug": "shipped-a-feature-last-week",
+  "date": "2026-06-20",
+  "description": "a green build and clean merge can still miss the user path; if nobody walked it live, the feature was not shipped yet.",
+  "tldr": "a green build, clean diff, and merged commit can still leave the user path untouched. if nobody opened the path live, the work only looks finished.",
+  "sections": [
+    {
+      "h2": "what makes a feature feel done too early?",
+      "body": [
+        "last week the feature looked finished. the build was green, the diff was clean, and the commit had already been merged. that combination can create a strong sense that the work is complete.",
+        "the catch was simple: nobody had run the actual path once. the surface signals were all calm, but the thing a user needed to do had never been exercised end to end."
+      ],
+      "code": null
+    },
+    {
+      "h2": "why does a green build miss the real question?",
+      "body": [
+        "a green build tells you the code compiles. it tells you the repository is happy with the shape of the change. it does not tell you that a person can move through the feature and reach the result.",
+        "that gap is where false confidence lives. the merge lands, the diff looks tidy, and the feature starts to feel real before anyone has watched it work in the hands of a user."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what actually counts as shipped here?",
+      "body": [
+        "the bar is the live path. if no one walked it, the thing is still sitting there looking finished. the receipt is the user path working once, in reality, after the code has landed.",
+        "that is the point worth keeping. shipping speed matters, but speed only matters when it reaches the path people actually take."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what habit catches this before it slips through?",
+      "body": [
+        "go click your own button. open the path the same way a user would and watch what happens. that one move would have exposed the gap immediately.",
+        "this is a small habit, but it changes the definition of done. the build can be green and the diff can be clean, and the feature still needs a live walk before it deserves the word shipped."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "what did the build miss here?",
+      "a": "the build only proved the code compiled. it did not prove that anyone could actually get through the feature end to end. the missing check was the live user path."
+    },
+    {
+      "q": "why is a merged commit still not enough?",
+      "a": "because merge status only says the change is in the repo. it does not say the path was opened, used, and completed in real life. that gap is where a feature can look done while still failing in practice."
+    },
+    {
+      "q": "what is the simplest way to avoid this?",
+      "a": "run the path yourself before calling it shipped. if the feature has a button, click it. if it has a flow, walk the flow. the point is to verify the thing a user will actually do."
+    }
+  ],
+  "related_slugs": []
+}
