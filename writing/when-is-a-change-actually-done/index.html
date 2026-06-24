@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A change is done when the live service is verified end to end, because repo-local green can create false confidence.">
+  <meta name="theme-color" content="#F6F3EC">
+  <link rel="canonical" href="https://howardchan.me/writing/when-is-a-change-actually-done/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="when is a change actually done? · Howard Chan">
+  <meta property="og:description" content="A change is done when the live service is verified end to end, because repo-local green can create false confidence.">
+  <meta property="og:url" content="https://howardchan.me/writing/when-is-a-change-actually-done/">
+  <meta property="og:site_name" content="Howard Chan">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="when is a change actually done? · Howard Chan">
+  <meta name="twitter:description" content="A change is done when the live service is verified end to end, because repo-local green can create false confidence.">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta name="author" content="Chak Hang (Howard) Chan">
+  <title>when is a change actually done? · Howard Chan</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"when is a change actually done?","datePublished":"2026-06-24","dateModified":"2026-06-24","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"A change is done when the live service is verified end to end, because repo-local green can create false confidence.","mainEntityOfPage":"https://howardchan.me/writing/when-is-a-change-actually-done/"}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <header class="site-header"><div class="site-header-inner">
+    <a class="brand" href="/">
+      <img class="brand-mark" src="/assets/media/hc-logo-ink.png" alt="HC" width="38" height="35" decoding="async">
+      <span class="brand-copy"><strong>Howard Chan</strong><small>Founder · Builder</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
+    </nav>
+  </div></header>
+    <main id="main" class="page-main">
+    <p class="backlink"><a href="/writing/">← Writing</a></p>
+    <header class="page-intro" style="padding-top:8px">
+      <p class="hero-eyebrow">2026-06-24</p>
+      <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:30ch">when is a change actually done?</h1>
+      <p class="intro-subtitle">A change is done when the live service is verified end to end, because repo-local green can create false confidence.</p>
+    </header>
+    <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>when is a change actually done? for me, the answer is simple: when the live service is verified end to end. everything before that is a signal, and a commit stays a commit, nothing more. that line matters because it keeps the definition of done anchored to the place where the work has to survive. a green repo can feel finished in the moment, while the real service is still the only place that can say whether the change holds up.</p><p>the mistake I keep watching for is treating local success as final. repo-local green is where the false confidence starts. the code can look clean, the checks can pass, and the commit can feel ready to ship. that feeling is real, and it is also too early. the gap appears when the work leaves the repo and has to behave as the live service, with the actual end to end path in play.</p><p>the mechanism is plain enough. local verification covers the code where it was edited. end to end verification covers the thing people actually use. those are different surfaces, and they fail in different ways. a commit can be correct in isolation and still leave the live service unverified. when that happens, the commit has value, but it does not carry the meaning people often assign to it. it records a change. it does not certify completion.</p><p>that shift in language changed how I think about progress. I still value commits, and I still want the repo to be green. those are useful checkpoints. they mark that the work is moving in the right direction. the rule I adopted is that none of them gets promoted to done on its own. done belongs to the verified live service, because that is the point where the change stops being an idea and becomes something I can stand behind.</p><p>this also changes how I read my own confidence. if I feel settled after the repo goes green, that is exactly the moment to slow down and ask what has actually been proven. have I only proven the code in place, or have I proven the service in motion. that question keeps me honest. it keeps me from confusing a neat local result with a finished outcome. it also makes the remaining work easier to see, because the missing step is usually the real one.</p><p>if you build software solo with AI agents, this rule is worth keeping close. agents can produce fast progress, and they can also make local success look more complete than it is. a clean commit can arrive early. the live service still gets the final say. so my advice is to define done in a way that forces the work to meet reality. ask whether the live service has been verified end to end. if it has, you have a real finish line. if it has not, you have a commit and a useful next step, and that distinction matters.</p><p>so the question I keep putting back to myself is the same one I put to anyone reading this: what are you using as the real definition of done. if the answer lives inside the repo, you are probably stopping too early. if the answer lives in the live service, verified end to end, then the work has a chance to mean what it says. that is the standard I try to hold, because it keeps the story of the change aligned with the thing that actually ships.</p></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
+    <div class="rentry-head">
+      <h3><a href="/writing/your-offline-backup-is-not-your-source-of-truth/" style="color:inherit">your offline backup is not your source of truth</a></h3>
+      <span class="meta">2026-06-23</span>
+    </div>
+    <p class="sum">A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
+      <h3><a href="/writing/a-green-checkmark-in-your-repo-is-not-proof-of-a/" style="color:inherit">a green checkmark in your repo is not proof of anything</a></h3>
+      <span class="meta">2026-06-22</span>
+    </div>
+    <p class="sum">A green checkmark in the repo can hide a stale live endpoint, and the only reliable receipt is a live request you make yourself.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
+      <h3><a href="/writing/shipped-a-feature-last-week/" style="color:inherit">shipped a feature last week</a></h3>
+      <span class="meta">2026-06-20</span>
+    </div>
+    <p class="sum">a green build and clean merge can still miss the user path; if nobody walked it live, the feature was not shipped yet.</p>
+  </article></div></section>
+  </main>
+    <footer class="site-footer"><div class="site-footer-inner">
+    <nav class="footer-network" aria-label="Howard Chan network"><span class="eyebrow">More from Howard</span><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener"><strong>ElevateOS</strong><span>Tutoring-agency software</span></a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener"><strong>Tatemori 盾守</strong><span>Japan kasuhara compliance</span></a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener"><strong>Prior Moves</strong><span>Top-investor weekly signal</span></a></li><li><a href="https://nobill.app" target="_blank" rel="noopener"><strong>nobill</strong><span>Subscription finder</span></a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener"><strong>Premier Trophy</strong><span>HK custom-awards maker</span></a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener"><strong>Think College Level</strong><span>IB &amp; admissions guides</span></a></li><li><a href="https://kvcn.org" target="_blank" rel="noopener"><strong>Kiwanis Voices Club of Nippon</strong><span>Youth-service NGO · Japan</span></a></li><li><a href="https://academy.kvcn.org/" target="_blank" rel="noopener"><strong>Voices Academy</strong><span>Free tutoring program</span></a></li><li><a href="https://katalyst.kvcn.org/" target="_blank" rel="noopener"><strong>Katalyst</strong><span>Service-project &amp; volunteer board</span></a></li><li><a href="https://learn.kvcn.org/" target="_blank" rel="noopener"><strong>KVCN Learn</strong><span>Free learning-resource directory</span></a></li></ul></nav>
+    <div class="loc"><span>Howard Chan — Sumida-ku, Tokyo, Japan</span><span>© 2026 · Built static, deployed on Cloudflare Pages</span></div>
+    <nav class="footer-links" aria-label="Footer"><a href="https://www.linkedin.com/in/howardchan2008/">LinkedIn</a><a href="https://codeberg.org/imjusthoward">Codeberg</a><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></nav>
+  </div></footer>
+  </div>
+</body>
+</html>
