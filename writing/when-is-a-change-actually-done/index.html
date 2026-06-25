@@ -47,6 +47,12 @@
     <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>when is a change actually done? for me, the answer is simple: when the live service is verified end to end. everything before that is a signal, and a commit stays a commit, nothing more. that line matters because it keeps the definition of done anchored to the place where the work has to survive. a green repo can feel finished in the moment, while the real service is still the only place that can say whether the change holds up.</p><p>the mistake I keep watching for is treating local success as final. repo-local green is where the false confidence starts. the code can look clean, the checks can pass, and the commit can feel ready to ship. that feeling is real, and it is also too early. the gap appears when the work leaves the repo and has to behave as the live service, with the actual end to end path in play.</p><p>the mechanism is plain enough. local verification covers the code where it was edited. end to end verification covers the thing people actually use. those are different surfaces, and they fail in different ways. a commit can be correct in isolation and still leave the live service unverified. when that happens, the commit has value, but it does not carry the meaning people often assign to it. it records a change. it does not certify completion.</p><p>that shift in language changed how I think about progress. I still value commits, and I still want the repo to be green. those are useful checkpoints. they mark that the work is moving in the right direction. the rule I adopted is that none of them gets promoted to done on its own. done belongs to the verified live service, because that is the point where the change stops being an idea and becomes something I can stand behind.</p><p>this also changes how I read my own confidence. if I feel settled after the repo goes green, that is exactly the moment to slow down and ask what has actually been proven. have I only proven the code in place, or have I proven the service in motion. that question keeps me honest. it keeps me from confusing a neat local result with a finished outcome. it also makes the remaining work easier to see, because the missing step is usually the real one.</p><p>if you build software solo with AI agents, this rule is worth keeping close. agents can produce fast progress, and they can also make local success look more complete than it is. a clean commit can arrive early. the live service still gets the final say. so my advice is to define done in a way that forces the work to meet reality. ask whether the live service has been verified end to end. if it has, you have a real finish line. if it has not, you have a commit and a useful next step, and that distinction matters.</p><p>so the question I keep putting back to myself is the same one I put to anyone reading this: what are you using as the real definition of done. if the answer lives inside the repo, you are probably stopping too early. if the answer lives in the live service, verified end to end, then the work has a chance to mean what it says. that is the standard I try to hold, because it keeps the story of the change aligned with the thing that actually ships.</p></div></section>
     <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
     <div class="rentry-head">
+      <h3><a href="/writing/a-commit-is-a-checkpoint/" style="color:inherit">a commit is a checkpoint</a></h3>
+      <span class="meta">2026-06-25</span>
+    </div>
+    <p class="sum">A commit is a checkpoint, and shipping only starts after live verification exposes the hidden failures.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
       <h3><a href="/writing/your-offline-backup-is-not-your-source-of-truth/" style="color:inherit">your offline backup is not your source of truth</a></h3>
       <span class="meta">2026-06-23</span>
     </div>
@@ -57,12 +63,6 @@
       <span class="meta">2026-06-22</span>
     </div>
     <p class="sum">A green checkmark in the repo can hide a stale live endpoint, and the only reliable receipt is a live request you make yourself.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/shipped-a-feature-last-week/" style="color:inherit">shipped a feature last week</a></h3>
-      <span class="meta">2026-06-20</span>
-    </div>
-    <p class="sum">a green build and clean merge can still miss the user path; if nobody walked it live, the feature was not shipped yet.</p>
   </article></div></section>
   </main>
     <footer class="site-footer"><div class="site-footer-inner">

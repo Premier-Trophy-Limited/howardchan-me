@@ -47,6 +47,12 @@
     <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>your offline backup is not your source of truth. it is your insurance. that distinction sounds small until you watch a local encrypted mirror slowly take on a life of its own. people make a copy of critical data, feel safer because the copy lives somewhere else, and then start treating that copy like the real system. once that happens, the backup stops being a quiet safety net and starts becoming another place where decisions can drift.</p><p>the problem is simple and expensive. when two places both feel important, they begin to disagree. a change lands in one place, another change lands in the mirror, and now there is no clean answer to which version deserves trust. the moment you start writing to the mirror, you have created two active records that need to stay aligned. every edit adds one more chance for mismatch, and every mismatch makes the mirror harder to trust when you actually need it.</p><p>the rule i use now is direct. pick one canonical source and keep it that way. the mirror lives somewhere else, gets refreshed on a schedule, and stays quiet until the primary is gone. that gives each copy a job. one place is where work happens. the other place is where recovery happens. when those roles stay separate, the backup remains simple enough to trust.</p><p>the mechanism matters here. a backup that you write to is a second thing to keep in sync. that means every update has to be correct in both places, every time, or the two copies drift apart. once drift starts, the mirror becomes a competing version of the truth. by contrast, a backup that you only read from in a disaster never has to compete with day-to-day edits. it can stay stale on purpose, because its job is to exist when the primary is gone.</p><p>that shift changes the way the whole system feels. you stop asking whether the mirror is current enough to use as working storage, and you start asking whether the refresh schedule is good enough for recovery. you stop editing wherever a copy happens to be handy, and you keep the real source in one place. the mirror becomes boring, which is exactly what you want from insurance. it is there, it is separate, and it does its job only when the primary cannot.</p><p>if you keep a local encrypted mirror, treat it as a recovery asset. decide which place is canonical, write your changes there, and refresh the mirror on a schedule that fits your risk tolerance. then leave it alone unless the primary is gone. that one rule keeps the backup from becoming a second source of truth. it also makes disaster recovery cleaner, because the copy you reach for in the worst moment is the copy you trained to be read-only in normal life. that is the whole point of insurance: it stays in the background until the day you need it.</p></div></section>
     <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
     <div class="rentry-head">
+      <h3><a href="/writing/a-commit-is-a-checkpoint/" style="color:inherit">a commit is a checkpoint</a></h3>
+      <span class="meta">2026-06-25</span>
+    </div>
+    <p class="sum">A commit is a checkpoint, and shipping only starts after live verification exposes the hidden failures.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
       <h3><a href="/writing/when-is-a-change-actually-done/" style="color:inherit">when is a change actually done?</a></h3>
       <span class="meta">2026-06-24</span>
     </div>
@@ -57,12 +63,6 @@
       <span class="meta">2026-06-22</span>
     </div>
     <p class="sum">A green checkmark in the repo can hide a stale live endpoint, and the only reliable receipt is a live request you make yourself.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/shipped-a-feature-last-week/" style="color:inherit">shipped a feature last week</a></h3>
-      <span class="meta">2026-06-20</span>
-    </div>
-    <p class="sum">a green build and clean merge can still miss the user path; if nobody walked it live, the feature was not shipped yet.</p>
   </article></div></section>
   </main>
     <footer class="site-footer"><div class="site-footer-inner">
