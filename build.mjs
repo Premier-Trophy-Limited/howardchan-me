@@ -39,14 +39,40 @@ const today = new Intl.DateTimeFormat("en-CA", {
 }).format(new Date());
 
 const navItems = [
-  { label: "Index", href: "/" },
-  { label: "Ventures", href: "/ventures/" },
-  { label: "Gallery", href: "/gallery/" },
-  { label: "Writing", href: "/writing/" },
-  { label: "About", href: "/about/" },
-  { label: "Research", href: "/research/" },
-  { label: "Contact", href: "/contact/" },
+  { label: "Index", href: "/", num: "01" },
+  { label: "Ventures", href: "/ventures/", num: "02" },
+  { label: "Gallery", href: "/gallery/", num: "03" },
+  { label: "Writing", href: "/writing/", num: "04" },
+  { label: "About", href: "/about/", num: "05" },
+  { label: "Research", href: "/research/", num: "06" },
+  { label: "Contact", href: "/contact/", num: "07" },
 ];
+
+// Masthead locale line, reused across page tops and detail pages.
+const LOCALE = site.hero.eyebrow;
+const HERO_ROLE = "Founder · Builder · Researcher";
+
+// Interior page copy (title + lead) for the masthead page-top.
+const PAGE_COPY = {
+  ventures: {
+    title: "Shipped, piloting, on the record.",
+    lead: "Ventures with honest status. Each one maps a workflow, finds the friction, and ships a tool people can use, hand off, and trust.",
+  },
+  gallery: {
+    title: "Built and shipped.",
+    lead: "The products, the Kiwanis service platform, and finished work from the family manufacturer.",
+  },
+  writing: {
+    title: "Working notes.",
+    lead: "Short notes from inside the work: building solo with AI agents, operations, and shipping. Written when there is something concrete to say.",
+  },
+  research: {
+    title: "Published research.",
+    lead: "Presented as citations because that is what they are. Communication, cognition, and how institutional systems behave.",
+  },
+  about: { title: "Coordination is the through-line." },
+  contact: {},
+};
 
 const STATUS = {
   live: { label: "Live", color: "var(--status-live)" },
@@ -125,25 +151,30 @@ function urlFor(route) {
 }
 
 function renderHeader(current) {
-  return `<header class="site-header"><div class="site-header-inner">
-    <a class="brand" href="/">
-      <img class="brand-mark" src="${attr(site.logo.src)}" alt="${attr(site.logo.alt)}" width="38" height="35" decoding="async">
-      <span class="brand-copy"><strong>${esc(site.name)}</strong><small>${esc(site.brandSub)}</small></span>
+  return `<header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">${esc(site.name)}</span><span class="wordmark-sub">${esc(site.brandSub)}</span></span>
     </a>
-    <nav class="site-nav" aria-label="Primary">
+    <nav class="nav" aria-label="Primary">
       ${navItems.map((n) => `<a href="${attr(n.href)}"${current === n.href ? ' aria-current="page"' : ""}>${esc(n.label)}</a>`).join("")}
     </nav>
   </div></header>`;
 }
 
 function renderFooter() {
-  const network = site.network
-    ? `<nav class="footer-network" aria-label="Howard Chan network"><span class="eyebrow">More from Howard</span><ul>${site.network.map((l) => `<li><a href="${attr(l.href)}" target="_blank" rel="noopener"><strong>${esc(l.label)}</strong>${l.note ? `<span>${esc(l.note)}</span>` : ""}</a></li>`).join("")}</ul></nav>`
-    : "";
-  return `<footer class="site-footer"><div class="site-footer-inner">
-    ${network}
-    <div class="loc"><span>${esc(site.name)} — ${esc(site.location)}</span><span>© 2026 · Built static, deployed on Cloudflare Pages</span></div>
-    <nav class="footer-links" aria-label="Footer">${site.footerLinks.map((l) => `<a href="${attr(l.href)}">${esc(l.label)}</a>`).join("")}</nav>
+  const cols = site.contact.groups
+    .map(
+      (g) =>
+        `<div class="ftr-col"><h4>${esc(g.group)}</h4><ul>${g.items.map((it) => `<li><a href="${attr(it.href)}"${it.href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${esc(it.label)}</a></li>`).join("")}</ul></div>`,
+    )
+    .join("");
+  return `<footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      ${cols}
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
   </div></footer>`;
 }
 
@@ -154,8 +185,10 @@ function renderPage({
   content,
   jsonLd,
   ogType = "website",
+  ogImage,
 }) {
   const ld = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
+  const img = `${site.url}${ogImage || "/assets/media/og-card.png"}`;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -166,28 +199,31 @@ function renderPage({
   <link rel="canonical" href="${attr(urlFor(canonicalPath))}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
   <link rel="stylesheet" href="/assets/styles.css">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
   <meta property="og:type" content="${attr(ogType)}">
   <meta property="og:title" content="${attr(title)}">
   <meta property="og:description" content="${attr(description)}">
   <meta property="og:url" content="${attr(urlFor(canonicalPath))}">
   <meta property="og:site_name" content="${attr(site.name)}">
   <meta property="og:locale" content="en_US">
-  <meta property="og:image" content="${site.url}/assets/media/pfp.png">
+  <meta property="og:image" content="${img}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${attr(title)}">
   <meta name="twitter:description" content="${attr(description)}">
-  <meta name="twitter:image" content="${site.url}/assets/media/pfp.png">
+  <meta name="twitter:image" content="${img}">
   <meta name="author" content="${attr(site.fullName)}">
   <title>${esc(title)}</title>
   <script type="application/ld+json">${jsonLdSafe(ld.length === 1 ? ld[0] : ld)}</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="page-shell">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
     ${renderHeader(canonicalPath)}
-    <main id="main" class="page-main">${content}</main>
+    <main id="main" class="view wrap">${content}</main>
     ${renderFooter()}
   </div>
 </body>
@@ -197,22 +233,22 @@ function renderPage({
 
 function statusChip(status) {
   const s = STATUS[status] || STATUS.research;
-  return `<span class="chip"><span class="dot" style="background:${s.color}"></span>${esc(s.label)}</span>`;
+  const cls = status === "live" ? "live" : status === "pilot" ? "pilot" : "research";
+  return `<span class="chip ${cls}"><span class="dot"></span>${esc(s.label)}</span>`;
 }
 
 function ventureCard(v) {
   const i = site.ventures.indexOf(v);
-  const num = i >= 0 ? String(i + 1).padStart(2, "0") : "";
+  const num = i >= 0 ? String(i + 1).padStart(2, "0") : "01";
   return `<article class="vcard">
     <div class="vcard-top">
-      <div class="vcard-id">${num ? `<span class="vcard-num">${num}</span>` : ""}<h3><a href="/ventures/${vslug(v)}/" style="color:inherit">${esc(v.name)}</a>${v.jp ? `<span class="jp">${esc(v.jp)}</span>` : ""}</h3></div>
+      <div class="vcard-title"><span class="vnum">${num}</span><h3><a href="/ventures/${vslug(v)}/" style="color:inherit">${esc(v.name)}</a>${v.jp ? `<span class="jp">${esc(v.jp)}</span>` : ""}</h3></div>
       ${statusChip(v.status)}
     </div>
     <p>${esc(v.summary)}</p>
-    <ul class="vdetails">${(v.details || []).map((d) => `<li>${esc(d)}</li>`).join("")}</ul>
     <div class="vcard-foot">
-      <a class="vcard-link" href="/ventures/${vslug(v)}/">Overview →</a>
-      ${v.href ? `<a class="vcard-link" href="${attr(v.href)}" target="_blank" rel="noopener">${esc(v.domain)} ↗</a>` : `<span class="vcard-link" style="color:var(--ink-3)">${esc(v.domain)}</span>`}
+      <a class="vcard-link" href="/ventures/${vslug(v)}/">Details →</a>
+      ${v.href ? `<a class="vcard-domain" href="${attr(v.href)}" target="_blank" rel="noopener">${esc(v.domain)} ↗</a>` : `<span class="vcard-domain">${esc(v.domain)}</span>`}
     </div>
   </article>`;
 }
@@ -221,27 +257,31 @@ function ventureGrid(list) {
   return `<div class="grid">${list.map(ventureCard).join("")}</div>`;
 }
 
-// Compact ledger linking every other owned property (TCL + the KVCN platform),
-// so the site links to all of Howard's projects, not only the six venture cards.
+// Also-building ledger — links every other owned property (TCL + KVCN platform)
+// as a hairline ledger, so the site reaches all of Howard's work, not only cards.
 function moreProjectsBlock() {
   if (!site.moreProjects || !site.moreProjects.length) return "";
-  return `<section class="page-section"><span class="eyebrow">Also building</span>
-    <ul class="moreproj">${site.moreProjects
+  return `<div class="ledger"><div class="ledger-head"><span class="eyebrow small">Also building</span></div>
+    ${site.moreProjects
       .map(
         (p) =>
-          `<li><a href="${attr(p.href)}" target="_blank" rel="noopener"><strong>${esc(p.label)}</strong><span class="mp-note">${esc(p.note)}</span><span class="mp-dom">${esc(p.domain)} ↗</span></a></li>`,
+          `<a class="lrow" href="${attr(p.href)}" target="_blank" rel="noopener"><span class="lrow-name">${esc(p.label)}</span><span class="lrow-note">${esc(p.note)}</span><span class="lrow-domain">${esc(p.domain)} →</span></a>`,
       )
-      .join("")}</ul></section>`;
+      .join("")}</div>`;
 }
 
-function researchEntry(r) {
+// Research as numbered academic citations (R-01, R-02 …). embedded = summary only.
+function citationEntry(r, i, embedded) {
+  const num = `R-${String(i + 1).padStart(2, "0")}`;
   return `<article class="rentry">
-    <div class="rentry-head">
+    <span class="rnum">${num}</span>
+    <div class="rentry-body">
       <h3><a href="/research/${esc(r.slug)}/" style="color:inherit">${esc(r.title)}</a></h3>
-      <span class="meta">${esc(r.meta)}</span>
+      <div class="rentry-meta"><span class="meta">${esc(r.meta)}</span><span class="chip research"><span class="dot"></span>Research</span></div>
+      <p class="sum">${esc(r.summary)}</p>
+      ${!embedded ? (r.body || []).map((p) => `<p class="sum">${esc(p)}</p>`).join("") : ""}
+      <a class="read" href="/research/${esc(r.slug)}/">Read the paper →</a>
     </div>
-    <p class="sum">${esc(r.summary)}</p>
-    <div class="body">${(r.body || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div>
   </article>`;
 }
 
@@ -249,21 +289,32 @@ function secHead(num, eyebrow) {
   return `<div class="sec-head"><span class="sec-num">${esc(num)}</span><span class="eyebrow">${esc(eyebrow)}</span></div>`;
 }
 
+// Masthead band — the repeating structural motif (mono meta, framed by rules).
+function masthead(left, right) {
+  return `<div class="masthead"><span class="masthead-l">${esc(left)}</span><span class="masthead-r">${esc(right)}</span></div>`;
+}
+
+// Interior page top: masthead (page label · num / locale) + carved title + lead.
+function pageTop(pageKey) {
+  const n = navItems.find((x) => x.href === `/${pageKey}/`);
+  const label = n ? n.label : pageKey;
+  const num = n ? n.num : "";
+  const copy = PAGE_COPY[pageKey] || {};
+  return `<div class="page-top">${masthead(`${label} · ${num}`, LOCALE)}${copy.title ? `<h1 class="page-title">${esc(copy.title)}</h1>` : ""}${copy.lead ? `<p class="page-lead">${esc(copy.lead)}</p>` : ""}</div>`;
+}
+
 function renderHome() {
   const h = site.hero;
   const content = `
-    <header class="page-intro hero" style="padding-top:clamp(16px,3vw,36px)">
-      <div class="masthead"><span class="masthead-l">Founder · Builder</span><span class="masthead-r">${esc(h.eyebrow)}</span></div>
+    <section class="hero">
+      ${masthead(HERO_ROLE, h.eyebrow)}
       <h1>${esc(h.headline)}</h1>
-      <p class="intro-subtitle">${esc(h.lead)}</p>
+      <p class="lead">${esc(h.lead)}</p>
       <div class="hero-links">${h.links.map((l) => `<a href="${attr(l.href)}"${l.href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${esc(l.label)}</a>`).join("")}</div>
       <div class="pillars">${site.pillars.map((p) => `<div class="pillar"><h3>${esc(p.title)}</h3><p>${esc(p.body)}</p></div>`).join("")}</div>
-    </header>
-    ${secHead("02", "Ventures")}
-    ${ventureGrid(site.ventures)}
-    ${moreProjectsBlock()}
-    ${secHead("03", "Gallery")}
-    ${galleryPreview(6)}
+    </section>
+    <section class="home-sec">${secHead("02", "Ventures")}${ventureGrid(site.ventures)}${moreProjectsBlock()}</section>
+    <section class="home-sec">${secHead("03", "Gallery")}${galleryPreview(6)}</section>
   `;
   return renderPage({
     title: `${site.name} — ${site.brandSub}`,
@@ -312,12 +363,13 @@ function renderHome() {
 }
 
 function renderVentures() {
-  const content = `${secHead("02", "Ventures")}${ventureGrid(site.ventures)}${moreProjectsBlock()}`;
+  const content = `${pageTop("ventures")}${ventureGrid(site.ventures)}${moreProjectsBlock()}`;
   return renderPage({
     title: `Ventures · ${site.name}`,
     description: "Products and ventures Howard Chan has built and shipped.",
     canonicalPath: "/ventures/",
     content,
+    ogImage: "/assets/media/og-ventures.png",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -327,13 +379,14 @@ function renderVentures() {
 }
 
 function renderResearch() {
-  const content = `${secHead("03", "Published research")}<div class="research-list">${site.research.map(researchEntry).join("")}</div>`;
+  const content = `${pageTop("research")}<div class="research-list">${site.research.map((r, i) => citationEntry(r, i, false)).join("")}</div>`;
   return renderPage({
     title: `Research · ${site.name}`,
     description:
       "Published research by Howard Chan on communication, cognition, and institutional systems.",
     canonicalPath: "/research/",
     content,
+    ogImage: "/assets/media/og-research.png",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
@@ -363,9 +416,7 @@ function renderGallery() {
       return `<figure class="gphoto">${inner}${cap}</figure>`;
     })
     .join("");
-  const content = `${secHead("03", "Gallery")}
-    <p class="contact-intro" style="margin-bottom:18px">Things I’ve built and shipped — the products, the Kiwanis service platform, and finished work from the family manufacturer.</p>
-    <div class="gallery-grid">${figures}</div>`;
+  const content = `${pageTop("gallery")}<div class="gallery-grid">${figures}</div>`;
   return renderPage({
     title: `Gallery · ${site.name}`,
     description:
@@ -383,16 +434,13 @@ function renderGallery() {
 
 function renderAbout() {
   const a = site.about;
-  const content = `${secHead("04", "About")}
+  const content = `${pageTop("about")}
     <div class="about-grid">
       <div class="about-prose">${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div>
       <figure class="portrait"><img src="/assets/media/pfp.png" alt="Howard Chan" width="300" height="300" decoding="async"><figcaption>Sumida-ku, Tokyo</figcaption></figure>
     </div>
-    <div class="timeline">
-      <span class="eyebrow">Experience &amp; education</span>
-      <div style="margin-top:14px">${a.timeline.map((t) => `<div class="tline"><h4>${esc(t.title)}</h4><span class="tmeta">${esc(t.meta)}</span><p class="tsum">${esc(t.sum)}</p></div>`).join("")}</div>
-    </div>
-    ${a.honors ? `<div class="timeline"><span class="eyebrow">Selected honors</span><div style="margin-top:14px">${a.honors.map((x) => `<div class="tline"><h4 style="font-weight:500">${esc(x)}</h4></div>`).join("")}</div></div>` : ""}`;
+    <div class="page-section">${secHead("05.1", "Timeline")}<div class="timeline-list">${a.timeline.map((t, i) => `<div class="tline"><span class="tnum">${String(i + 1).padStart(2, "0")}</span><h4>${esc(t.title)}</h4><span class="tmeta">${esc(t.meta)}</span><p class="tsum">${esc(t.sum)}</p></div>`).join("")}</div></div>
+    ${a.honors ? `<div class="page-section">${secHead("05.2", "Honors")}<ul class="honors-list">${a.honors.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}`;
   return renderPage({
     title: `About · ${site.name}`,
     description:
@@ -413,10 +461,10 @@ function renderAbout() {
 
 function renderContact() {
   const c = site.contact;
-  const content = `${secHead("05", "Contact")}
+  const content = `${pageTop("contact")}
     <p class="contact-intro">${esc(c.intro)}</p>
     <div class="cgroups">${c.groups.map((g) => `<div class="cgroup"><h4>${esc(g.group)}</h4><ul>${g.items.map((it) => `<li><a href="${attr(it.href)}"${it.href.startsWith("http") ? ' target="_blank" rel="noopener"' : ""}>${esc(it.label)}</a></li>`).join("")}</ul></div>`).join("")}</div>
-    <div class="copybar"><a class="copybtn" href="${attr(c.emailHref)}">Email me</a><span class="eyebrow" style="text-transform:none;letter-spacing:0">${esc(c.email)}</span></div>`;
+    <div class="copybar"><a class="copybtn" href="${attr(c.emailHref)}">Email me</a><span class="copynote">${esc(c.email)}</span></div>`;
   return renderPage({
     title: `Contact · ${site.name}`,
     description: "Get in touch with Howard Chan — LinkedIn, Codeberg, email.",
@@ -435,40 +483,38 @@ function renderContact() {
 }
 
 function renderVentureDetail(v) {
-  const others = site.ventures.filter((x) => x !== v).slice(0, 3);
+  const i = site.ventures.indexOf(v);
+  const num = String(i + 1).padStart(2, "0");
+  const next = site.ventures[(i + 1) % site.ventures.length];
+  const nextNum = String(((i + 1) % site.ventures.length) + 1).padStart(2, "0");
   const content = `
-    <p class="backlink"><a href="/ventures/">← Ventures</a></p>
-    <header class="page-intro" style="padding-top:8px">
-      <div class="detail-meta">${statusChip(v.status)}${v.href ? `<a class="vcard-link" href="${attr(v.href)}" target="_blank" rel="noopener">${esc(v.domain)} ↗</a>` : `<span class="vcard-link" style="color:var(--ink-3)">${esc(v.domain)}</span>`}</div>
-      <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">${esc(v.name)}${v.jp ? ` <span class="jp" style="font-size:0.55em;color:var(--ink-3)">${esc(v.jp)}</span>` : ""}</h1>
-      <p class="intro-subtitle">${esc(v.summary)}</p>
-    </header>
-    <section class="page-section"><span class="eyebrow">What it does</span><ul class="vdetails" style="margin-top:14px;max-width:62ch">${(v.details || []).map((d) => `<li>${esc(d)}</li>`).join("")}</ul></section>
+    <p class="backlink"><a href="/ventures/">← All ventures</a></p>
+    ${masthead(`Venture · ${num}`, LOCALE)}
+    <div class="detail-meta">${statusChip(v.status)}${v.href ? `<a class="detail-domain" href="${attr(v.href)}" target="_blank" rel="noopener">${esc(v.domain)} ↗</a>` : `<span class="detail-domain" style="color:var(--ink-3)">${esc(v.domain)}</span>`}</div>
+    <h1 class="detail-h1">${esc(v.name)}${v.jp ? ` <span class="jp">${esc(v.jp)}</span>` : ""}</h1>
+    <p class="intro-subtitle">${esc(v.summary)}</p>
+    <section class="page-section"><span class="eyebrow">On the record</span><ul class="vdetails wide">${(v.details || []).map((d) => `<li>${esc(d)}</li>`).join("")}</ul></section>
     ${
       v.network && v.org
-        ? `<section class="page-section"><span class="eyebrow">Part of ${esc(v.org.name)}</span>
-      <p class="intro-subtitle" style="max-width:62ch">A youth-service NGO chartered under Kiwanis International, Japan District. I build and run its digital platform — ${v.network.length} surfaces sharing one design system.</p>
-      <ul class="vdetails" style="margin-top:14px;max-width:62ch">${v.network
+        ? `<section class="page-section"><span class="eyebrow">Part of ${esc(v.org.name)}</span><p class="intro-subtitle" style="max-width:62ch">A youth-service NGO chartered under Kiwanis International, Japan District. I build and run its digital platform: ${v.network.length} surfaces sharing one design system.</p><ul class="vdetails wide">${v.network
         .map(
           (n) =>
-            `<li><a href="${attr(n.href)}" target="_blank" rel="noopener">${esc(n.label)} ↗</a>${n.note ? ` — ${esc(n.note)}` : ""}</li>`,
+            `<li><a class="ds-link" href="${attr(n.href)}" target="_blank" rel="noopener">${esc(n.label)} ↗</a>${n.note ? ` · ${esc(n.note)}` : ""}</li>`,
         )
         .join("")}</ul></section>`
         : ""
     }
     ${
       v.impact
-        ? `<section class="page-section"><span class="eyebrow">Service impact</span>
-      <div style="display:flex;flex-wrap:wrap;gap:24px;margin:14px 0 10px">${v.impact.stats
+        ? `<section class="page-section"><span class="eyebrow">Service impact</span><div class="impact-stats">${v.impact.stats
         .map(
           (s) =>
-            `<div><span style="font-size:1.5rem;font-weight:800">${esc(s.n)}</span> <span style="font-size:0.85rem;color:var(--ink-3)">${esc(s.label)}</span></div>`,
+            `<div><span class="n">${esc(s.n)}</span><span class="l">${esc(s.label)}</span></div>`,
         )
-        .join("")}</div>
-      <a class="vcard-link" href="${attr(v.impact.href)}" target="_blank" rel="noopener">See the club's service impact ↗</a></section>`
+        .join("")}</div><a class="vcard-link" href="${attr(v.impact.href)}" target="_blank" rel="noopener">See the club's service impact ↗</a></section>`
         : ""
     }
-    <section class="page-section"><span class="eyebrow">More ventures</span><div class="grid" style="margin-top:18px">${others.map(ventureCard).join("")}</div></section>
+    <div class="ledger next-ledger"><div class="ledger-head"><span class="eyebrow small">Next</span></div><a class="lrow" href="/ventures/${vslug(next)}/"><span class="lrow-name">${nextNum} · ${esc(next.name)}</span><span class="lrow-note">${esc(next.domain)}</span><span class="lrow-domain">Open →</span></a></div>
   `;
   return renderPage({
     title: `${v.name} · ${site.name}`,
@@ -476,6 +522,7 @@ function renderVentureDetail(v) {
     canonicalPath: `/ventures/${vslug(v)}/`,
     content,
     ogType: "article",
+    ogImage: "/assets/media/og-ventures.png",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "CreativeWork",
@@ -497,15 +544,15 @@ function renderVentureDetail(v) {
 }
 
 function renderResearchDetail(r) {
+  const rnum = `R-${String(site.research.indexOf(r) + 1).padStart(2, "0")}`;
   const content = `
-    <p class="backlink"><a href="/research/">← Research</a></p>
-    <header class="page-intro" style="padding-top:8px">
-      <p class="hero-eyebrow">${esc(r.meta)}</p>
-      <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:26ch">${esc(r.title)}</h1>
-      <p class="intro-subtitle">${esc(r.summary)}</p>
-      ${r.href ? `<div class="hero-links"><a href="${attr(r.href)}" target="_blank" rel="noopener">Read the paper ↗</a></div>` : ""}
-    </header>
-    <section class="page-section" style="max-width:68ch"><span class="eyebrow">Summary</span><div class="about-prose" style="margin-top:14px">${(r.body || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div></section>
+    <p class="backlink"><a href="/research/">← All research</a></p>
+    ${masthead(`Research · ${rnum}`, r.meta)}
+    <div class="detail-meta"><span class="chip research"><span class="dot"></span>Research</span><span class="meta">${esc(r.meta)}</span></div>
+    <h1 class="detail-h1 paper-h1">${esc(r.title)}</h1>
+    <p class="intro-subtitle">${esc(r.summary)}</p>
+    <section class="page-section"><span class="eyebrow">Abstract, plainly</span><div class="rbody">${(r.body || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div></section>
+    ${r.href ? `<a class="more-link" href="${attr(r.href)}" target="_blank" rel="noopener">Read the paper →</a>` : ""}
   `;
   return renderPage({
     title: `${r.title} · ${site.name}`,
@@ -513,6 +560,7 @@ function renderResearchDetail(r) {
     canonicalPath: `/research/${r.slug}/`,
     content,
     ogType: "article",
+    ogImage: "/assets/media/og-research.png",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "ScholarlyArticle",
@@ -525,18 +573,13 @@ function renderResearchDetail(r) {
   });
 }
 
-function writingEntry(w) {
-  return `<article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/${esc(w.slug)}/" style="color:inherit">${esc(w.title)}</a></h3>
-      <span class="meta">${esc(w.date)}</span>
-    </div>
-    <p class="sum">${esc(w.description || "")}</p>
-  </article>`;
+function writingEntry(w, i) {
+  const num = `W-${String((i || 0) + 1).padStart(2, "0")}`;
+  return `<a class="wrow" href="/writing/${esc(w.slug)}/"><span class="wnum">${num}</span><span class="wdate">${esc(w.date || "")}</span><span class="wbody"><span class="wtitle">${esc(w.title)}</span>${w.description ? `<span class="wnote">${esc(w.description)}</span>` : ""}</span><span class="warrow">→</span></a>`;
 }
 
 function renderWriting() {
-  const content = `${secHead("04", "Writing")}<p class="contact-intro" style="margin-bottom:18px">Field notes from building solo with AI agents — real findings, with the numbers attached.</p><div class="research-list">${writing.map(writingEntry).join("")}</div>`;
+  const content = `${pageTop("writing")}<div class="writing-list">${writing.map((w, i) => writingEntry(w, i)).join("")}</div>`;
   return renderPage({
     title: `Writing · ${site.name}`,
     description:
@@ -617,13 +660,11 @@ function renderWritingDetail(w) {
     : `<section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px">${(w.body || []).map((p) => `<p>${esc(p)}</p>`).join("")}</div></section>`;
   const content = `
     <p class="backlink"><a href="/writing/">← Writing</a></p>
-    <header class="page-intro" style="padding-top:8px">
-      <p class="hero-eyebrow">${esc(w.date)}</p>
-      <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:30ch">${esc(w.title)}</h1>
-      ${w.description ? `<p class="intro-subtitle">${esc(w.description)}</p>` : ""}
-    </header>
+    ${masthead(`Writing · ${w.date || ""}`, LOCALE)}
+    <h1 class="detail-h1 paper-h1">${esc(w.title)}</h1>
+    ${w.description ? `<p class="intro-subtitle">${esc(w.description)}</p>` : ""}
     ${hasSections ? `<div style="max-width:68ch">${bodyHtml}</div>` : bodyHtml}
-    ${more.length ? `<section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px">${more.map(writingEntry).join("")}</div></section>` : ""}
+    ${more.length ? `<section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px">${more.map((x, i) => writingEntry(x, i)).join("")}</div></section>` : ""}
   `;
 
   const blogPosting = {
@@ -666,7 +707,7 @@ function renderWritingDetail(w) {
 }
 
 function renderNotFound() {
-  const content = `<header class="page-intro"><p class="hero-eyebrow">404</p><h1>Page not found.</h1><p class="intro-subtitle">Try the <a class="vcard-link" href="/">index</a>, <a class="vcard-link" href="/ventures/">ventures</a>, or <a class="vcard-link" href="/contact/">contact</a>.</p></header>`;
+  const content = `${masthead("Error · 404", LOCALE)}<h1 class="detail-h1" style="margin-top:22px">Page not found.</h1><p class="intro-subtitle">Try the <a class="ds-link" href="/">index</a>, <a class="ds-link" href="/ventures/">ventures</a>, or <a class="ds-link" href="/contact/">contact</a>.</p>`;
   return renderPage({
     title: `Not found · ${site.name}`,
     description: "Page not found.",

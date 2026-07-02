@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.">
+  <meta name="theme-color" content="#F6F3EC">
+  <link rel="canonical" href="https://howardchan.me/writing/your-outreach-needs-a-validator/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="your outreach needs a validator · Howard Chan">
+  <meta property="og:description" content="a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.">
+  <meta property="og:url" content="https://howardchan.me/writing/your-outreach-needs-a-validator/">
+  <meta property="og:site_name" content="Howard Chan">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="your outreach needs a validator · Howard Chan">
+  <meta name="twitter:description" content="a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="author" content="Chak Hang (Howard) Chan">
+  <title>your outreach needs a validator · Howard Chan</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"your outreach needs a validator","datePublished":"2026-07-02","dateModified":"2026-07-02","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.","mainEntityOfPage":"https://howardchan.me/writing/your-outreach-needs-a-validator/"}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">Howard Chan</span><span class="wordmark-sub">Founder · Builder</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
+    </nav>
+  </div></header>
+    <main id="main" class="view wrap">
+    <p class="backlink"><a href="/writing/">← Writing</a></p>
+    <div class="masthead"><span class="masthead-l">Writing · 2026-07-02</span><span class="masthead-r">Tokyo · Incoming Cambridge HSPS</span></div>
+    <h1 class="detail-h1 paper-h1">your outreach needs a validator</h1>
+    <p class="intro-subtitle">a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.</p>
+    <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>a subscribe pitch in my linkedin queue burned 17 real people before i noticed the copy was identical in every message. that was vibes-based quality control: skim three drafts, they read fine, send the batch. the drafts you skim are never the ones that hurt you. so i wrote validate_outreach.py, a hard gate every draft passes through before it can send. the gate is binary. a draft that fails one check stays in the queue.</p><p>the structural checks came straight from observed failures. single line only, because linkedin truncates a multi-line dm and the recipient receives a naked &#39;hi jason&#39;. minimum 60 characters, because anything shorter is a naked greeting anyway. the product link has to be present, since a message with no way to see what i built is a dead end. em dashes are a hard ban, the fastest ai tell there is. and the exact subscribe phrasing that burned those 17 people sits in a banned list, checked against a squashed form of the text so &#39;sub scribe&#39; and &#39;news-letter&#39; cannot sneak past.</p><p>cold openers get stricter rules. the first message to a stranger has to ask about their world, and it cannot demand their time. &#39;hop on a quick call&#39; fails. a regex catches the time-ask shapes a plain substring list missed, like &#39;could we set up some time to talk&#39;. the earliest version required a literal question mark in every opener. that rule produced monotone drafts where every message asked a formula question, so it got loosened: the gate now rejects the blast shape, meaning any draft that says nothing about the recipient and asks nothing at all. the ask still has to be there. it just gets to sound human.</p><p>the sneakiest failure is the name-swapped template clone. each draft reads fine on its own. so the gate compares every draft in a batch against every other draft using token overlap, and past 0.7 similarity both drafts get flagged and both fail. a human reviewer approves clones all day because no single message looks wrong. the batch view is the only place the pattern is visible.</p><p>the receipt: i ran the gate over my frozen queues today. 414 drafts. 56 passed. 358 failed. the breakdown was 266 missing the product link, 259 flagged as template clones, 80 carrying the exact subscribe pitch, 16 multi-line, 6 with em dashes. the old pipeline would have sent all 414. that is 358 small burns to people i actually wanted to talk to, prevented by about 250 lines of python that took an afternoon.</p><p>a validator turns taste into checks. every time a draft embarrasses you, the failure becomes one more line in the banned list, and that class of mistake never ships again. reviewers get tired by draft 30. a regex reads draft 414 with the same attention it gave draft 1. what is the one failure your last outreach batch shipped that a check like this would have caught?</p></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px"><a class="wrow" href="/writing/an-agent-budget-breaker-for-your-ai-tooling/"><span class="wnum">W-01</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">an agent budget breaker for your ai tooling</span><span class="wnote">a hook that hard-blocks subagent dispatches at 8 per day. installed after a 132-dispatch week burned 85% of a max plan, and what the cap actually taught me about routing.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/the-real-bar-is-live-verification/"><span class="wnum">W-02</span><span class="wdate">2026-07-01</span><span class="wbody"><span class="wtitle">the real bar is live verification</span><span class="wnote">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/moved-every-runtime-secret-into-the-os-keychain-/"><span class="wnum">W-03</span><span class="wdate">2026-06-26</span><span class="wbody"><span class="wtitle">moved every runtime secret into the OS keychain and ripped the</span><span class="wnote">moving runtime secrets into one canonical OS keychain made rotation and recovery a one-place problem across four services.</span></span><span class="warrow">→</span></a></div></section>
+  </main>
+    <footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      <div class="ftr-col"><h4>Professional</h4><ul><li><a href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://codeberg.org/imjusthoward" target="_blank" rel="noopener">Codeberg</a></li></ul></div><div class="ftr-col"><h4>Live / Projects</h4><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener">ElevateOS</a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener">Prior Moves</a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener">Tatemori</a></li><li><a href="https://nobill.app" target="_blank" rel="noopener">nobill</a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener">Premier Trophy</a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener">Think College Level — IB &amp; admissions guides ↗</a></li></ul></div><div class="ftr-col"><h4>Direct</h4><ul><li><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></li><li><a href="https://wa.me/85293442294" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
+  </div></footer>
+  </div>
+</body>
+</html>

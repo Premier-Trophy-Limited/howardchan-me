@@ -8,67 +8,52 @@
   <link rel="canonical" href="https://howardchan.me/writing/moved-every-secret-out-of-our-app-env-files-into/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
   <link rel="stylesheet" href="/assets/styles.css">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Moving every secret into one canonical store made our env files boring again · Howard Chan">
   <meta property="og:description" content="Moving secrets into one canonical store made env files boring again and made rotation and drift easier to manage.">
   <meta property="og:url" content="https://howardchan.me/writing/moved-every-secret-out-of-our-app-env-files-into/">
   <meta property="og:site_name" content="Howard Chan">
   <meta property="og:locale" content="en_US">
-  <meta property="og:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta property="og:image" content="https://howardchan.me/assets/media/og-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Moving every secret into one canonical store made our env files boring again · Howard Chan">
   <meta name="twitter:description" content="Moving secrets into one canonical store made env files boring again and made rotation and drift easier to manage.">
-  <meta name="twitter:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/og-card.png">
   <meta name="author" content="Chak Hang (Howard) Chan">
   <title>Moving every secret into one canonical store made our env files boring again · Howard Chan</title>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Moving every secret into one canonical store made our env files boring again","datePublished":"2026-06-17","dateModified":"2026-06-17","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"Moving secrets into one canonical store made env files boring again and made rotation and drift easier to manage.","mainEntityOfPage":"https://howardchan.me/writing/moved-every-secret-out-of-our-app-env-files-into/"}</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="page-shell">
-    <header class="site-header"><div class="site-header-inner">
-    <a class="brand" href="/">
-      <img class="brand-mark" src="/assets/media/hc-logo-ink.png" alt="HC" width="38" height="35" decoding="async">
-      <span class="brand-copy"><strong>Howard Chan</strong><small>Founder · Builder</small></span>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">Howard Chan</span><span class="wordmark-sub">Founder · Builder</span></span>
     </a>
-    <nav class="site-nav" aria-label="Primary">
+    <nav class="nav" aria-label="Primary">
       <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
     </nav>
   </div></header>
-    <main id="main" class="page-main">
+    <main id="main" class="view wrap">
     <p class="backlink"><a href="/writing/">← Writing</a></p>
-    <header class="page-intro" style="padding-top:8px">
-      <p class="hero-eyebrow">2026-06-17</p>
-      <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:30ch">Moving every secret into one canonical store made our env files boring again</h1>
-      <p class="intro-subtitle">Moving secrets into one canonical store made env files boring again and made rotation and drift easier to manage.</p>
-    </header>
+    <div class="masthead"><span class="masthead-l">Writing · 2026-06-17</span><span class="masthead-r">Tokyo · Incoming Cambridge HSPS</span></div>
+    <h1 class="detail-h1 paper-h1">Moving every secret into one canonical store made our env files boring again</h1>
+    <p class="intro-subtitle">Moving secrets into one canonical store made env files boring again and made rotation and drift easier to manage.</p>
     <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>The clearest fix we made was moving every secret out of app env files and into one canonical store. Credentials now load at runtime instead of living inside project files, and that one change cleaned up a lot of the mess around how we handled configuration. The part that matters is simple: the app asks for credentials when it runs, while the files in the repo go back to being plain configuration. That shift sounds small on paper. In practice, it changes how a solo developer can move across projects without carrying hidden risk everywhere.</p><p>Before that change, drift was the tax we kept paying. Each project had its own env file, and the real question became which one held the current value. That turns into archaeology fast. You stop trusting the shape of your setup because every copy can slowly diverge from the others. Once there is one source of truth, that problem gets much smaller. There is a single place to update, a single place to reason about, and a much lower chance that one app is quietly running with a different value than the rest.</p><p>Rotation is where the new setup really pays off. When a credential changes, swapping it in one place means every app picks it up the next time it loads at runtime. There is no need to grep across repos or replace values file by file. That matters because rotation is where bad habits usually show up. The old workflow made every change feel broad and fragile, which is exactly when people delay it. A runtime load path makes the update feel local. The move is contained, and the blast radius stays small.</p><p>The other win was that secrets stopped leaking into code and config. Once sensitive values are out of project files, there is much less chance that something private gets committed by accident or copied into a place it should never have reached. That is the kind of cleanup that does more than remove a risk on a checklist. It changes what the rest of the repository can safely contain. You can look at the files again without wondering whether they hide something that should have stayed elsewhere.</p><p>What nobody tells you is that the store itself is only part of the story. The bigger change is that env files become boring again. They go back to being just config. You can read them. You can share the shape. You can commit a template. None of that feels dangerous anymore, because the sensitive values are gone from the file. That boring quality is the real sign the system is healthier. When the file stops carrying secrets, it becomes easier to reason about, easier to review, and easier to hand to someone else without adding extra caution to every glance.</p><p>We ran config-with-secrets-inline for a long time and told ourselves it was fine because it worked. It worked the way a bald tire works, right up until rotation day. That is the lesson I keep coming back to. A setup can function for a long stretch and still carry a failure mode that only shows itself when you need to change something important. The safer rule is to keep secrets out of project files and load credentials at runtime from one canonical store. If you are still copying values into `.env` files project by project, this is the place to stop and ask what your real source of truth is.</p><p>If you want to apply the same idea, start with your current credential path and trace where each value lives today. Ask whether the file in the repo is carrying sensitive data or just describing configuration shape. Then move the sensitive part into one runtime source and leave the file behind as a template you can read without concern. That gives you cleaner rotation, less drift, and a setup that stays understandable after the first pass is over. For a solo builder, that kind of simplicity is worth more than a setup that only looks convenient while nothing changes.</p></div></section>
-    <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/the-real-bar-is-live-verification/" style="color:inherit">the real bar is live verification</a></h3>
-      <span class="meta">2026-07-01</span>
-    </div>
-    <p class="sum">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/moved-every-runtime-secret-into-the-os-keychain-/" style="color:inherit">moved every runtime secret into the OS keychain and ripped the</a></h3>
-      <span class="meta">2026-06-26</span>
-    </div>
-    <p class="sum">moving runtime secrets into one canonical OS keychain made rotation and recovery a one-place problem across four services.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/a-commit-is-a-checkpoint/" style="color:inherit">a commit is a checkpoint</a></h3>
-      <span class="meta">2026-06-25</span>
-    </div>
-    <p class="sum">A commit is a checkpoint, and shipping only starts after live verification exposes the hidden failures.</p>
-  </article></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px"><a class="wrow" href="/writing/an-agent-budget-breaker-for-your-ai-tooling/"><span class="wnum">W-01</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">an agent budget breaker for your ai tooling</span><span class="wnote">a hook that hard-blocks subagent dispatches at 8 per day. installed after a 132-dispatch week burned 85% of a max plan, and what the cap actually taught me about routing.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/your-outreach-needs-a-validator/"><span class="wnum">W-02</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">your outreach needs a validator</span><span class="wnote">a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/the-real-bar-is-live-verification/"><span class="wnum">W-03</span><span class="wdate">2026-07-01</span><span class="wbody"><span class="wtitle">the real bar is live verification</span><span class="wnote">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</span></span><span class="warrow">→</span></a></div></section>
   </main>
-    <footer class="site-footer"><div class="site-footer-inner">
-    <nav class="footer-network" aria-label="Howard Chan network"><span class="eyebrow">More from Howard</span><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener"><strong>ElevateOS</strong><span>Tutoring-agency software</span></a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener"><strong>Tatemori 盾守</strong><span>Japan kasuhara compliance</span></a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener"><strong>Prior Moves</strong><span>Top-investor weekly signal</span></a></li><li><a href="https://nobill.app" target="_blank" rel="noopener"><strong>nobill</strong><span>Subscription finder</span></a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener"><strong>Premier Trophy</strong><span>HK custom-awards maker</span></a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener"><strong>Think College Level</strong><span>IB &amp; admissions guides</span></a></li><li><a href="https://kvcn.org" target="_blank" rel="noopener"><strong>Kiwanis Voices Club of Nippon</strong><span>Youth-service NGO · Japan</span></a></li><li><a href="https://academy.kvcn.org/" target="_blank" rel="noopener"><strong>Voices Academy</strong><span>Free tutoring program</span></a></li><li><a href="https://katalyst.kvcn.org/" target="_blank" rel="noopener"><strong>Katalyst</strong><span>Service-project &amp; volunteer board</span></a></li><li><a href="https://learn.kvcn.org/" target="_blank" rel="noopener"><strong>KVCN Learn</strong><span>Free learning-resource directory</span></a></li></ul></nav>
-    <div class="loc"><span>Howard Chan — Sumida-ku, Tokyo, Japan</span><span>© 2026 · Built static, deployed on Cloudflare Pages</span></div>
-    <nav class="footer-links" aria-label="Footer"><a href="https://www.linkedin.com/in/howardchan2008/">LinkedIn</a><a href="https://codeberg.org/imjusthoward">Codeberg</a><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></nav>
+    <footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      <div class="ftr-col"><h4>Professional</h4><ul><li><a href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://codeberg.org/imjusthoward" target="_blank" rel="noopener">Codeberg</a></li></ul></div><div class="ftr-col"><h4>Live / Projects</h4><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener">ElevateOS</a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener">Prior Moves</a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener">Tatemori</a></li><li><a href="https://nobill.app" target="_blank" rel="noopener">nobill</a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener">Premier Trophy</a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener">Think College Level — IB &amp; admissions guides ↗</a></li></ul></div><div class="ftr-col"><h4>Direct</h4><ul><li><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></li><li><a href="https://wa.me/85293442294" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
   </div></footer>
   </div>
 </body>

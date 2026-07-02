@@ -8,67 +8,52 @@
   <link rel="canonical" href="https://howardchan.me/writing/the-real-bar-is-live-verification/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
   <link rel="stylesheet" href="/assets/styles.css">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
   <meta property="og:type" content="article">
   <meta property="og:title" content="the real bar is live verification · Howard Chan">
   <meta property="og:description" content="a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.">
   <meta property="og:url" content="https://howardchan.me/writing/the-real-bar-is-live-verification/">
   <meta property="og:site_name" content="Howard Chan">
   <meta property="og:locale" content="en_US">
-  <meta property="og:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta property="og:image" content="https://howardchan.me/assets/media/og-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="the real bar is live verification · Howard Chan">
   <meta name="twitter:description" content="a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.">
-  <meta name="twitter:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/og-card.png">
   <meta name="author" content="Chak Hang (Howard) Chan">
   <title>the real bar is live verification · Howard Chan</title>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"the real bar is live verification","datePublished":"2026-07-01","dateModified":"2026-07-01","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.","mainEntityOfPage":"https://howardchan.me/writing/the-real-bar-is-live-verification/"}</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="page-shell">
-    <header class="site-header"><div class="site-header-inner">
-    <a class="brand" href="/">
-      <img class="brand-mark" src="/assets/media/hc-logo-ink.png" alt="HC" width="38" height="35" decoding="async">
-      <span class="brand-copy"><strong>Howard Chan</strong><small>Founder · Builder</small></span>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">Howard Chan</span><span class="wordmark-sub">Founder · Builder</span></span>
     </a>
-    <nav class="site-nav" aria-label="Primary">
+    <nav class="nav" aria-label="Primary">
       <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
     </nav>
   </div></header>
-    <main id="main" class="page-main">
+    <main id="main" class="view wrap">
     <p class="backlink"><a href="/writing/">← Writing</a></p>
-    <header class="page-intro" style="padding-top:8px">
-      <p class="hero-eyebrow">2026-07-01</p>
-      <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:30ch">the real bar is live verification</h1>
-      <p class="intro-subtitle">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</p>
-    </header>
+    <div class="masthead"><span class="masthead-l">Writing · 2026-07-01</span><span class="masthead-r">Tokyo · Incoming Cambridge HSPS</span></div>
+    <h1 class="detail-h1 paper-h1">the real bar is live verification</h1>
+    <p class="intro-subtitle">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</p>
     <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>the real bar is live verification. a passing test can leave you with fake confidence, and merged code can still miss what users actually feel. that gap is the whole problem. it is easy to look at green checks and feel settled. it is harder to remember that the place where the code lands is the place that decides whether the change actually works. the lesson is plain: if users feel it somewhere, verify it there.</p><p>this matters because software can look correct in a controlled setting and still behave differently once it meets the real environment. a test can pass and still protect the wrong thing. merged code can be accepted and still fail to match the lived experience on the other side of the change. when i keep this in view, i stop treating the test result as the finish line. i treat it as one signal, useful and incomplete. the real question becomes whether the behavior survives contact with the environment where it will actually matter.</p><p>the reason fake confidence shows up so easily is that verification inside a controlled setup is often cheaper than verification in the place where the change lands. that makes the controlled setup tempting. it is neat, fast, and comforting. but comfort is exactly where the mistake hides. a passing test says the code behaved the way the test expected. it does not say the same thing about the real environment. the user does not experience the test. the user experiences the environment. that difference is where surprise lives.</p><p>once i accepted that, the rule got simple enough to use. if something matters to users, i verify it where users feel it. that rule changes the way i think about confidence. it shifts attention from internal proof to external proof. it asks for live verification before I let myself feel done. it also keeps me honest about what a test can do. tests still matter. merged code still matters. but neither gets to pretend it has answered the full question when the environment is where the change lands.</p><p>for solo software work with AI agents, this is especially useful because the pace can make certainty feel closer than it is. you can move quickly, combine code, and see a clean result inside the workflow you built. that speed is part of the value, and it also makes the gap easier to miss. live verification brings the work back down to the place that counts. it asks for contact with the real setting, where the behavior is no longer an abstract success case but an actual experience. that is where a finding becomes real.</p><p>the practical takeaway is to treat the environment as the source of truth for anything user-facing. if users feel a change somewhere, verify it there. if a passing test gives comfort, follow it with live verification. if merged code looks good on paper, check what happens where the code actually runs. this is a small rule, but it has a strong effect on how you build. it keeps you from mistaking internal correctness for delivered value. it turns confidence into something earned in the same place the user will meet the change.</p></div></section>
-    <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/moved-every-runtime-secret-into-the-os-keychain-/" style="color:inherit">moved every runtime secret into the OS keychain and ripped the</a></h3>
-      <span class="meta">2026-06-26</span>
-    </div>
-    <p class="sum">moving runtime secrets into one canonical OS keychain made rotation and recovery a one-place problem across four services.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/a-commit-is-a-checkpoint/" style="color:inherit">a commit is a checkpoint</a></h3>
-      <span class="meta">2026-06-25</span>
-    </div>
-    <p class="sum">A commit is a checkpoint, and shipping only starts after live verification exposes the hidden failures.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/when-is-a-change-actually-done/" style="color:inherit">when is a change actually done?</a></h3>
-      <span class="meta">2026-06-24</span>
-    </div>
-    <p class="sum">A change is done when the live service is verified end to end, because repo-local green can create false confidence.</p>
-  </article></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px"><a class="wrow" href="/writing/an-agent-budget-breaker-for-your-ai-tooling/"><span class="wnum">W-01</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">an agent budget breaker for your ai tooling</span><span class="wnote">a hook that hard-blocks subagent dispatches at 8 per day. installed after a 132-dispatch week burned 85% of a max plan, and what the cap actually taught me about routing.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/your-outreach-needs-a-validator/"><span class="wnum">W-02</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">your outreach needs a validator</span><span class="wnote">a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/moved-every-runtime-secret-into-the-os-keychain-/"><span class="wnum">W-03</span><span class="wdate">2026-06-26</span><span class="wbody"><span class="wtitle">moved every runtime secret into the OS keychain and ripped the</span><span class="wnote">moving runtime secrets into one canonical OS keychain made rotation and recovery a one-place problem across four services.</span></span><span class="warrow">→</span></a></div></section>
   </main>
-    <footer class="site-footer"><div class="site-footer-inner">
-    <nav class="footer-network" aria-label="Howard Chan network"><span class="eyebrow">More from Howard</span><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener"><strong>ElevateOS</strong><span>Tutoring-agency software</span></a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener"><strong>Tatemori 盾守</strong><span>Japan kasuhara compliance</span></a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener"><strong>Prior Moves</strong><span>Top-investor weekly signal</span></a></li><li><a href="https://nobill.app" target="_blank" rel="noopener"><strong>nobill</strong><span>Subscription finder</span></a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener"><strong>Premier Trophy</strong><span>HK custom-awards maker</span></a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener"><strong>Think College Level</strong><span>IB &amp; admissions guides</span></a></li><li><a href="https://kvcn.org" target="_blank" rel="noopener"><strong>Kiwanis Voices Club of Nippon</strong><span>Youth-service NGO · Japan</span></a></li><li><a href="https://academy.kvcn.org/" target="_blank" rel="noopener"><strong>Voices Academy</strong><span>Free tutoring program</span></a></li><li><a href="https://katalyst.kvcn.org/" target="_blank" rel="noopener"><strong>Katalyst</strong><span>Service-project &amp; volunteer board</span></a></li><li><a href="https://learn.kvcn.org/" target="_blank" rel="noopener"><strong>KVCN Learn</strong><span>Free learning-resource directory</span></a></li></ul></nav>
-    <div class="loc"><span>Howard Chan — Sumida-ku, Tokyo, Japan</span><span>© 2026 · Built static, deployed on Cloudflare Pages</span></div>
-    <nav class="footer-links" aria-label="Footer"><a href="https://www.linkedin.com/in/howardchan2008/">LinkedIn</a><a href="https://codeberg.org/imjusthoward">Codeberg</a><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></nav>
+    <footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      <div class="ftr-col"><h4>Professional</h4><ul><li><a href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://codeberg.org/imjusthoward" target="_blank" rel="noopener">Codeberg</a></li></ul></div><div class="ftr-col"><h4>Live / Projects</h4><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener">ElevateOS</a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener">Prior Moves</a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener">Tatemori</a></li><li><a href="https://nobill.app" target="_blank" rel="noopener">nobill</a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener">Premier Trophy</a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener">Think College Level — IB &amp; admissions guides ↗</a></li></ul></div><div class="ftr-col"><h4>Direct</h4><ul><li><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></li><li><a href="https://wa.me/85293442294" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
   </div></footer>
   </div>
 </body>

@@ -1,0 +1,337 @@
+/* ==========================================================================
+   Howard Chan — Design System
+   colors_and_type.css — the single source of truth.
+   --------------------------------------------------------------------------
+   An operator's editorial logbook. Warm near-black ink on warm paper,
+   ONE accent (deep ink-blue), a strict three-typeface system:
+   Newsreader (carved display) / Hanken Grotesk (reading voice) /
+   IBM Plex Mono (metadata voice: labels, index numbers, timestamps, status).
+   Fonts load from Google Fonts CDN here; SELF-HOST woff2 in production.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light;
+
+  /* ---- Paper (warm off-white stock) -------------------------------------- */
+  --paper:      #F6F3EC;   /* page background                               */
+  --paper-2:    #FBF9F3;   /* raised surface: cards, chips                  */
+  --paper-3:    #EFEBE1;   /* sunk wells, inset panels, table stripes       */
+
+  /* ---- Ink (warm near-black) --------------------------------------------- */
+  --ink:        #1A1815;   /* primary text, strong rules                    */
+  --ink-2:      #514C42;   /* secondary text, leads                         */
+  --ink-3:      #837C6F;   /* metadata, captions, index numbers at rest     */
+
+  /* ---- Hairlines & rules -------------------------------------------------- */
+  --line-soft:   rgba(26, 24, 21, 0.08);  /* faintest separation            */
+  --line:        rgba(26, 24, 21, 0.13);  /* default hairline               */
+  --line-strong: rgba(26, 24, 21, 0.30);  /* emphasis / hover border        */
+  --rule-ink:    var(--ink);              /* the 2px masthead rule color    */
+
+  /* ---- Accent : ONE deep ink-blue ----------------------------------------- */
+  --accent:        #1E3A5F;  /* links, live status, focus, accent rules     */
+  --accent-hover:  #142A47;  /* hover / pressed                             */
+  --accent-tint:   rgba(30, 58, 95, 0.08);   /* faint wash                  */
+
+  /* ---- Oxblood : the documented one-variable alternate --------------------
+     To re-skin the whole system, set --accent:#76302B; --accent-hover:#571F1B;
+     --accent-tint:rgba(118,48,43,0.08). Never run both accents at once.    */
+  --accent-rev:    #9DB8D8;  /* the accent voice on ink backgrounds (reversed surfaces only) */
+  --oxblood:       #76302B;
+  --oxblood-hover: #571F1B;
+  --oxblood-tint:  rgba(118, 48, 43, 0.08);
+
+  /* ---- Status (dot + mono label, never a filled pill) ---------------------- */
+  --status-live:     var(--accent);   /* Live / Active                       */
+  --status-pilot:    #9A6B1E;         /* In pilot / Prototype — muted ochre  */
+  --status-research: var(--ink-3);    /* Research / Paper                    */
+
+  /* ---- Selection & focus --------------------------------------------------- */
+  --select-bg:   rgba(30, 58, 95, 0.16);
+  --focus-ring:  var(--accent);
+
+  /* ---- Paper grain (optional, letterpress) ---------------------------------
+     Apply via .ds-grain on a positioned container. Pure decoration at ~2.5%
+     opacity: static (reduced-motion safe), no contrast cost, one tiny SVG.  */
+  --grain-opacity: 0.025;   /* @kind other */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");   /* @kind other */
+
+  /* ---- Type families -------------------------------------------------------- */
+  --serif-display: 'Newsreader', Georgia, 'Times New Roman', serif;   /* @kind font */
+  --sans: 'Hanken Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;   /* @kind font */
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;   /* @kind font */
+
+  /* ---- Type scale (1rem = 16px) --------------------------------------------- */
+  --t-meta:    0.72rem;   /* mono metadata: masthead, timestamps, domains  */
+  --t-eyebrow: 0.78rem;   /* tracked uppercase section labels              */
+  --t-small:   0.86rem;
+  --t-body:    1.0rem;
+  --t-h3:      1.16rem;
+  --t-lead:    1.18rem;
+  --t-h2:      1.5rem;
+  --t-h1:      2.0rem;
+  --t-display-2: clamp(2.2rem, 5vw, 3.6rem);  /* @kind font */
+  --t-display: clamp(2.75rem, 7vw, 5.5rem);   /* @kind font */
+
+  /* ---- Carved display settings (baked, use everywhere display appears) ----- */
+  --display-weight: 600;        /* @kind other */
+  --display-track: -0.046em;    /* @kind other */
+  --display-lh: 0.92;           /* @kind other */
+  --track-eyebrow: 0.18em;      /* @kind other */
+  --track-meta: 0.13em;         /* @kind other */
+
+  /* ---- Measure & rhythm ------------------------------------------------------ */
+  --measure: 68ch;          /* reading measure                              */
+  --max:     1080px;        /* content column max                           */
+  --lh-tight: 0.92;  /* @kind font */
+  --lh-snug:  1.18;  /* @kind font */
+  --lh-body:  1.62;  /* @kind font */
+
+  /* ---- Spacing scale (8px editorial base) ------------------------------------ */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 36px;
+  --space-7: 56px;
+  --space-8: 88px;
+  --space-9: 132px;
+
+  /* ---- Radii — near-square, deliberate ----------------------------------------- */
+  --radius-0: 0px;      /* rules, sections, images                          */
+  --radius-1: 2px;      /* chips, buttons, inputs                           */
+  --radius-2: 4px;      /* cards                                            */
+  --radius-pill: 999px; /* status dots and the avatar ONLY                  */
+
+  /* ---- Elevation — ink-tinted, sparing ------------------------------------------ */
+  --shadow-1: 0 1px 2px rgba(26, 24, 21, 0.05);            /* resting        */
+  --shadow-2: 0 6px 24px -12px rgba(26, 24, 21, 0.22);     /* hover lift     */
+
+  /* ---- Motion — minimal, purposeful ---------------------------------------------- */
+  --ease: cubic-bezier(0.2, 0, 0, 1);   /* @kind other */
+  --dur-fast: 120ms;   /* @kind other */
+  --dur:      180ms;   /* @kind other */
+
+  /* ---- Component tokens : masthead band ------------------------------------------- */
+  --masthead-rule-w: 2px;               /* top rule weight (ink)            */
+  --masthead-pad-y: 9px;                /* @kind other */
+  --masthead-gap: 16px;                 /* @kind other */
+
+  /* ---- Component tokens : status chip ---------------------------------------------- */
+  --chip-size: 0.66rem;                 /* @kind font */
+  --chip-track: 0.07em;                 /* @kind other */
+  --chip-dot: 7px;                      /* @kind other */
+  --chip-gap: 7px;                      /* @kind other */
+
+  /* ---- Component tokens : ledger row ------------------------------------------------- */
+  --ledger-pad-y: 14px;                 /* @kind other */
+  --ledger-shift: 10px;                 /* @kind other */
+
+  /* ---- Component tokens : card --------------------------------------------------------- */
+  --card-pad: 22px;                     /* @kind other */
+  --card-lift: -2px;                    /* @kind other */
+  --card-rule-h: 2px;                   /* @kind other */
+}
+
+/* ==========================================================================
+   Semantic helpers — copy into a reset or use the .ds- classes directly
+   ========================================================================== */
+
+/* -- The metadata voice ---------------------------------------------------- */
+.ds-eyebrow {
+  font-family: var(--mono);
+  font-size: var(--t-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--track-eyebrow);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.ds-meta {
+  font-family: var(--mono);
+  font-size: var(--t-meta);
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+/* -- The carved monument ---------------------------------------------------- */
+.ds-display {
+  font-family: var(--serif-display);
+  font-size: var(--t-display);
+  font-weight: var(--display-weight);
+  line-height: var(--display-lh);
+  letter-spacing: var(--display-track);
+  color: var(--ink);
+}
+
+.ds-h1 {
+  font-family: var(--serif-display);
+  font-size: var(--t-h1);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ds-h2 {
+  font-family: var(--serif-display);
+  font-size: var(--t-h2);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.ds-h3 {
+  font-family: var(--sans);
+  font-size: var(--t-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+/* -- The reading voice ------------------------------------------------------- */
+.ds-lead {
+  font-family: var(--sans);
+  font-size: var(--t-lead);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.ds-body {
+  font-family: var(--sans);
+  font-size: var(--t-body);
+  font-weight: 400;
+  line-height: var(--lh-body);
+  color: var(--ink);
+}
+
+.ds-small {
+  font-family: var(--sans);
+  font-size: var(--t-small);
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+/* -- Academic citation block -------------------------------------------------- */
+.ds-cite {
+  font-family: var(--serif-display);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  color: var(--ink);
+}
+.ds-cite .cite-authors { font-weight: 500; }
+.ds-cite .cite-title { font-style: italic; }
+.ds-cite .cite-venue { font-family: var(--mono); font-size: var(--t-small); color: var(--ink-3); }
+
+/* -- Links ----------------------------------------------------------------------- */
+.ds-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: rgba(30, 58, 95, 0.4);
+  transition: color var(--dur-fast) var(--ease), text-decoration-color var(--dur-fast) var(--ease);
+}
+.ds-link:hover {
+  color: var(--accent-hover);
+  text-decoration-color: var(--accent-hover);
+}
+
+/* -- Masthead band : the repeating structural motif --------------------------------
+   <div class="ds-masthead"><span>Founder · Builder · Researcher</span>
+   <span>Tokyo · Incoming Cambridge HSPS</span></div>                          */
+.ds-masthead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--masthead-gap);
+  border-top: var(--masthead-rule-w) solid var(--rule-ink);
+  border-bottom: 1px solid var(--line);
+  padding: var(--masthead-pad-y) 0;
+}
+.ds-masthead > * {
+  font-family: var(--mono);
+  font-size: var(--t-meta);
+  letter-spacing: var(--track-meta);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ds-masthead > *:last-child { text-align: right; }
+
+/* -- Status chip : precise dot + mono label -------------------------------------- */
+.ds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chip-gap);
+  font-family: var(--mono);
+  font-size: var(--chip-size);
+  font-weight: 500;
+  letter-spacing: var(--chip-track);
+  text-transform: uppercase;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.ds-chip .dot {
+  width: var(--chip-dot);
+  height: var(--chip-dot);
+  border-radius: var(--radius-pill);
+  background: var(--status-research);
+  flex: 0 0 auto;
+}
+.ds-chip.live .dot { background: var(--status-live); }
+.ds-chip.pilot .dot { background: var(--status-pilot); }
+.ds-chip.research .dot { background: var(--status-research); }
+
+/* -- Numbered section head : the index spine --------------------------------------- */
+.ds-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  border-top: var(--masthead-rule-w) solid var(--rule-ink);
+  padding-top: var(--space-3);
+}
+.ds-section-head .num {
+  font-family: var(--mono);
+  font-size: var(--t-eyebrow);
+  color: var(--ink-3);
+}
+
+/* -- Ledger row --------------------------------------------------------------------- */
+.ds-ledger-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 18px;
+  border-top: 1px solid var(--line);
+  padding: var(--ledger-pad-y) 0;
+  transition: padding-left var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.ds-ledger-row:hover { padding-left: var(--ledger-shift); border-color: var(--line-strong); }
+
+/* -- Paper grain (optional) ----------------------------------------------------------- */
+.ds-grain { position: relative; }
+.ds-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--grain);
+  opacity: var(--grain-opacity);
+  pointer-events: none;
+}
+
+::selection { background: var(--select-bg); }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

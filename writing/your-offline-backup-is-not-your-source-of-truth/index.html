@@ -8,67 +8,52 @@
   <link rel="canonical" href="https://howardchan.me/writing/your-offline-backup-is-not-your-source-of-truth/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
   <link rel="stylesheet" href="/assets/styles.css">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
   <meta property="og:type" content="article">
   <meta property="og:title" content="your offline backup is not your source of truth · Howard Chan">
   <meta property="og:description" content="A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.">
   <meta property="og:url" content="https://howardchan.me/writing/your-offline-backup-is-not-your-source-of-truth/">
   <meta property="og:site_name" content="Howard Chan">
   <meta property="og:locale" content="en_US">
-  <meta property="og:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta property="og:image" content="https://howardchan.me/assets/media/og-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="your offline backup is not your source of truth · Howard Chan">
   <meta name="twitter:description" content="A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.">
-  <meta name="twitter:image" content="https://howardchan.me/assets/media/pfp.png">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/og-card.png">
   <meta name="author" content="Chak Hang (Howard) Chan">
   <title>your offline backup is not your source of truth · Howard Chan</title>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"your offline backup is not your source of truth","datePublished":"2026-06-23","dateModified":"2026-06-23","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.","mainEntityOfPage":"https://howardchan.me/writing/your-offline-backup-is-not-your-source-of-truth/"}</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="page-shell">
-    <header class="site-header"><div class="site-header-inner">
-    <a class="brand" href="/">
-      <img class="brand-mark" src="/assets/media/hc-logo-ink.png" alt="HC" width="38" height="35" decoding="async">
-      <span class="brand-copy"><strong>Howard Chan</strong><small>Founder · Builder</small></span>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">Howard Chan</span><span class="wordmark-sub">Founder · Builder</span></span>
     </a>
-    <nav class="site-nav" aria-label="Primary">
+    <nav class="nav" aria-label="Primary">
       <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
     </nav>
   </div></header>
-    <main id="main" class="page-main">
+    <main id="main" class="view wrap">
     <p class="backlink"><a href="/writing/">← Writing</a></p>
-    <header class="page-intro" style="padding-top:8px">
-      <p class="hero-eyebrow">2026-06-23</p>
-      <h1 style="font-size:clamp(1.7rem,3.6vw,2.6rem);max-width:30ch">your offline backup is not your source of truth</h1>
-      <p class="intro-subtitle">A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.</p>
-    </header>
+    <div class="masthead"><span class="masthead-l">Writing · 2026-06-23</span><span class="masthead-r">Tokyo · Incoming Cambridge HSPS</span></div>
+    <h1 class="detail-h1 paper-h1">your offline backup is not your source of truth</h1>
+    <p class="intro-subtitle">A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.</p>
     <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>your offline backup is not your source of truth. it is your insurance. that distinction sounds small until you watch a local encrypted mirror slowly take on a life of its own. people make a copy of critical data, feel safer because the copy lives somewhere else, and then start treating that copy like the real system. once that happens, the backup stops being a quiet safety net and starts becoming another place where decisions can drift.</p><p>the problem is simple and expensive. when two places both feel important, they begin to disagree. a change lands in one place, another change lands in the mirror, and now there is no clean answer to which version deserves trust. the moment you start writing to the mirror, you have created two active records that need to stay aligned. every edit adds one more chance for mismatch, and every mismatch makes the mirror harder to trust when you actually need it.</p><p>the rule i use now is direct. pick one canonical source and keep it that way. the mirror lives somewhere else, gets refreshed on a schedule, and stays quiet until the primary is gone. that gives each copy a job. one place is where work happens. the other place is where recovery happens. when those roles stay separate, the backup remains simple enough to trust.</p><p>the mechanism matters here. a backup that you write to is a second thing to keep in sync. that means every update has to be correct in both places, every time, or the two copies drift apart. once drift starts, the mirror becomes a competing version of the truth. by contrast, a backup that you only read from in a disaster never has to compete with day-to-day edits. it can stay stale on purpose, because its job is to exist when the primary is gone.</p><p>that shift changes the way the whole system feels. you stop asking whether the mirror is current enough to use as working storage, and you start asking whether the refresh schedule is good enough for recovery. you stop editing wherever a copy happens to be handy, and you keep the real source in one place. the mirror becomes boring, which is exactly what you want from insurance. it is there, it is separate, and it does its job only when the primary cannot.</p><p>if you keep a local encrypted mirror, treat it as a recovery asset. decide which place is canonical, write your changes there, and refresh the mirror on a schedule that fits your risk tolerance. then leave it alone unless the primary is gone. that one rule keeps the backup from becoming a second source of truth. it also makes disaster recovery cleaner, because the copy you reach for in the worst moment is the copy you trained to be read-only in normal life. that is the whole point of insurance: it stays in the background until the day you need it.</p></div></section>
-    <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/the-real-bar-is-live-verification/" style="color:inherit">the real bar is live verification</a></h3>
-      <span class="meta">2026-07-01</span>
-    </div>
-    <p class="sum">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/moved-every-runtime-secret-into-the-os-keychain-/" style="color:inherit">moved every runtime secret into the OS keychain and ripped the</a></h3>
-      <span class="meta">2026-06-26</span>
-    </div>
-    <p class="sum">moving runtime secrets into one canonical OS keychain made rotation and recovery a one-place problem across four services.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/a-commit-is-a-checkpoint/" style="color:inherit">a commit is a checkpoint</a></h3>
-      <span class="meta">2026-06-25</span>
-    </div>
-    <p class="sum">A commit is a checkpoint, and shipping only starts after live verification exposes the hidden failures.</p>
-  </article></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px"><a class="wrow" href="/writing/an-agent-budget-breaker-for-your-ai-tooling/"><span class="wnum">W-01</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">an agent budget breaker for your ai tooling</span><span class="wnote">a hook that hard-blocks subagent dispatches at 8 per day. installed after a 132-dispatch week burned 85% of a max plan, and what the cap actually taught me about routing.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/your-outreach-needs-a-validator/"><span class="wnum">W-02</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">your outreach needs a validator</span><span class="wnote">a hard gate for outreach drafts: single line, product link required, em dashes banned, template clones rejected. it failed 358 of the 414 drafts sitting in my queues.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/the-real-bar-is-live-verification/"><span class="wnum">W-03</span><span class="wdate">2026-07-01</span><span class="wbody"><span class="wtitle">the real bar is live verification</span><span class="wnote">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</span></span><span class="warrow">→</span></a></div></section>
   </main>
-    <footer class="site-footer"><div class="site-footer-inner">
-    <nav class="footer-network" aria-label="Howard Chan network"><span class="eyebrow">More from Howard</span><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener"><strong>ElevateOS</strong><span>Tutoring-agency software</span></a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener"><strong>Tatemori 盾守</strong><span>Japan kasuhara compliance</span></a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener"><strong>Prior Moves</strong><span>Top-investor weekly signal</span></a></li><li><a href="https://nobill.app" target="_blank" rel="noopener"><strong>nobill</strong><span>Subscription finder</span></a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener"><strong>Premier Trophy</strong><span>HK custom-awards maker</span></a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener"><strong>Think College Level</strong><span>IB &amp; admissions guides</span></a></li><li><a href="https://kvcn.org" target="_blank" rel="noopener"><strong>Kiwanis Voices Club of Nippon</strong><span>Youth-service NGO · Japan</span></a></li><li><a href="https://academy.kvcn.org/" target="_blank" rel="noopener"><strong>Voices Academy</strong><span>Free tutoring program</span></a></li><li><a href="https://katalyst.kvcn.org/" target="_blank" rel="noopener"><strong>Katalyst</strong><span>Service-project &amp; volunteer board</span></a></li><li><a href="https://learn.kvcn.org/" target="_blank" rel="noopener"><strong>KVCN Learn</strong><span>Free learning-resource directory</span></a></li></ul></nav>
-    <div class="loc"><span>Howard Chan — Sumida-ku, Tokyo, Japan</span><span>© 2026 · Built static, deployed on Cloudflare Pages</span></div>
-    <nav class="footer-links" aria-label="Footer"><a href="https://www.linkedin.com/in/howardchan2008/">LinkedIn</a><a href="https://codeberg.org/imjusthoward">Codeberg</a><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></nav>
+    <footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      <div class="ftr-col"><h4>Professional</h4><ul><li><a href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://codeberg.org/imjusthoward" target="_blank" rel="noopener">Codeberg</a></li></ul></div><div class="ftr-col"><h4>Live / Projects</h4><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener">ElevateOS</a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener">Prior Moves</a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener">Tatemori</a></li><li><a href="https://nobill.app" target="_blank" rel="noopener">nobill</a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener">Premier Trophy</a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener">Think College Level — IB &amp; admissions guides ↗</a></li></ul></div><div class="ftr-col"><h4>Direct</h4><ul><li><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></li><li><a href="https://wa.me/85293442294" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
   </div></footer>
   </div>
 </body>
