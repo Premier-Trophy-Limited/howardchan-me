@@ -47,22 +47,22 @@
     <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>a commit is a checkpoint, and that distinction matters more than people admit. a commit means the work reached a point where it can be reviewed, stored, and moved forward. it does not mean the work has earned the right to be called done. i keep coming back to that because the gap between those two ideas is where a lot of painful surprises live. the code can look finished inside the editor and still fail the moment it has to deal with the real world. that is the part people skip, and it is the part that costs time later.</p><p>the mistake is easy to make because the surface area of completion feels convincing. the changes are in place, the merge goes through, and the project gets the emotional relief that comes with seeing movement. at that moment, it is tempting to treat the job as closed. i have seen how seductive that feeling is. once the merge lands, the mind wants to move on. the problem is that the merge only says the work entered the system. it does not say the system accepted it under live conditions. that gap is where hidden failures stay hidden.</p><p>what shows up next is usually the part nobody wants to discover. the real world arrives and drags the whole thing into the dirt. that line sounds harsh because it is harsh. live conditions are where assumptions get tested, where paths that seemed obvious turn out to be brittle, and where the thing that looked complete suddenly has to prove it can survive contact with actual use. inside a controlled setup, code can look clean and stable. in live verification, the work either behaves or it reveals the places where it was only appearing to behave. that is why the failures feel hidden. they were always there, waiting for the right pressure.</p><p>the mechanism is simple. local confidence is cheap, but real confidence has to be earned in the same environment where the work will actually run. a commit can show that the changes exist. a merge can show that the changes fit into the branch history. live verification shows whether the result stands up where it matters. that difference is the whole point. hidden failures are hidden because they sit outside the narrow path that was exercised during development. once the work is verified live, those failures stop being hidden. they become visible facts, and visible facts are easier to fix than assumptions you have been carrying around as certainty.</p><p>that is why i adopted the rule: verify live before you call it done. it sounds almost too plain to need saying, which is probably why it keeps getting skipped. people know the work is close, and close can fool everyone into compressing the final step. i have done that myself. the rule exists to interrupt that reflex. it creates a hard boundary between progress and shipping. progress can include commits, merges, and partial wins. shipping begins when the live system has been checked and the result holds up there too. anything before that is still a checkpoint, even if it feels finished.</p><p>the receipt is the moment live verification either confirms the work or exposes what still needs attention. that is the proof that the rule is real. it is easy to talk about completion in the abstract. it is harder to accept that completion depends on passing through the live environment first. once you do that a few times, the lesson stops being theoretical. you start to trust the checkpoint for what it is and stop granting it more meaning than it deserves. that shift changes how you work because it keeps you honest about the state of the system. if you are building software, especially on your own, this is one of the cleanest habits you can adopt. treat the commit as a checkpoint, make live verification part of the finish line, and let the real world have the final say.</p></div></section>
     <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
     <div class="rentry-head">
+      <h3><a href="/writing/the-real-bar-is-live-verification/" style="color:inherit">the real bar is live verification</a></h3>
+      <span class="meta">2026-07-01</span>
+    </div>
+    <p class="sum">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
+      <h3><a href="/writing/moved-every-runtime-secret-into-the-os-keychain-/" style="color:inherit">moved every runtime secret into the OS keychain and ripped the</a></h3>
+      <span class="meta">2026-06-26</span>
+    </div>
+    <p class="sum">moving runtime secrets into one canonical OS keychain made rotation and recovery a one-place problem across four services.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
       <h3><a href="/writing/when-is-a-change-actually-done/" style="color:inherit">when is a change actually done?</a></h3>
       <span class="meta">2026-06-24</span>
     </div>
     <p class="sum">A change is done when the live service is verified end to end, because repo-local green can create false confidence.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/your-offline-backup-is-not-your-source-of-truth/" style="color:inherit">your offline backup is not your source of truth</a></h3>
-      <span class="meta">2026-06-23</span>
-    </div>
-    <p class="sum">A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/a-green-checkmark-in-your-repo-is-not-proof-of-a/" style="color:inherit">a green checkmark in your repo is not proof of anything</a></h3>
-      <span class="meta">2026-06-22</span>
-    </div>
-    <p class="sum">A green checkmark in the repo can hide a stale live endpoint, and the only reliable receipt is a live request you make yourself.</p>
   </article></div></section>
   </main>
     <footer class="site-footer"><div class="site-footer-inner">

@@ -47,22 +47,22 @@
     <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>Last month I shipped 4 things I would have sworn were live, and the live endpoint still served the old behavior. The repo looked calm. Commit merged, CI passed, dashboard said deployed. Everything in the project surface pointed in one direction, and that direction felt like done. The finding landed hard because the visible signs were so clean. A green checkmark in the repo can create the same feeling a receipt creates after a purchase, except the real customer experience still has to answer for itself.</p><p>The gap showed up in a simple way. I kept seeing the same shape repeat across those 4 changes: the code had moved through the normal path, the status looked correct, and the thing users actually touched still behaved like the old version. Someone could say, &quot;it&#39;s in prod,&quot; and that sentence would carry a specific meaning. The code was in prod. The change I expected from that code was a separate question, and it stayed open until I checked the live thing directly. That distinction mattered more than I expected, because the repository had started to feel like the source of truth.</p><p>The only check that caught it was hitting the live thing myself and watching what came back. That was the moment the whole process sharpened. Repo status tells you what you intended. A live request tells you what users get. Those are different objects, and they answer different questions. One belongs to the work as it moves through your system. The other belongs to the actual outcome. If you stop at the first one, you can carry a false sense of completion all the way past the point where it matters.</p><p>The mechanism is simple enough to miss while you are moving fast. A commit records a promise. CI records that the code passed the tests you gave it. A deployment dashboard records that a release event happened. None of those guarantees the behavior you meant to change is the behavior the live endpoint is serving right now. The state can look correct from the inside while the outside world still sees the old result. That is the trap. The more familiar the workflow becomes, the easier it is to accept the signals it already gives you and stop before you ask the endpoint itself.</p><p>That changed the rule I use. I treat a commit as a promise and a live verification as the receipt. The promise matters, because it moves the change into the system. The receipt matters, because it shows the thing actually arrived in the form I expected. I want both in the chain, and I want the receipt to be something I can inspect with my own eyes. A status line in a dashboard can help me track the path. It cannot close the loop on its own. The loop closes when I hit the live thing and see the response.</p><p>For me, the practical lesson is to make the live request part of the shipping habit, especially when the repo looks reassuring. If the change matters, I do the extra step and check the thing that users will touch. That one step turned a vague sense of &quot;probably live&quot; into a concrete standard I can trust. It also keeps me honest about where the system can mislead me. The repo is where I shape the work. The live request is where I find out what survived that journey. Ship the receipt.</p><p>The bigger value is that this scales with the way I build: solo, with AI agents, moving quickly and relying on the shape of the workflow to keep me sane. Speed makes status surfaces tempting. Green checkmarks are easy to read, and they can make a task feel complete before the world has agreed. A live verification restores the part of the process that actually matters. It gives me a check against my own assumptions, and it gives the reader of my work a cleaner rule to adopt: when the outcome matters, ask the live thing directly and keep the answer close.</p></div></section>
     <section class="page-section"><span class="eyebrow">More writing</span><div class="research-list" style="margin-top:14px"><article class="rentry">
     <div class="rentry-head">
+      <h3><a href="/writing/the-real-bar-is-live-verification/" style="color:inherit">the real bar is live verification</a></h3>
+      <span class="meta">2026-07-01</span>
+    </div>
+    <p class="sum">a passing test can still miss the real user experience; live verification in the real environment is the standard that matters.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
+      <h3><a href="/writing/moved-every-runtime-secret-into-the-os-keychain-/" style="color:inherit">moved every runtime secret into the OS keychain and ripped the</a></h3>
+      <span class="meta">2026-06-26</span>
+    </div>
+    <p class="sum">moving runtime secrets into one canonical OS keychain made rotation and recovery a one-place problem across four services.</p>
+  </article><article class="rentry">
+    <div class="rentry-head">
       <h3><a href="/writing/a-commit-is-a-checkpoint/" style="color:inherit">a commit is a checkpoint</a></h3>
       <span class="meta">2026-06-25</span>
     </div>
     <p class="sum">A commit is a checkpoint, and shipping only starts after live verification exposes the hidden failures.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/when-is-a-change-actually-done/" style="color:inherit">when is a change actually done?</a></h3>
-      <span class="meta">2026-06-24</span>
-    </div>
-    <p class="sum">A change is done when the live service is verified end to end, because repo-local green can create false confidence.</p>
-  </article><article class="rentry">
-    <div class="rentry-head">
-      <h3><a href="/writing/your-offline-backup-is-not-your-source-of-truth/" style="color:inherit">your offline backup is not your source of truth</a></h3>
-      <span class="meta">2026-06-23</span>
-    </div>
-    <p class="sum">A backup you write to is just a second thing to keep in sync; a backup you only read from in a disaster actually saves you.</p>
   </article></div></section>
   </main>
     <footer class="site-footer"><div class="site-footer-inner">
