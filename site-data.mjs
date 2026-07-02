@@ -25,9 +25,9 @@ export const site = {
   fullName: "Chak Hang (Howard) Chan",
   url: siteUrl,
   brandSub: "Founder · Builder",
-  tagline: "Founder and builder — Tokyo, incoming Cambridge HSPS.",
+  tagline: "Founder and builder in Tokyo, incoming Cambridge HSPS.",
   description:
-    "Howard Chan — founder and builder (incoming Cambridge HSPS, Peterhouse). Live ventures, a project gallery, and contact.",
+    "Howard Chan, founder and builder (incoming Cambridge HSPS, Peterhouse). Live ventures, a project gallery, and contact.",
   location: "Sumida-ku, Tokyo, Japan",
   logo: { src: "/assets/media/hc-logo-ink.png", alt: "HC" },
 
@@ -67,7 +67,7 @@ export const site = {
       summary:
         "AI execution layer for tutoring and admissions agencies: a tutor logs a quick session note, and it becomes a parent-ready report and a clear set of next steps.",
       details: [
-        "Hong Kong–incorporated, with a working product and partner demo.",
+        "Hong Kong-incorporated, with a working product and partner demo.",
         "First pilots launching June 2026, including a K. International School Tokyo cohort.",
         "Powers agencies rather than replacing them.",
       ],
@@ -95,7 +95,7 @@ export const site = {
         "A live tool that turns top investors’ 13F filings into one weekly signal of what they’re buying next, with a public track record.",
       details: [
         "A public 23-quarter backtest, with the method and its limits shown openly.",
-        "Picks now tracked on a live paper-trading account — research and education only.",
+        "Picks now tracked on a live paper-trading account (research and education only).",
         "The surface of a broader quantitative-research system.",
       ],
     },
@@ -105,7 +105,7 @@ export const site = {
       domain: "nobill.app",
       href: nobillUrl,
       summary:
-        "A local-first subscription tracker that scans your own receipts for recurring charges and links straight to each merchant’s cancel page — your data never leaves your device.",
+        "A local-first subscription tracker that scans your own receipts for recurring charges and links straight to each merchant’s cancel page. Your data never leaves your device.",
       details: [
         "Open source; runs on the user’s own machine.",
         "Flags intro-promo hikes and overlapping tools.",
@@ -120,7 +120,7 @@ export const site = {
       summary:
         "A mobile convention companion surfacing schedules, venues, sessions, and announcements attendees can use instantly on their phones.",
       details: [
-        "Built for real convention conditions — senior and non-English-first attendees.",
+        "Built for real convention conditions, including senior and non-English-first attendees.",
         "A live information layer, not a replacement for official communication.",
         "Mobile-first hierarchy designed for speed and clarity.",
       ],
@@ -174,7 +174,7 @@ export const site = {
       domain: "crystalcentury.com",
       href: crystalcenturyUrl,
       summary:
-        "Operations and reliability for a Hong Kong custom-awards manufacturer (founded 2008) — trophies, awards, crystal, and corporate gifts. The operational side of building.",
+        "Operations and reliability for a Hong Kong custom-awards manufacturer (founded 2008): trophies, awards, crystal, and corporate gifts. The operational side of building.",
       details: [
         "Vertically integrated: own factory in mainland China, finishing in Hong Kong.",
         "Thousands of business customers; a 5.0 Google rating across 220+ reviews.",
@@ -241,46 +241,46 @@ export const site = {
     },
   ],
 
-  // Visual gallery — products, the Kiwanis service platform, and finished work
+  // Visual gallery: products, the Kiwanis service platform, and finished work
   // from the family manufacturer. Images optimized into /assets/media/gallery/.
   gallery: [
     {
       src: "/assets/media/gallery/elevateos.png",
       alt: "ElevateOS operating dashboard for tutoring agencies",
       caption:
-        "ElevateOS — the operating dashboard for tutoring and admissions agencies.",
+        "ElevateOS: the operating dashboard for tutoring and admissions agencies.",
       href: elevateosUrl,
       domain: "elevateos.org ↗",
     },
     {
       src: "/assets/media/gallery/tatemori.png",
-      alt: "Tatemori landing page — Japan customer-harassment compliance",
+      alt: "Tatemori landing page, Japan customer-harassment compliance",
       caption:
-        "Tatemori — kasuhara compliance for Japanese employers, ahead of the Oct 2026 deadline.",
+        "Tatemori: kasuhara compliance for Japanese employers, ahead of the Oct 2026 deadline.",
       href: tatemoriUrl,
       domain: "tatemori.com ↗",
     },
     {
       src: "/assets/media/gallery/priormoves.png",
-      alt: "Prior Moves landing page — top-investor 13F signal",
+      alt: "Prior Moves landing page, top-investor 13F signal",
       caption:
-        "Prior Moves — what the best investors are buying next, with an open backtest.",
+        "Prior Moves: what the best investors are buying next, with an open backtest.",
       href: priormovesUrl,
       domain: "priormoves.com ↗",
     },
     {
       src: "/assets/media/gallery/nobill.png",
-      alt: "nobill landing page — local-first subscription tracker",
+      alt: "nobill landing page, local-first subscription tracker",
       caption:
-        "nobill — see every subscription, cancel in one click; your data stays on your device.",
+        "nobill: see every subscription, cancel in one click; your data stays on your device.",
       href: nobillUrl,
       domain: "nobill.app ↗",
     },
     {
       src: "/assets/media/gallery/pulse.png",
-      alt: "Kiwanis Pulse convention companion — delegate board",
+      alt: "Kiwanis Pulse convention companion, delegate board",
       caption:
-        "Pulse — the mobile convention companion for the Kiwanis Manila 2026 convention.",
+        "Pulse: the mobile convention companion for the Kiwanis Manila 2026 convention.",
       href: pulseUrl,
       domain: "pulse.kvcn.org ↗",
     },
@@ -288,7 +288,7 @@ export const site = {
       src: "/assets/media/gallery/kvcn.png",
       alt: "Kiwanis Voices Club of Nippon homepage",
       caption:
-        "Kiwanis Voices Club of Nippon — the youth-service NGO and its platform.",
+        "Kiwanis Voices Club of Nippon: the youth-service NGO and its platform.",
       href: kvcnUrl,
       domain: "kvcn.org ↗",
     },
@@ -296,21 +296,21 @@ export const site = {
       src: "/assets/media/gallery/premier-trophy-plaque.jpg",
       alt: "A finished acrylic service-recognition award made by Premier Trophy",
       caption:
-        "Premier Trophy — a finished service-recognition award, made in-house.",
+        "Premier Trophy: a finished service-recognition award, made in-house.",
       href: crystalcenturyUrl,
       domain: "crystalcentury.com ↗",
     },
     {
       src: "/assets/media/gallery/premier-trophy-flags.jpg",
       alt: "Premier Trophy custom flag and display product range",
-      caption: "Premier Trophy — part of the custom flag and display range.",
+      caption: "Premier Trophy: part of the custom flag and display range.",
       href: crystalcenturyUrl,
       domain: "crystalcentury.com ↗",
     },
     {
       src: "/assets/media/gallery/howard-tokyo.jpg",
       alt: "Howard Chan in Tokyo",
-      caption: "Howard — Tokyo.",
+      caption: "Howard in Tokyo.",
     },
   ],
 
@@ -318,7 +318,7 @@ export const site = {
     paragraphs: [
       "I am Chak Hang (Howard) Chan, a Tokyo-based builder and incoming HSPS student at Peterhouse, University of Cambridge. I’m interested in how institutions behave under pressure, how incentives shape decisions, and how technical systems can reduce friction in the real world.",
       "Across the work, the common thread is coordination. I like problems where a better system makes the work easier to repeat, easier to hand off, and easier to trust. That’s why my projects sit across service leadership, research, and product infrastructure rather than in one narrow lane.",
-      "Long term, I want to build at the point where institutions, incentives, and technical systems meet — through company-building and venture, or early-career finance paths that sharpen commercial judgment and execution.",
+      "Long term, I want to build at the point where institutions, incentives, and technical systems meet, through company-building and venture, or early-career finance paths that sharpen commercial judgment and execution.",
     ],
     timeline: [
       {
@@ -355,8 +355,8 @@ export const site = {
     honors: [
       "Predicted IB 45/45 · SAT 1550 · GPA 3.96",
       "University offers: Cambridge (committed) · HKU · HKUST (full scholarship) · UC Berkeley · UCLA · UCSD · Edinburgh · King’s · UCL",
-      "Lumiere Research Scholar — full scholarship, UCSD credit",
-      "Harvard College Debate Union — Japan Regional Winner 2026",
+      "Lumiere Research Scholar (full scholarship, UCSD credit)",
+      "Harvard College Debate Union, Japan Regional Winner 2026",
     ],
   },
 
@@ -382,7 +382,7 @@ export const site = {
           { label: "nobill", href: nobillUrl },
           { label: "Premier Trophy", href: crystalcenturyUrl },
           {
-            label: "Think College Level — IB & admissions guides ↗",
+            label: "Think College Level, IB & admissions guides ↗",
             href: tclUrl,
           },
         ],
@@ -407,7 +407,7 @@ export const site = {
     { label: "Codeberg", href: codebergUrl },
     { label: "Email", href: emailUrl },
   ],
-  // Owned web properties — cross-linked on every page for an interlinked SEO network.
+  // Owned web properties, cross-linked on every page for an interlinked SEO network.
   network: [
     {
       label: "ElevateOS",

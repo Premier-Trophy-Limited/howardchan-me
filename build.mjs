@@ -4,7 +4,7 @@ import { site } from "./site-data.mjs";
 
 // Writing/notes posts live as one JSON file each under writing/ (written by the content engine,
 // blog_publish.py). Loaded at build time, newest first. Empty when the dir is absent, so the
-// section simply doesn't render — existing pages are untouched.
+// section simply doesn't render; existing pages are untouched.
 let writing = [];
 async function loadWriting() {
   const srcDir = path.join(root, "content", "writing");
@@ -257,7 +257,7 @@ function ventureGrid(list) {
   return `<div class="grid">${list.map(ventureCard).join("")}</div>`;
 }
 
-// Also-building ledger — links every other owned property (TCL + KVCN platform)
+// Also-building ledger: links every other owned property (TCL + KVCN platform)
 // as a hairline ledger, so the site reaches all of Howard's work, not only cards.
 function moreProjectsBlock() {
   if (!site.moreProjects || !site.moreProjects.length) return "";
@@ -289,7 +289,7 @@ function secHead(num, eyebrow) {
   return `<div class="sec-head"><span class="sec-num">${esc(num)}</span><span class="eyebrow">${esc(eyebrow)}</span></div>`;
 }
 
-// Masthead band — the repeating structural motif (mono meta, framed by rules).
+// Masthead band: the repeating structural motif (mono meta, framed by rules).
 function masthead(left, right) {
   return `<div class="masthead"><span class="masthead-l">${esc(left)}</span><span class="masthead-r">${esc(right)}</span></div>`;
 }
@@ -317,7 +317,7 @@ function renderHome() {
     <section class="home-sec">${secHead("03", "Gallery")}${galleryPreview(6)}</section>
   `;
   return renderPage({
-    title: `${site.name} — ${site.brandSub}`,
+    title: `${site.name} · ${site.brandSub}`,
     description: site.description,
     canonicalPath: "/",
     content,
@@ -348,7 +348,7 @@ function renderHome() {
         name: "ElevateOS",
         url: "https://elevateos.org",
       },
-      // Founder/affiliate of the NGO — the semantically correct edge (not
+      // Founder/affiliate of the NGO: the semantically correct edge (not
       // sameAs, which would assert the NGO *is* Howard). Pairs with the
       // rel="me author" backlink in the KVCN footers to form a verified graph.
       affiliation: {
@@ -373,7 +373,7 @@ function renderVentures() {
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: `${site.name} — Ventures`,
+      name: `${site.name} · Ventures`,
     },
   });
 }
@@ -390,7 +390,7 @@ function renderResearch() {
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: `${site.name} — Research`,
+      name: `${site.name} · Research`,
     },
   });
 }
@@ -420,13 +420,13 @@ function renderGallery() {
   return renderPage({
     title: `Gallery · ${site.name}`,
     description:
-      "A visual gallery of Howard Chan’s work — ElevateOS, Tatemori, Prior Moves, nobill, Kiwanis Pulse, and Premier Trophy.",
+      "A visual gallery of Howard Chan’s work: ElevateOS, Tatemori, Prior Moves, nobill, Kiwanis Pulse, and Premier Trophy.",
     canonicalPath: "/gallery/",
     content,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "ImageGallery",
-      name: `${site.name} — Gallery`,
+      name: `${site.name} · Gallery`,
       url: `${site.url}/gallery/`,
     },
   });
@@ -444,7 +444,7 @@ function renderAbout() {
   return renderPage({
     title: `About · ${site.name}`,
     description:
-      "About Howard Chan — Tokyo-based builder and researcher, incoming Cambridge HSPS.",
+      "About Howard Chan, Tokyo-based builder and researcher, incoming Cambridge HSPS.",
     canonicalPath: "/about/",
     content,
     jsonLd: {
@@ -467,7 +467,7 @@ function renderContact() {
     <div class="copybar"><a class="copybtn" href="${attr(c.emailHref)}">Email me</a><span class="copynote">${esc(c.email)}</span></div>`;
   return renderPage({
     title: `Contact · ${site.name}`,
-    description: "Get in touch with Howard Chan — LinkedIn, Codeberg, email.",
+    description: "Get in touch with Howard Chan: LinkedIn, Codeberg, email.",
     canonicalPath: "/contact/",
     content,
     jsonLd: {
@@ -583,13 +583,13 @@ function renderWriting() {
   return renderPage({
     title: `Writing · ${site.name}`,
     description:
-      "Field notes by Howard Chan on building solo with AI agents, automation, and shipping — findings with receipts.",
+      "Field notes by Howard Chan on building solo with AI agents, automation, and shipping. Findings with receipts.",
     canonicalPath: "/writing/",
     content,
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "Blog",
-      name: `${site.name} — Writing`,
+      name: `${site.name} · Writing`,
       url: `${site.url}/writing/`,
       author: { "@type": "Person", name: site.fullName },
       blogPost: writing.map((w) => ({
@@ -729,7 +729,7 @@ function renderLlms() {
   return `# ${site.name}
 ${site.tagline}
 
-${site.fullName} — founder, builder, and researcher; incoming University of Cambridge HSPS (Peterhouse).
+${site.fullName}. Founder, builder, and researcher; incoming University of Cambridge HSPS (Peterhouse).
 
 ## Ventures
 ${site.ventures.map((v) => `- ${v.name}${v.domain && v.domain.includes(".") ? ` (${v.domain})` : ""}: ${v.summary}`).join("\n")}
@@ -741,12 +741,12 @@ ${(site.moreProjects || []).map((p) => `- ${p.label} (${p.domain}): ${p.note}`).
 ${site.research.map((r) => `- ${r.title} (${r.meta})`).join("\n")}
 
 ## Pages
-- ${site.url}/  — index
-- ${site.url}/ventures/  — ventures
-- ${site.url}/gallery/  — project gallery
-- ${site.url}/research/  — published research
-- ${site.url}/about/  — about + experience
-- ${site.url}/contact/  — contact
+- ${site.url}/ (index)
+- ${site.url}/ventures/ (ventures)
+- ${site.url}/gallery/ (project gallery)
+- ${site.url}/research/ (published research)
+- ${site.url}/about/ (about + experience)
+- ${site.url}/contact/ (contact)
 
 ## Links
 ${site.contactLinks.map((l) => `- ${l.label}: ${l.href}`).join("\n")}
