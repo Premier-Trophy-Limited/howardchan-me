@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Green CI proves the code matched expectations; live verification is the receipt that shows it actually worked.">
+  <meta name="theme-color" content="#F6F3EC">
+  <link rel="canonical" href="https://howardchan.me/writing/a-merged-pr-is-not-a-ship/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="a merged pr is not a ship · Howard Chan">
+  <meta property="og:description" content="Green CI proves the code matched expectations; live verification is the receipt that shows it actually worked.">
+  <meta property="og:url" content="https://howardchan.me/writing/a-merged-pr-is-not-a-ship/">
+  <meta property="og:site_name" content="Howard Chan">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="a merged pr is not a ship · Howard Chan">
+  <meta name="twitter:description" content="Green CI proves the code matched expectations; live verification is the receipt that shows it actually worked.">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="author" content="Chak Hang (Howard) Chan">
+  <title>a merged pr is not a ship · Howard Chan</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"a merged pr is not a ship","datePublished":"2026-07-03","dateModified":"2026-07-03","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"Green CI proves the code matched expectations; live verification is the receipt that shows it actually worked.","mainEntityOfPage":"https://howardchan.me/writing/a-merged-pr-is-not-a-ship/"}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">Howard Chan</span><span class="wordmark-sub">Founder · Builder</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
+    </nav>
+  </div></header>
+    <main id="main" class="view wrap">
+    <p class="backlink"><a href="/writing/">← Writing</a></p>
+    <div class="masthead"><span class="masthead-l">Writing · 2026-07-03</span><span class="masthead-r">Tokyo · Incoming Cambridge HSPS</span></div>
+    <h1 class="detail-h1 paper-h1">a merged pr is not a ship</h1>
+    <p class="intro-subtitle">Green CI proves the code matched expectations; live verification is the receipt that shows it actually worked.</p>
+    <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>a merged pr can look finished while the real work is still ahead. i keep seeing the same moment: the ticket gets closed the second CI goes green, and everybody acts as if the job is done. green tests matter. they tell you the code did what you asked inside the boundaries of the test suite. they do not tell you whether the change survives contact with production. that gap is the whole story. a merge is a claim. a live check is the receipt.</p><p>that distinction is easy to miss when you are moving fast. the status page turns green, the pull request is merged, and the brain wants to mark the task complete. i understand the pressure behind that reflex. a passing build feels concrete. it is visible, it is measurable, and it rewards the exact kind of discipline we are supposed to care about. the problem is that the thing you can point to in CI is only one part of the system. it shows that the code satisfied the conditions you defined. it says nothing about whether the real environment accepts the change in the same way.</p><p>this is why i started treating live verification as part of the finish line. one line now sits in my definition of done: it ran live, and i watched it work. that line changes the emotional shape of the task. merging a commit stops being the finish and becomes the point where the claim is ready to be checked. the test suite can still be green. the review can still be clean. the ticket can still move forward. the change only earns closure after it has been seen working where it matters.</p><p>the mechanism is simple. CI is a controlled proof. live verification is contact with the real system. controlled proof is useful because it reduces uncertainty and catches mistakes early. contact with the real system matters because reality has more moving pieces than a test suite can model. a passing test means the code behaved inside the expectations you wrote down. a live check shows whether those expectations were enough. that is the difference between confidence and confirmation. both matter. they answer different questions. one tells you the code met the promise. the other tells you the promise held up.</p><p>i like the language here because it keeps the relationship honest. the commit is a claim. that is all it is. it is an assertion about what should happen. the live verification is the receipt. a receipt is proof that the thing happened in the world, after the handoff, in the place where consequences are real. once i started using that framing, the process got clearer. i stopped letting merge status stand in for evidence. i stopped treating green CI as the end of the conversation. the conversation ends when the live check has happened and i have watched it work.</p><p>for anyone building software solo with AI agents, this rule is practical because it keeps the machine and the reality test in separate boxes. agents can help produce code quickly. they can help narrow bugs. they can help get a branch to green. none of that replaces the moment where you verify the result in the live environment. if you want a simple rule to carry forward, use this one: every merged change still needs a live check before you call it done. that habit protects you from false confidence and makes your shipping process more honest.</p><p>the larger lesson is that status is cheap and evidence is earned. a green build is useful, but it is only one receipt in the chain. the work is finished when the claim has been tested in the place it will actually live. if you build software for real users, keep that line in your definition of done. it is small, easy to remember, and hard to fake. that is exactly why it works.</p></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px"><a class="wrow" href="/writing/spent-an-hour-last-night-chasing-a-bug-that-was-/"><span class="wnum">W-01</span><span class="wdate">2026-07-07</span><span class="wbody"><span class="wtitle">spent an hour last night chasing a bug that was never a bug</span><span class="wnote">a stale copy of the same api key in an env file caused a machine-only failure until secrets moved to one OS-backed store.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/why-are-secrets-still-living-in-env-files-and-sh/"><span class="wnum">W-02</span><span class="wdate">2026-07-06</span><span class="wbody"><span class="wtitle">why are secrets still living in env files and shell history?</span><span class="wnote">Centralizing secrets in one store and loading them at runtime makes rotation boring and stops drift across env files, shells, and deploy targets.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/an-agent-budget-breaker-for-your-ai-tooling/"><span class="wnum">W-03</span><span class="wdate">2026-07-02</span><span class="wbody"><span class="wtitle">an agent budget breaker for your ai tooling</span><span class="wnote">a hook that hard-blocks subagent dispatches at 8 per day. installed after a 132-dispatch week burned 85% of a max plan, and what the cap actually taught me about routing.</span></span><span class="warrow">→</span></a></div></section>
+  </main>
+    <footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      <div class="ftr-col"><h4>Professional</h4><ul><li><a href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://codeberg.org/imjusthoward" target="_blank" rel="noopener">Codeberg</a></li></ul></div><div class="ftr-col"><h4>Live / Projects</h4><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener">ElevateOS</a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener">Prior Moves</a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener">Tatemori</a></li><li><a href="https://nobill.app" target="_blank" rel="noopener">nobill</a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener">Premier Trophy</a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener">Think College Level, IB &amp; admissions guides ↗</a></li></ul></div><div class="ftr-col"><h4>Direct</h4><ul><li><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></li><li><a href="https://wa.me/85293442294" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
+  </div></footer>
+  </div>
+</body>
+</html>

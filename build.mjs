@@ -116,6 +116,7 @@ async function main() {
       renderResearchDetail(r),
     );
   await writeOutput(path.join("about", "index.html"), renderAbout());
+  await writeOutput(path.join("stack", "index.html"), renderStack());
   await writeOutput(path.join("contact", "index.html"), renderContact());
   await writeOutput("404.html", renderNotFound());
   // legacy /projects/ → /ventures/
@@ -233,7 +234,8 @@ function renderPage({
 
 function statusChip(status) {
   const s = STATUS[status] || STATUS.research;
-  const cls = status === "live" ? "live" : status === "pilot" ? "pilot" : "research";
+  const cls =
+    status === "live" ? "live" : status === "pilot" ? "pilot" : "research";
   return `<span class="chip ${cls}"><span class="dot"></span>${esc(s.label)}</span>`;
 }
 
@@ -482,6 +484,51 @@ function renderContact() {
   });
 }
 
+function renderStack() {
+  const card = (n, h, body) =>
+    `<div class="tline"><span class="tnum">${n}</span><h4>${h}</h4><p class="tsum">${body}</p></div>`;
+  const content = `<div class="page-top">${masthead("Stack · 08", LOCALE)}
+    <h1 class="page-title">The stack</h1>
+    <p class="page-lead">The systems I run solo across investing (PriorMoves), distribution, and an agency layer (ElevateOS). Built for near-zero cost: free and local first, every outward action gated and dry-run before it sends.</p></div>
+
+    <div class="page-section">${secHead("08.1", "Distribution + outreach")}
+    <div class="timeline-list">
+      ${card("01", "LinkedIn growth engine", "A headless connect and DM lane over my own session, paced on the limits that real CDR tools (gojiberry, Expandi, PhantomBuster) publish, with human gaps and warmup. It discovers my account's true weekly ceiling by watching for the block instead of guessing a number.")}
+      ${card("02", "Commenter to DM flywheel", "A post asks for a keyword, people comment, a responder DMs them the asset and sends a connect to the ones who are not connections yet. Warm inbound instead of cold outreach.")}
+      ${card("03", "One 9am pipeline", "Sync (Gmail, WhatsApp, reconcile), reach snapshot, source-of-truth doc sync, warm DMs, cold connects, and content fan-out chained into a single scheduled run. Nothing sends without an explicit enable flag.")}
+      ${card("04", "Multi-platform fan-out", "One canonical post adapted natively for X, Bluesky, Telegram, Threads, and newsletters, each re-linted before it ships. A platform turns on the moment its credential lands in the keychain.")}
+    </div></div>
+
+    <div class="page-section">${secHead("08.2", "Investing engine — PriorMoves")}
+    <div class="timeline-list">
+      ${card("05", "58 investors, next-buy model", "Each investor's disclosed 13F holdings plus a per-investor model of the stocks they are most likely to buy next, roughly six weeks before the filing. Walk-forward gated, so a market only ships a prediction when it clears the test.")}
+      ${card("06", "Global registers", "Japan, UK, Korea, and EU large-shareholding surfaces alongside the US book, plus Congress trades, activist 13D drift, and federal contract awards. All local, all zero cost, live at priormoves.com.")}
+    </div></div>
+
+    <div class="page-section">${secHead("08.3", "Operating doctrine")}
+    <ul class="honors-list">
+      <li>Free or local first. Local models for text transforms, Codex for web discovery, paid APIs only when they are the only thing that works and the cost is stated up front.</li>
+      <li>Secrets live in the OS keychain, never in a file. Around 150 wired keys, each mapped to a use case.</li>
+      <li>Verify before claiming. No asserting a limit or a result from memory; check the source, then state it.</li>
+      <li>Everything reversible. Dry-run is the default, sends are gated, and every deploy has a one-command rollback.</li>
+    </ul></div>
+
+    <div class="copybar"><a class="copybtn" href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">Connect on LinkedIn</a><span class="copynote">happy to walk through any part of it</span></div>`;
+  return renderPage({
+    title: `The stack · ${site.name}`,
+    description:
+      "The systems Howard Chan runs solo across investing (PriorMoves), distribution, and an agency layer — built free-and-local-first, every action gated.",
+    canonicalPath: "/stack/",
+    content,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "The stack",
+      url: "https://howardchan.me/stack/",
+    },
+  });
+}
+
 function renderVentureDetail(v) {
   const i = site.ventures.indexOf(v);
   const num = String(i + 1).padStart(2, "0");
@@ -497,21 +544,23 @@ function renderVentureDetail(v) {
     ${
       v.network && v.org
         ? `<section class="page-section"><span class="eyebrow">Part of ${esc(v.org.name)}</span><p class="intro-subtitle" style="max-width:62ch">A youth-service NGO chartered under Kiwanis International, Japan District. I build and run its digital platform: ${v.network.length} surfaces sharing one design system.</p><ul class="vdetails wide">${v.network
-        .map(
-          (n) =>
-            `<li><a class="ds-link" href="${attr(n.href)}" target="_blank" rel="noopener">${esc(n.label)} ↗</a>${n.note ? ` · ${esc(n.note)}` : ""}</li>`,
-        )
-        .join("")}</ul></section>`
+            .map(
+              (n) =>
+                `<li><a class="ds-link" href="${attr(n.href)}" target="_blank" rel="noopener">${esc(n.label)} ↗</a>${n.note ? ` · ${esc(n.note)}` : ""}</li>`,
+            )
+            .join("")}</ul></section>`
         : ""
     }
     ${
       v.impact
         ? `<section class="page-section"><span class="eyebrow">Service impact</span><div class="impact-stats">${v.impact.stats
-        .map(
-          (s) =>
-            `<div><span class="n">${esc(s.n)}</span><span class="l">${esc(s.label)}</span></div>`,
-        )
-        .join("")}</div><a class="vcard-link" href="${attr(v.impact.href)}" target="_blank" rel="noopener">See the club's service impact ↗</a></section>`
+            .map(
+              (s) =>
+                `<div><span class="n">${esc(s.n)}</span><span class="l">${esc(s.label)}</span></div>`,
+            )
+            .join(
+              "",
+            )}</div><a class="vcard-link" href="${attr(v.impact.href)}" target="_blank" rel="noopener">See the club's service impact ↗</a></section>`
         : ""
     }
     <div class="ledger next-ledger"><div class="ledger-head"><span class="eyebrow small">Next</span></div><a class="lrow" href="/ventures/${vslug(next)}/"><span class="lrow-name">${nextNum} · ${esc(next.name)}</span><span class="lrow-note">${esc(next.domain)}</span><span class="lrow-domain">Open →</span></a></div>
@@ -794,6 +843,7 @@ async function cleanupGeneratedRoutes() {
     "writing",
     "guides",
     "awards",
+    "stack",
   ];
   await Promise.all(
     dirs.map((d) => rm(path.join(root, d), { recursive: true, force: true })),

@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://howardchan.me/</loc><lastmod>2026-07-02</lastmod><priority>1.0</priority></url>
-  <url><loc>https://howardchan.me/ventures/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/gallery/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/research/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/about/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/contact/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/elevateos/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/tatemori/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/prior-moves/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/nobill/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/kiwanis-pulse/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/ventures/premier-trophy/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/research/emoji-semiotics/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/research/cognitive-aging/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
-  <url><loc>https://howardchan.me/writing/</loc><lastmod>2026-07-02</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/</loc><lastmod>2026-07-08</lastmod><priority>1.0</priority></url>
+  <url><loc>https://howardchan.me/ventures/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/gallery/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/research/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/about/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/contact/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/elevateos/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/tatemori/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/prior-moves/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/nobill/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/kiwanis-pulse/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/ventures/premier-trophy/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/research/emoji-semiotics/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/research/cognitive-aging/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/writing/</loc><lastmod>2026-07-08</lastmod><priority>0.7</priority></url>
+  <url><loc>https://howardchan.me/writing/spent-an-hour-last-night-chasing-a-bug-that-was-/</loc><lastmod>2026-07-07</lastmod><priority>0.6</priority></url>
+  <url><loc>https://howardchan.me/writing/why-are-secrets-still-living-in-env-files-and-sh/</loc><lastmod>2026-07-06</lastmod><priority>0.6</priority></url>
+  <url><loc>https://howardchan.me/writing/a-merged-pr-is-not-a-ship/</loc><lastmod>2026-07-03</lastmod><priority>0.6</priority></url>
   <url><loc>https://howardchan.me/writing/an-agent-budget-breaker-for-your-ai-tooling/</loc><lastmod>2026-07-02</lastmod><priority>0.6</priority></url>
   <url><loc>https://howardchan.me/writing/your-outreach-needs-a-validator/</loc><lastmod>2026-07-02</lastmod><priority>0.6</priority></url>
   <url><loc>https://howardchan.me/writing/the-real-bar-is-live-verification/</loc><lastmod>2026-07-01</lastmod><priority>0.6</priority></url>

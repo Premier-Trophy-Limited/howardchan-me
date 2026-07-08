@@ -1,0 +1,56 @@
+{
+  "title": "spent an hour last night chasing a bug that was never a bug",
+  "slug": "spent-an-hour-last-night-chasing-a-bug-that-was-",
+  "date": "2026-07-07",
+  "description": "a stale copy of the same api key in an env file caused a machine-only failure until secrets moved to one OS-backed store.",
+  "tldr": "last night’s bug was a stale copy of the same api key. code read the stale value, so it worked on one machine and failed everywhere else.",
+  "sections": [
+    {
+      "h2": "why did this look like a bug at all?",
+      "body": [
+        "it took an hour to chase because the failure read like code trouble. the same api key lived in three places: two env files and my head, and one of those copies had gone stale.",
+        "i was reading the fresh value while the code was reading the stale one. that split made the behavior look random even though the cause was plain once the mismatch was visible."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what was actually wrong with the setup?",
+      "body": [
+        "the problem was duplicate truth. when one value exists in more than one place, it becomes hard to know which copy is real at the moment the app runs.",
+        "that is how something can work on my machine and fail everywhere else. the machine used the copy I was looking at, while the code followed the stale copy in the env file."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what changed after the fix?",
+      "body": [
+        "the fix was boring on purpose. secrets moved into one OS-backed store, and env files were left for config only.",
+        "that gave me one canonical place to check when something breaks. it also removed the plaintext copy sitting in a file waiting to get committed."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what is the actual lesson here?",
+      "body": [
+        "if a secret lives in two spots, it stops being a secret and starts being a guess. the hard part is usually not the code path, it is the disagreement between copies.",
+        "the cleaner setup is the one that leaves no doubt about where the real value lives. once there is a single source of truth, debugging gets much shorter."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "why did this work on my machine but fail everywhere else?",
+      "a": "because the code was reading a stale copy while you were checking a fresh one. the mismatch made the local result look fine and the rest of the environment fail."
+    },
+    {
+      "q": "what was the real fix?",
+      "a": "move the secret into one OS-backed store and keep env files for config only. that removes the duplicate copy problem and gives you one place to inspect."
+    },
+    {
+      "q": "why is having the same secret in two places a problem?",
+      "a": "because you lose certainty about which value the app actually uses. once copies drift, debugging turns into guesswork."
+    }
+  ],
+  "related_slugs": []
+}
