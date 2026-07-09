@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A green diff passed tests while prod stayed broken, and the fix was a rule to verify the live thing.">
+  <meta name="theme-color" content="#F6F3EC">
+  <link rel="canonical" href="https://howardchan.me/writing/a-green-diff-lied-to-me-last-week/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="a green diff lied to me last week · Howard Chan">
+  <meta property="og:description" content="A green diff passed tests while prod stayed broken, and the fix was a rule to verify the live thing.">
+  <meta property="og:url" content="https://howardchan.me/writing/a-green-diff-lied-to-me-last-week/">
+  <meta property="og:site_name" content="Howard Chan">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="a green diff lied to me last week · Howard Chan">
+  <meta name="twitter:description" content="A green diff passed tests while prod stayed broken, and the fix was a rule to verify the live thing.">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="author" content="Chak Hang (Howard) Chan">
+  <title>a green diff lied to me last week · Howard Chan</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"a green diff lied to me last week","datePublished":"2026-07-09","dateModified":"2026-07-09","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"A green diff passed tests while prod stayed broken, and the fix was a rule to verify the live thing.","mainEntityOfPage":"https://howardchan.me/writing/a-green-diff-lied-to-me-last-week/"}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">Howard Chan</span><span class="wordmark-sub">Founder · Builder</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
+    </nav>
+  </div></header>
+    <main id="main" class="view wrap">
+    <p class="backlink"><a href="/writing/">← Writing</a></p>
+    <div class="masthead"><span class="masthead-l">Writing · 2026-07-09</span><span class="masthead-r">Tokyo · Incoming Cambridge HSPS</span></div>
+    <h1 class="detail-h1 paper-h1">a green diff lied to me last week</h1>
+    <p class="intro-subtitle">A green diff passed tests while prod stayed broken, and the fix was a rule to verify the live thing.</p>
+    <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>a green diff lied to me last week. the commit landed, tests passed, and i moved on with the kind of confidence that comes from seeing a clean result in the repo. meanwhile, the system was quietly broken in prod the whole time. i found out because a user found it first, which is the worst way to learn that something you shipped has a hole in it. that kind of discovery sticks with you. it leaves a mark on how you judge your own work, because the pleasant feeling of a passing test can turn out to be a very small part of the real story.</p><p>the part that stings is how ordinary the false signal looked. nothing dramatic happened in the moment of the commit. there was no obvious alarm, no loud failure, no red flag in the place i was already checking. the diff looked green, the tests looked green, and that was enough for me to move on. that is the trap. a repo can look healthy while the live system carries the actual problem. when i build software solo with AI agents, i am often moving fast and trusting the shape of the work that sits in front of me. this was a sharp reminder that the shape of the work and the behavior of the live thing can part ways.</p><p>the receipt was simple and painful. the commit landed. the tests passed. the product still broke in production. a user found the issue before i did. that sequence matters because it shows exactly where the blind spot lived. i had evidence that my code fit the repo’s expectations, but i had no evidence that the live thing behaved the way i wanted it to behave. the number that matters here is the gap between those two scoreboards. one says the change is accepted by the repo. the other says the real world is actually handling it. i had been spending my attention on the first one and treating it like the second one.</p><p>the mechanism is easy to miss when you are in the middle of shipping. tests tell you about the code path you covered. prod tells you about the thing users actually touch. those are related, and they are also separate. a passing test can mean the code compiled, the expected path worked, and the repo-level checks were satisfied. live behavior asks a different question. it asks whether the thing still works after the commit leaves your hands and meets the rest of the system. once i saw that clearly, the mistake felt less mysterious. the failure was never that the tests passed. the failure was that i let passing tests stand in for proof that the live thing worked.</p><p>that led to a rule i actually trust now: a change is done when i have watched the live thing actually work. the commit is a checkpoint, and the tests are a checkpoint, and neither one earns the final stamp on its own. i want the moment where the thing is real outside the repo. i want to see it behave where users will feel it. that is the point where i stop telling myself the job is finished. for my own workflow, especially with AI agents in the loop, that rule creates a hard boundary around optimism. it keeps me from confusing a clean diff with a complete result.</p><p>if you build software, you can use the same lesson without changing your whole process. keep your tests. keep your commit discipline. then add one more standard before you call something shipped: watch the live thing work. if you cannot do that immediately, treat the work as still open. that one habit changes how you read your own progress. it pushes you toward reality instead of paperwork. it also gives you a better answer when a change looks good in the repo and still behaves badly in the product. that gap is where the useful learning lives, and it is where the honest definition of shipped has to sit.</p></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px"><a class="wrow" href="/writing/spent-an-hour-last-night-chasing-a-bug-that-was-/"><span class="wnum">W-01</span><span class="wdate">2026-07-07</span><span class="wbody"><span class="wtitle">spent an hour last night chasing a bug that was never a bug</span><span class="wnote">a stale copy of the same api key in an env file caused a machine-only failure until secrets moved to one OS-backed store.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/why-are-secrets-still-living-in-env-files-and-sh/"><span class="wnum">W-02</span><span class="wdate">2026-07-06</span><span class="wbody"><span class="wtitle">why are secrets still living in env files and shell history?</span><span class="wnote">Centralizing secrets in one store and loading them at runtime makes rotation boring and stops drift across env files, shells, and deploy targets.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/a-merged-pr-is-not-a-ship/"><span class="wnum">W-03</span><span class="wdate">2026-07-03</span><span class="wbody"><span class="wtitle">a merged pr is not a ship</span><span class="wnote">Green CI proves the code matched expectations; live verification is the receipt that shows it actually worked.</span></span><span class="warrow">→</span></a></div></section>
+  </main>
+    <footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      <div class="ftr-col"><h4>Professional</h4><ul><li><a href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://codeberg.org/imjusthoward" target="_blank" rel="noopener">Codeberg</a></li></ul></div><div class="ftr-col"><h4>Live / Projects</h4><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener">ElevateOS</a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener">Prior Moves</a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener">Tatemori</a></li><li><a href="https://nobill.app" target="_blank" rel="noopener">nobill</a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener">Premier Trophy</a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener">Think College Level, IB &amp; admissions guides ↗</a></li></ul></div><div class="ftr-col"><h4>Direct</h4><ul><li><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></li><li><a href="https://wa.me/85293442294" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
+  </div></footer>
+  </div>
+</body>
+</html>
