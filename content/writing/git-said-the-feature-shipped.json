@@ -1,0 +1,56 @@
+{
+  "title": "git said the feature shipped",
+  "slug": "git-said-the-feature-shipped",
+  "date": "2026-07-11",
+  "description": "A commit is halfway: software ships when you watch a customer complete the intended action live.",
+  "tldr": "Git said the feature shipped. The customer’s screen said otherwise. A commit is halfway because shipping ends when a user can actually do the thing.",
+  "sections": [
+    {
+      "h2": "when is a feature actually shipped?",
+      "body": [
+        "A feature is shipped when a user is doing the thing it was built for.",
+        "Merged code, green CI, and a closed ticket can still leave the customer unable to use it."
+      ],
+      "code": null
+    },
+    {
+      "h2": "why does repo activity feel like progress?",
+      "body": [
+        "Repo activity produces visible signals: commits, merges, CI, and ticket movement.",
+        "Those signals describe work moving through the repository. They do not show whether the customer’s screen works."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what did the customer screen reveal that Git missed?",
+      "body": [
+        "Git said the feature shipped. The customer’s screen said otherwise.",
+        "That gap is the receipt: repository status cannot stand in for watching the feature work live."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should count as done on a team?",
+      "body": [
+        "Done should include seeing the intended user action work live.",
+        "A commit is halfway. The remaining half is the customer experience."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Does green CI mean a feature is shipped?",
+      "a": "Green CI shows that CI is green. It does not show that a customer can complete the intended action on their screen."
+    },
+    {
+      "q": "Is a merged commit considered done?",
+      "a": "A merged commit is halfway. The work reaches done when a user is doing the thing the feature was meant to enable."
+    },
+    {
+      "q": "Why can a closed ticket still hide a shipping problem?",
+      "a": "Tickets can close after repository work is complete. The customer’s screen can still reveal that the feature does not work live."
+    }
+  ],
+  "related_slugs": []
+}
