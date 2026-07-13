@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A commit is a hypothesis. Live verification decides whether software actually does the job people need it to do.">
+  <meta name="theme-color" content="#F6F3EC">
+  <link rel="canonical" href="https://howardchan.me/writing/a-commit-is-a-hypothesis/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/colors_and_type.css">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="a commit is a hypothesis · Howard Chan">
+  <meta property="og:description" content="A commit is a hypothesis. Live verification decides whether software actually does the job people need it to do.">
+  <meta property="og:url" content="https://howardchan.me/writing/a-commit-is-a-hypothesis/">
+  <meta property="og:site_name" content="Howard Chan">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="a commit is a hypothesis · Howard Chan">
+  <meta name="twitter:description" content="A commit is a hypothesis. Live verification decides whether software actually does the job people need it to do.">
+  <meta name="twitter:image" content="https://howardchan.me/assets/media/og-card.png">
+  <meta name="author" content="Chak Hang (Howard) Chan">
+  <title>a commit is a hypothesis · Howard Chan</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"a commit is a hypothesis","datePublished":"2026-07-13","dateModified":"2026-07-13","author":{"@type":"Person","name":"Chak Hang (Howard) Chan","url":"https://howardchan.me"},"publisher":{"@type":"Person","name":"Chak Hang (Howard) Chan"},"description":"A commit is a hypothesis. Live verification decides whether software actually does the job people need it to do.","mainEntityOfPage":"https://howardchan.me/writing/a-commit-is-a-hypothesis/"}</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="shell">
+    <header class="hdr"><div class="wrap hdr-in">
+    <a class="wordmark" href="/" aria-label="Howard Chan, index">
+      <span class="wordmark-mark" aria-hidden="true"></span>
+      <span class="wordmark-stack"><span class="wordmark-name">Howard Chan</span><span class="wordmark-sub">Founder · Builder</span></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="/">Index</a><a href="/ventures/">Ventures</a><a href="/gallery/">Gallery</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/research/">Research</a><a href="/contact/">Contact</a>
+    </nav>
+  </div></header>
+    <main id="main" class="view wrap">
+    <p class="backlink"><a href="/writing/">← Writing</a></p>
+    <div class="masthead"><span class="masthead-l">Writing · 2026-07-13</span><span class="masthead-r">Tokyo · Incoming Cambridge HSPS</span></div>
+    <h1 class="detail-h1 paper-h1">a commit is a hypothesis</h1>
+    <p class="intro-subtitle">A commit is a hypothesis. Live verification decides whether software actually does the job people need it to do.</p>
+    <section class="page-section" style="max-width:68ch"><div class="about-prose" style="margin-top:6px"><p>a commit is a hypothesis. the live check gets the final vote. I have learned this the hard way while building software solo with AI agents, where a change can arrive looking polished, coherent, and complete before it has met the place where it is supposed to work. The diff can make sense. The code can read cleanly. The commit can carry the satisfying feeling of progress. Then the live flow asks a simpler question: did the actual job happen? That question has ended more debates for me than any review comment ever could.</p><p>The gap shows up because code is always written against an interpretation of reality. You read the request, infer the behavior, make a change, and create a commit. An AI agent can accelerate every part of that loop. It can inspect surrounding code, suggest an implementation, write tests, and explain why the result should work. Those are useful signals. They remain signals. The product only earns its claim when someone can observe the intended result in the real flow. Until then, the commit describes a theory about what the software will do.</p><p>Tests can pass while the real flow falls over. That does not mean tests are worthless. Tests answer the questions they were written to answer, inside the conditions they create. The live environment carries conditions that the test may not represent: the order a person takes through the flow, the state already present, the boundary between components, or the moment when an output must become visible. A passing suite can tell me that a narrow behavior remains intact. It cannot automatically prove that the job reached a person in the way the product promises.</p><p>I used to let the cleanliness of a commit create too much confidence. When the implementation was small and the tests were green, I treated the work as largely complete. That habit made review feel like the finish line. The receipt that changed my definition was simpler than a metric: code can look clean and still miss the actual job. A commit with no live proof is unfinished work. It may be a good hypothesis. It may even be close. The absence of an observable result leaves the central question open.</p><p>The mechanism is straightforward. Software work passes through several translations. A request becomes an interpretation. That interpretation becomes code. Code becomes a tested behavior. Then that behavior has to survive the real flow and produce the result someone needs to see. Each translation can preserve the intent, or lose part of it. AI agents make the earlier translations faster, which makes the final check more important. Speed can produce a convincing artifact before it produces a verified outcome. The faster I can generate code, the more deliberately I need to ask for evidence from the live system.</p><p>My rule now is plain: “shipped” starts when someone can observe the result. I do not use the word as a reward for creating a commit. I use it as a statement about the world outside the editor. If I cannot verify it live, I have a commit. I keep going. That rule gives solo work a useful stopping condition because it replaces vague confidence with a visible outcome. The implementation can still need improvement later, yet the first threshold is clear: the intended job happened where it matters.</p><p>For readers building with AI agents, treat every generated change as a hypothesis that deserves a live check. Ask what a person should be able to observe when the work is complete. Follow the actual flow far enough to see that result. Let passing tests inform your confidence, then let the live check decide whether the task is done. This is a small shift in language that changes the work. A commit becomes evidence of effort. Live verification becomes evidence of delivery. That distinction keeps the software honest, and it keeps the builder focused on the outcome instead of the appearance of progress.</p></div></section>
+    <section class="page-section"><span class="eyebrow">More writing</span><div class="writing-list" style="margin-top:14px"><a class="wrow" href="/writing/git-said-the-feature-shipped/"><span class="wnum">W-01</span><span class="wdate">2026-07-11</span><span class="wbody"><span class="wtitle">git said the feature shipped</span><span class="wnote">A commit is halfway: software ships when you watch a customer complete the intended action live.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/a-commit-is-just-a-checkpoint/"><span class="wnum">W-02</span><span class="wdate">2026-07-10</span><span class="wbody"><span class="wtitle">a commit is just a checkpoint</span><span class="wnote">A commit is only a checkpoint; i call work done after verifying it in the live environment the user actually experiences.</span></span><span class="warrow">→</span></a><a class="wrow" href="/writing/a-green-diff-lied-to-me-last-week/"><span class="wnum">W-03</span><span class="wdate">2026-07-09</span><span class="wbody"><span class="wtitle">a green diff lied to me last week</span><span class="wnote">A green diff passed tests while prod stayed broken, and the fix was a rule to verify the live thing.</span></span><span class="warrow">→</span></a></div></section>
+  </main>
+    <footer class="ftr"><div class="wrap ftr-in">
+    <div class="ftr-mesh">
+      <div class="ftr-col"><h4>Professional</h4><ul><li><a href="https://www.linkedin.com/in/howardchan2008/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://codeberg.org/imjusthoward" target="_blank" rel="noopener">Codeberg</a></li></ul></div><div class="ftr-col"><h4>Live / Projects</h4><ul><li><a href="https://elevateos.org" target="_blank" rel="noopener">ElevateOS</a></li><li><a href="https://priormoves.com" target="_blank" rel="noopener">Prior Moves</a></li><li><a href="https://tatemori.com" target="_blank" rel="noopener">Tatemori</a></li><li><a href="https://nobill.app" target="_blank" rel="noopener">nobill</a></li><li><a href="https://crystalcentury.com" target="_blank" rel="noopener">Premier Trophy</a></li><li><a href="https://thinkcollegelevel.com" target="_blank" rel="noopener">Think College Level, IB &amp; admissions guides ↗</a></li></ul></div><div class="ftr-col"><h4>Direct</h4><ul><li><a href="mailto:chakhanghowardchan2008@gmail.com">Email</a></li><li><a href="https://wa.me/85293442294" target="_blank" rel="noopener">WhatsApp</a></li></ul></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+    </div>
+    <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
+  </div></footer>
+  </div>
+</body>
+</html>
