@@ -1,0 +1,48 @@
+{
+  "title": "are education products ready for this kind of jump?",
+  "slug": "are-education-products-ready-for-this-kind-of-ju",
+  "date": "2026-07-14",
+  "description": "Japan’s Japanese-language institute enrollment rose 23.5% in 2025, showing why education products must support cross-border transitions.",
+  "tldr": "Japan recorded 140,174 students in Japanese-language institutes in 2025, up 23.5% from the previous year. That jump shows how quickly cross-border demand can move and puts pressure on products serving transitions between systems.",
+  "sections": [
+    {
+      "h2": "what does this jump in Japanese-language students tell builders?",
+      "body": [
+        "Japan recorded 140,174 students in Japanese-language institutes in 2025. Enrollment rose 23.5% from the previous year, showing that cross-border demand is moving quickly.",
+        "For builders and founders, that growth is a signal to examine how products handle movement between systems. Demand can shift faster than the product experience around it."
+      ],
+      "code": null
+    },
+    {
+      "h2": "where do education products break during a cross-border transition?",
+      "body": [
+        "The pressure appears wherever a learner moves between systems. A product may serve one environment well while leaving the transition between environments unsupported.",
+        "The source points to a practical question for product teams: where does the current product break first when cross-border demand arrives?"
+      ],
+      "code": null
+    },
+    {
+      "h2": "why should product teams look at transitions before demand peaks?",
+      "body": [
+        "The 23.5% increase creates a clear receipt for the speed of change. Education products need to support the transition between systems as demand moves across borders.",
+        "That makes transition support a product question for builders, founders, and AI engineers. The first break may reveal where the product needs to adapt to the people it serves."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How many students were recorded in Japanese-language institutes in Japan in 2025?",
+      "a": "Japan recorded 140,174 students in Japanese-language institutes in 2025."
+    },
+    {
+      "q": "How much did Japanese-language institute enrollment increase in 2025?",
+      "a": "Enrollment increased 23.5% from the previous year."
+    },
+    {
+      "q": "Why do education products need to support transitions between systems?",
+      "a": "Cross-border demand is moving fast. Products need to support the transition between systems as learners move across education environments."
+    }
+  ],
+  "related_slugs": []
+}

@@ -1,0 +1,48 @@
+{
+  "title": "most people building ai tutoring think the hard part is the",
+  "slug": "most-people-building-ai-tutoring-think-the-hard-",
+  "date": "2026-07-13",
+  "description": "AI tutoring earns family trust through auditable progress evidence and real safety controls before the tutoring experience itself.",
+  "tldr": "The model is not the hard part of AI tutoring. Families need on-demand evidence of what a child did and clear proof of what the tool refused to do.",
+  "sections": [
+    {
+      "h2": "why is a smart chatbot not enough for AI tutoring?",
+      "body": [
+        "A parent is deciding whether to place their child’s afternoons inside your product. A chatbot that sounds smart does not answer the questions behind that decision.",
+        "They need to see what the child actually did and understand the boundaries the tool held."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what does a family need before an AI tutor becomes part of the routine?",
+      "body": [
+        "Auditable progress evidence and real safety controls are the price of entry into a family’s routine.",
+        "Those requirements make the experience legible on demand. They give a parent something concrete to inspect when deciding whether the product deserves trust."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should an AI tutoring builder build first?",
+      "body": [
+        "Build the receipt first.",
+        "The receipt shows what happened during a child’s time with the tool and what the tool refused to do. Once that exists, the tutoring is the easy half."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What makes an AI tutoring product trustworthy to parents?",
+      "a": "Parents need on-demand visibility into what their child actually did. They also need real safety controls and evidence of the boundaries the tool enforced."
+    },
+    {
+      "q": "Is the model the hardest part of building AI tutoring?",
+      "a": "The model is not the hard part described here. The harder requirement is earning a place in a family’s routine through evidence and safety controls."
+    },
+    {
+      "q": "What does “build the receipt first” mean for AI tutoring?",
+      "a": "It means building the evidence a parent can inspect on demand. That evidence covers the child’s activity and what the tool refused to do."
+    }
+  ],
+  "related_slugs": []
+}
