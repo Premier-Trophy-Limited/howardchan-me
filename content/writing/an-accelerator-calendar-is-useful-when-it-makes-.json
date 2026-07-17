@@ -1,0 +1,44 @@
+{
+  "title": "an accelerator calendar is useful when it makes the user result",
+  "slug": "an-accelerator-calendar-is-useful-when-it-makes-",
+  "date": "2026-07-17",
+  "description": "A field note on using accelerator deadlines to force clearer product evidence and user results at every milestone.",
+  "tldr": "An accelerator calendar earns its value when every deadline forces a clearer product question: what changed for the user before the next milestone? Ambition gets you onto the calendar, while evidence gets you through it.",
+  "sections": [
+    {
+      "h2": "what should every accelerator deadline force us to ask?",
+      "body": [
+        "Every deadline should force a product question: what changed for the user before the next milestone? The calendar becomes useful when it makes the user result clearer.",
+        "That question keeps each milestone tied to movement in the product and the experience of the people using it."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what gets a product onto the calendar in the first place?",
+      "body": [
+        "Ambition gets a product onto the calendar. A strong idea can create momentum and earn a place in the process.",
+        "The calendar gives that ambition a sequence of milestones where progress has to become visible."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what actually gets a product through the calendar?",
+      "body": [
+        "Evidence gets a product through the calendar. Each deadline should leave a clearer answer about what changed for the user.",
+        "That standard may feel too strict, yet it keeps the focus on user results instead of calendar activity."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How should an accelerator calendar be used?",
+      "a": "Use each deadline to ask what changed for the user before the next milestone. The calendar is useful when it makes the result clearer."
+    },
+    {
+      "q": "What matters more than ambition in an accelerator?",
+      "a": "Ambition gets you onto the calendar. Evidence gets you through it, because each milestone needs a clearer connection to user results."
+    }
+  ],
+  "related_slugs": []
+}
