@@ -7,6 +7,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
   margin: 0;
   background: var(--paper);
@@ -65,7 +66,7 @@ button { font: inherit; cursor: pointer; }
 .hero h1 { font-family: var(--serif-display); font-weight: var(--display-weight); font-size: var(--t-display); line-height: var(--display-lh); letter-spacing: var(--display-track); margin: 30px 0 0; max-width: 16ch; }
 .hero .lead { font-family: var(--sans); font-size: var(--t-lead); line-height: 1.5; color: var(--ink-2); margin: 26px 0 0; max-width: 60ch; }
 .hero-links { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 30px; }
-.hero-links a { font-family: var(--mono); font-size: 0.84rem; letter-spacing: 0.02em; color: var(--accent); }
+.hero-links a { font-family: var(--mono); font-size: 0.84rem; letter-spacing: 0.02em; color: var(--accent); transition: color var(--dur-fast) var(--ease); }
 .hero-links a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 0.16em; }
 .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
 .pillar { border-top: 1px solid var(--line); padding-top: 14px; }
@@ -85,9 +86,9 @@ button { font: inherit; cursor: pointer; }
 .vcard .jp { font-family: var(--serif-display); font-weight: 400; color: var(--ink-3); font-size: 1.1rem; margin-left: 6px; }
 .vcard p { font-size: 0.92rem; line-height: 1.55; color: var(--ink-2); }
 .vcard-foot { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-top: auto; padding-top: 6px; }
-.vcard-link { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.03em; color: var(--accent); }
+.vcard-link { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.03em; color: var(--accent); transition: color var(--dur-fast) var(--ease); }
 .vcard-link:hover { color: var(--accent-hover); }
-.vcard-domain { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.02em; color: var(--ink-3); }
+.vcard-domain { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.02em; color: var(--ink-3); transition: color var(--dur-fast) var(--ease); }
 .vcard-domain:hover { color: var(--accent); }
 .vdetails { display: grid; gap: 7px; margin: 2px 0 0; padding: 0; list-style: none; }
 .vdetails li { font-size: 0.86rem; line-height: 1.5; color: var(--ink-2); padding-left: 16px; position: relative; }
@@ -102,7 +103,7 @@ button { font: inherit; cursor: pointer; }
 .lrow:hover { padding-left: var(--ledger-shift); border-color: var(--line-strong); }
 .lrow-name { font-family: var(--serif-display); font-weight: 500; font-size: 1.12rem; letter-spacing: -0.015em; color: var(--ink); white-space: nowrap; }
 .lrow-note { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.02em; color: var(--ink-3); }
-.lrow-domain { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.02em; color: var(--accent); white-space: nowrap; justify-self: end; }
+.lrow-domain { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.02em; color: var(--accent); white-space: nowrap; justify-self: end; transition: color var(--dur-fast) var(--ease); }
 .lrow:hover .lrow-domain { color: var(--accent-hover); }
 .next-ledger { margin-top: 64px; }
 
@@ -122,7 +123,7 @@ button { font: inherit; cursor: pointer; }
 .rentry-meta { display: flex; gap: 18px; align-items: baseline; margin-top: 8px; flex-wrap: wrap; }
 .rentry .meta { font-family: var(--mono); font-size: var(--t-meta); color: var(--ink-3); white-space: nowrap; }
 .rentry .sum { font-size: 0.92rem; line-height: 1.55; color: var(--ink-2); margin-top: 8px; max-width: 70ch; }
-.rentry .read { font-family: var(--mono); font-size: 0.74rem; color: var(--accent); margin-top: 12px; display: inline-block; }
+.rentry .read { font-family: var(--mono); font-size: 0.74rem; color: var(--accent); margin-top: 12px; display: inline-block; transition: color var(--dur-fast) var(--ease); }
 .rentry .read:hover { color: var(--accent-hover); }
 
 /* ---- Writing ledger ------------------------------------------------------------------- */
@@ -139,7 +140,7 @@ button { font: inherit; cursor: pointer; }
 
 /* ---- Detail pages ------------------------------------------------------------------------ */
 .backlink { font-family: var(--mono); font-size: 0.76rem; margin: 0 0 18px; }
-.backlink a { color: var(--ink-3); }
+.backlink a { color: var(--ink-3); transition: color var(--dur-fast) var(--ease); }
 .backlink a:hover { color: var(--accent); }
 .detail-meta { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; margin-top: 22px; }
 .detail-meta .meta { font-family: var(--mono); font-size: var(--t-meta); color: var(--ink-3); }
@@ -195,7 +196,7 @@ button { font: inherit; cursor: pointer; }
 .ftr-mesh { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
 .ftr-col h4 { font-family: var(--mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 10px; }
 .ftr-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
-.ftr-col a { font-size: 0.86rem; color: var(--ink-2); }
+.ftr-col a { font-size: 0.86rem; color: var(--ink-2); transition: color var(--dur-fast) var(--ease); }
 .ftr-col a:hover { color: var(--accent); }
 .ftr-brand { justify-self: end; text-align: right; }
 .ftr-mark { width: 52px; height: 28px; display: inline-block; background: var(--ink);
@@ -232,6 +233,14 @@ button { font: inherit; cursor: pointer; }
   .portrait { max-width: 230px; }
   .nav { gap: 14px; }
   .wordmark-sub { display: none; }
+}
+@media (max-width: 640px) {
+  /* The 7-item nav cannot fit beside the wordmark on a phone (it forced
+     ~580px of horizontal scroll). Stack the lockup and let the nav wrap. */
+  .hdr-in { flex-direction: column; align-items: flex-start; gap: 10px; padding: 12px 0 10px; }
+  .nav { flex-wrap: wrap; gap: 2px 18px; }
+  .nav a { font-size: 0.88rem; padding: 2px 0; }
+  .nav a[aria-current="page"]::after { bottom: 0; }
 }
 @media (max-width: 480px) {
   .gallery-grid { grid-template-columns: 1fr; }

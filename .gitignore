@@ -5,3 +5,5 @@ sitemap.xml
 dashboards/
 **/__pycache__/
 *.pyc
+.claude/
+.gstack/
