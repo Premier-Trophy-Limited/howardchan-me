@@ -1,0 +1,48 @@
+{
+  "title": "start with the tutor notes",
+  "slug": "start-with-the-tutor-notes",
+  "date": "2026-07-18",
+  "description": "AI tutoring becomes useful when tutor notes, learner goals, session evidence, and one next action stay connected.",
+  "tldr": "AI tutoring becomes useful when a session starts with tutor notes, adds the learner’s goal and evidence, and ends with one defined next action. A generic chatbot creates another untracked conversation.",
+  "sections": [
+    {
+      "h2": "why should an AI tutoring session start with tutor notes?",
+      "body": [
+        "Tutor notes give the session a starting point. They anchor the conversation in what the tutor already knows before the AI responds.",
+        "That context helps the session stay connected to the learner’s work instead of becoming another untracked conversation."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should the session add after the tutor notes?",
+      "body": [
+        "Add the learner’s goal and the evidence from the session. The goal shows what the learner is trying to do, while the evidence shows what actually appeared in the session.",
+        "Together, they give the tutoring conversation a clear reference point."
+      ],
+      "code": null
+    },
+    {
+      "h2": "how does an AI tutoring session become useful?",
+      "body": [
+        "End by writing one defined next action. A specific next action gives the session somewhere to go after the conversation ends.",
+        "That sequence is what makes AI tutoring useful: tutor notes, the learner’s goal, session evidence, and one defined next action."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How can AI tutoring become useful?",
+      "a": "Start with tutor notes, add the learner’s goal and the evidence from the session, then end with one defined next action. This gives the conversation a clear structure."
+    },
+    {
+      "q": "What should an AI tutoring session include?",
+      "a": "It should include tutor notes, the learner’s goal, evidence from the session, and one defined next action."
+    },
+    {
+      "q": "Why does a generic chatbot conversation feel untracked?",
+      "a": "A generic chatbot creates another conversation without the structure provided by tutor notes, a learner goal, session evidence, and a defined next action."
+    }
+  ],
+  "related_slugs": []
+}
