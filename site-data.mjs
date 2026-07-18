@@ -245,6 +245,13 @@ export const site = {
   // from the family manufacturer. Images optimized into /assets/media/gallery/.
   gallery: [
     {
+      src: "/assets/media/gallery/global-brain-pitch.webp",
+      alt: "Howard Chan pitching ElevateOS to Global Brain in Tokyo",
+      caption: "Pitching ElevateOS at Global Brain, Tokyo, 2026.",
+      href: elevateosUrl,
+      domain: "elevateos.org ↗",
+    },
+    {
       src: "/assets/media/gallery/elevateos.png",
       alt: "ElevateOS operating dashboard for tutoring agencies",
       caption:

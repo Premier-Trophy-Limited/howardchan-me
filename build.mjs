@@ -443,7 +443,10 @@ function renderAbout() {
   const content = `${pageTop("about")}
     <div class="about-grid">
       <div class="about-prose">${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div>
-      <figure class="portrait"><img src="/assets/media/pfp.png" alt="Howard Chan" width="300" height="300" decoding="async"><figcaption>Sumida-ku, Tokyo</figcaption></figure>
+      <div class="portrait-stack">
+        <figure class="portrait"><img src="/assets/media/pfp.png" alt="Howard Chan" width="300" height="300" decoding="async"><figcaption>Sumida-ku, Tokyo</figcaption></figure>
+        <figure class="portrait"><img src="/assets/media/global-brain-pitch-sm.webp" alt="Howard Chan pitching ElevateOS to Global Brain in Tokyo" width="640" height="427" loading="lazy" decoding="async"><figcaption>Pitching at Global Brain · Tokyo</figcaption></figure>
+      </div>
     </div>
     <div class="page-section">${secHead("05.1", "Timeline")}<div class="timeline-list">${a.timeline.map((t, i) => `<div class="tline"><span class="tnum">${String(i + 1).padStart(2, "0")}</span><h4>${esc(t.title)}</h4><span class="tmeta">${esc(t.meta)}</span><p class="tsum">${esc(t.sum)}</p></div>`).join("")}</div></div>
     ${a.honors ? `<div class="page-section">${secHead("05.2", "Honors")}<ul class="honors-list">${a.honors.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}`;

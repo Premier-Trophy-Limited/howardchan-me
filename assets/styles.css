@@ -164,6 +164,7 @@ button { font: inherit; cursor: pointer; }
 .about-grid { display: grid; grid-template-columns: 1fr 230px; gap: 44px; align-items: start; }
 .about-prose { display: grid; gap: 16px; max-width: var(--measure); }
 .about-prose p { font-size: 1rem; line-height: var(--lh-body); }
+.portrait-stack { display: grid; gap: 16px; }
 .portrait { border: 1px solid var(--line); border-radius: var(--radius-2); overflow: hidden; margin: 0; background: var(--paper-2); }
 .portrait img { width: 100%; }
 .portrait figcaption { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3); padding: 9px 11px; text-transform: uppercase; letter-spacing: 0.05em; }
