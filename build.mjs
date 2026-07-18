@@ -178,7 +178,7 @@ function renderFooter() {
   return `<footer class="ftr"><div class="wrap ftr-in">
     <div class="ftr-mesh">
       ${cols}
-      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages. No trackers.</p></div>
+      <div class="ftr-col ftr-brand"><span class="ftr-mark" aria-hidden="true"></span><p class="ftr-line">Built as a fast static site on Cloudflare Pages.</p></div>
     </div>
     <div class="ftr-base"><span class="loc">Tokyo · Hong Kong · Cambridge</span><span class="site"><span class="dot"></span>howardchan.me</span></div>
   </div></footer>`;
