@@ -75,7 +75,8 @@ const PAGE_COPY = {
     lead: "Presented as citations because that is what they are. Communication, cognition, and how institutional systems behave.",
   },
   about: { title: "Coordination is the through-line." },
-  contact: {},
+  // Title only (no lead): gives the contact page its one h1 without adding copy.
+  contact: { title: "Get in touch." },
 };
 
 const STATUS = {
@@ -191,9 +192,15 @@ function renderPage({
   jsonLd,
   ogType = "website",
   ogImage,
+  noindex = false,
 }) {
   const ld = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
   const img = `${site.url}${ogImage || "/assets/media/og-card.png"}`;
+  // The 404 page is noindex and carries no canonical: a canonical pointing at a
+  // URL that answers 404 would be a broken canonical.
+  const indexTags = noindex
+    ? `<meta name="robots" content="noindex">`
+    : `<link rel="canonical" href="${attr(urlFor(canonicalPath))}">`;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -201,7 +208,7 @@ function renderPage({
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${attr(description)}">
   <meta name="theme-color" content="#F6F3EC">
-  <link rel="canonical" href="${attr(urlFor(canonicalPath))}">
+  ${indexTags}
   <link rel="preload" href="/assets/fonts/newsreader-normal-400-600-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/hanken-grotesk-normal-400-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/colors_and_type.css?v=${ASSET_V}">
@@ -327,44 +334,54 @@ function renderHome() {
     description: site.description,
     canonicalPath: "/",
     content,
-    jsonLd: {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      name: site.fullName,
-      alternateName: "Howard Chan",
-      url: site.url,
-      jobTitle: "Founder",
-      sameAs: site.contactLinks
-        .map((l) => l.href)
-        .filter((h) => h.startsWith("http")),
-      // Cambridge is incoming (matriculates Oct 2026); listing it as alumniOf
-      // now overclaims against the visible "incoming" copy. Add it on enrolment.
-      alumniOf: ["K. International School Tokyo"],
-      description: site.tagline,
-      knowsAbout: [
-        "Product Management",
-        "Software Engineering",
-        "EdTech",
-        "Quantitative Research",
-        "Operations Management",
-        "Regulatory Compliance",
-      ],
-      worksFor: {
-        "@type": "Organization",
-        name: "ElevateOS",
-        url: "https://elevateos.org",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: site.name,
+        url: `${site.url}/`,
+        description: site.description,
+        author: { "@type": "Person", name: site.fullName },
       },
-      // Founder/affiliate of the NGO: the semantically correct edge (not
-      // sameAs, which would assert the NGO *is* Howard). Pairs with the
-      // rel="me author" backlink in the KVCN footers to form a verified graph.
-      affiliation: {
-        "@type": "NGO",
-        name: "Kiwanis Voices Club of Nippon",
-        url: "https://kvcn.org/",
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: site.fullName,
+        alternateName: "Howard Chan",
+        url: site.url,
+        jobTitle: "Founder",
+        sameAs: site.contactLinks
+          .map((l) => l.href)
+          .filter((h) => h.startsWith("http")),
+        // Cambridge is incoming (matriculates Oct 2026); listing it as alumniOf
+        // now overclaims against the visible "incoming" copy. Add it on enrolment.
+        alumniOf: ["K. International School Tokyo"],
+        description: site.tagline,
+        knowsAbout: [
+          "Product Management",
+          "Software Engineering",
+          "EdTech",
+          "Quantitative Research",
+          "Operations Management",
+          "Regulatory Compliance",
+        ],
+        worksFor: {
+          "@type": "Organization",
+          name: "ElevateOS",
+          url: "https://elevateos.org",
+        },
+        // Founder/affiliate of the NGO: the semantically correct edge (not
+        // sameAs, which would assert the NGO *is* Howard). Pairs with the
+        // rel="me author" backlink in the KVCN footers to form a verified graph.
+        affiliation: {
+          "@type": "NGO",
+          name: "Kiwanis Voices Club of Nippon",
+          url: "https://kvcn.org/",
+        },
+        homeLocation: { "@type": "Place", name: "Tokyo, Japan" },
+        nationality: "Hong Kong",
       },
-      homeLocation: { "@type": "Place", name: "Tokyo, Japan" },
-      nationality: "Hong Kong",
-    },
+    ],
   });
 }
 
@@ -459,10 +476,20 @@ function renderAbout() {
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "ProfilePage",
+      // Facts only, all stated on this page: name, Tokyo, incoming HSPS at
+      // Peterhouse (Cambridge), founder. Same sameAs set as the home Person.
       mainEntity: {
         "@type": "Person",
         name: site.fullName,
-        description: site.tagline,
+        alternateName: "Howard Chan",
+        url: site.url,
+        jobTitle: "Founder",
+        description:
+          "Tokyo-based founder and builder, incoming HSPS student at Peterhouse, University of Cambridge.",
+        homeLocation: { "@type": "Place", name: "Tokyo, Japan" },
+        sameAs: site.contactLinks
+          .map((l) => l.href)
+          .filter((h) => h.startsWith("http")),
       },
     },
   });
@@ -524,7 +551,7 @@ function renderStack() {
   return renderPage({
     title: `The stack · ${site.name}`,
     description:
-      "The systems Howard Chan runs solo across investing (PriorMoves), distribution, and an agency layer — built free-and-local-first, every action gated.",
+      "The systems Howard Chan runs solo across investing (PriorMoves), distribution, and an agency layer. Free and local first, every outward action gated.",
     canonicalPath: "/stack/",
     content,
     jsonLd: {
@@ -768,6 +795,7 @@ function renderNotFound() {
     title: `Not found · ${site.name}`,
     description: "Page not found.",
     canonicalPath: "/404/",
+    noindex: true,
     content,
     jsonLd: {
       "@context": "https://schema.org",
@@ -800,8 +828,10 @@ ${site.research.map((r) => `- ${r.title} (${r.meta})`).join("\n")}
 - ${site.url}/ (index)
 - ${site.url}/ventures/ (ventures)
 - ${site.url}/gallery/ (project gallery)
+- ${site.url}/writing/ (working notes)
 - ${site.url}/research/ (published research)
 - ${site.url}/about/ (about + experience)
+- ${site.url}/stack/ (the systems behind the work)
 - ${site.url}/contact/ (contact)
 
 ## Links
@@ -820,6 +850,7 @@ function renderSitemap() {
     "/gallery/",
     "/research/",
     "/about/",
+    "/stack/",
     "/contact/",
     ...site.ventures.map((v) => `/ventures/${vslug(v)}/`),
     ...site.research.map((r) => `/research/${r.slug}/`),

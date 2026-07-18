@@ -25,8 +25,10 @@ Chak Hang (Howard) Chan. Founder, builder, and researcher; incoming University o
 - https://howardchan.me/ (index)
 - https://howardchan.me/ventures/ (ventures)
 - https://howardchan.me/gallery/ (project gallery)
+- https://howardchan.me/writing/ (working notes)
 - https://howardchan.me/research/ (published research)
 - https://howardchan.me/about/ (about + experience)
+- https://howardchan.me/stack/ (the systems behind the work)
 - https://howardchan.me/contact/ (contact)
 
 ## Links
