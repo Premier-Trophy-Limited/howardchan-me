@@ -1,0 +1,48 @@
+{
+  "title": "AI reaches families when proof and safety ship with the product",
+  "slug": "ai-reaches-families-when-proof-and-safety-ship-w",
+  "date": "2026-07-19",
+  "description": "Why builders in high-trust domains need proof and safety controls in the product before distribution.",
+  "tldr": "AI reaches families when proof and safety ship with the product. In high-trust domains, builders need progress evidence before distribution and should measure before they ship broadly.",
+  "sections": [
+    {
+      "h2": "why does proof need to ship with the product?",
+      "body": [
+        "Families engage with AI when the product carries visible evidence of progress and safety. The finding is simple: distribution depends on more than the product experience alone.",
+        "Builders in high-trust domains need a receipt that shows what has been measured before wider distribution begins."
+      ],
+      "code": null
+    },
+    {
+      "h2": "when should safety controls enter the product?",
+      "body": [
+        "Safety controls belong in the product from the start. They shape how the product earns trust as it reaches families.",
+        "Adding safeguards early keeps proof and safety connected to the product itself, where users encounter them."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should builders measure before they distribute?",
+      "body": [
+        "The source question is the operating prompt: what are you measuring before you distribute? Progress evidence and safety should travel together when the product moves toward wider use.",
+        "Ship the receipt with the safeguards so the evidence behind distribution is part of the product experience."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How can AI products earn trust with families?",
+      "a": "Ship proof and safety with the product. Families need progress evidence and safeguards to be present as the product reaches them."
+    },
+    {
+      "q": "When should safety controls be added to an AI product?",
+      "a": "Safety controls belong in the product from the start. They should develop alongside the product rather than appearing only at distribution."
+    },
+    {
+      "q": "What should builders measure before distributing AI products?",
+      "a": "Measure progress evidence and safety before distribution. The receipt of what has been measured should ship with the safeguards."
+    }
+  ],
+  "related_slugs": []
+}
