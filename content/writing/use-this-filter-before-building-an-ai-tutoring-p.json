@@ -1,0 +1,47 @@
+{
+  "title": "use this filter before building an AI tutoring product",
+  "slug": "use-this-filter-before-building-an-ai-tutoring-p",
+  "date": "2026-07-27",
+  "description": "A field note on why AI tutoring products need teacher workflows, student goals, tutor notes, and clear next actions.",
+  "tldr": "The workflow is the product. An AI tutoring session should connect to a real teacher workflow, the student’s goal, tutor notes, and a next action.",
+  "sections": [
+    {
+      "h2": "what should an AI tutoring session connect to?",
+      "body": [
+        "Tie the session to a real teacher workflow. That connection gives the conversation a place inside the work teachers already do.",
+        "A tutoring session should exist within that workflow instead of standing alone as another conversation."
+      ],
+      "code": null
+    },
+    {
+      "h2": "whose goal should shape the session?",
+      "body": [
+        "Anchor the session to the student’s goal. The goal gives the tutoring interaction a clear direction and keeps the session connected to what the student is trying to achieve."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should happen after the tutoring conversation ends?",
+      "body": [
+        "Capture tutor notes and the next action. Those details carry the session forward and connect it to the surrounding teacher workflow.",
+        "A generic chatbot creates another untracked conversation. The workflow is the product."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How should an AI tutoring product be designed?",
+      "a": "Tie each session to a real teacher workflow and anchor it to the student’s goal. Capture tutor notes and the next action."
+    },
+    {
+      "q": "Why does a generic tutoring chatbot create a problem?",
+      "a": "A generic chatbot creates another untracked conversation. The session needs to connect to a teacher workflow so it can carry forward."
+    },
+    {
+      "q": "What makes the workflow the product?",
+      "a": "The workflow connects the teacher’s work, the student’s goal, the tutor’s notes, and the next action. Those connections define the tutoring product."
+    }
+  ],
+  "related_slugs": []
+}
