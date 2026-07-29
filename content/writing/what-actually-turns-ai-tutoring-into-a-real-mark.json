@@ -1,0 +1,48 @@
+{
+  "title": "what actually turns AI tutoring into a real market?",
+  "slug": "what-actually-turns-ai-tutoring-into-a-real-mark",
+  "date": "2026-07-29",
+  "description": "UK school AI funding signals demand and makes safety and learning impact part of the product trial.",
+  "tldr": "The UK has set aside up to £23 million for school AI and edtech trials. That funding signals demand while putting safety and learning impact inside the product itself.",
+  "sections": [
+    {
+      "h2": "what does UK funding for school AI actually signal?",
+      "body": [
+        "The UK has set aside up to £23 million for school AI and edtech trials. That is a direct demand signal for builders working in this market.",
+        "The opportunity sits inside a trial context, where the product has to show what it contributes to schools. That changes the question from whether AI tutoring sounds promising to what the trial can prove."
+      ],
+      "code": null
+    },
+    {
+      "h2": "why do safety and learning impact belong inside the product?",
+      "body": [
+        "The funding signal puts safety and learning impact inside the product. They become part of the value being evaluated alongside the AI or edtech experience.",
+        "For a solo builder using AI agents, that means the product story needs to include what happens for learners and how the system operates safely. Those points are part of the market itself."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should an AI tutoring trial prove?",
+      "body": [
+        "The source leaves the question open: if you are building here, what will your trial prove? That is the useful starting point for deciding what to build and measure.",
+        "A trial should have a clear claim about safety and learning impact. The funding creates room to test that claim in the school AI and edtech market."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How much funding has the UK set aside for school AI and edtech trials?",
+      "a": "The UK has set aside up to £23 million for school AI and edtech trials. The funding is presented as a demand signal."
+    },
+    {
+      "q": "What does UK school AI funding mean for AI tutoring products?",
+      "a": "It signals demand for school AI and edtech products. It also puts safety and learning impact inside the product."
+    },
+    {
+      "q": "What should an AI tutoring trial prove?",
+      "a": "The trial should make its intended proof explicit, especially around safety and learning impact. The source frames that question for builders working in the UK."
+    }
+  ],
+  "related_slugs": []
+}
