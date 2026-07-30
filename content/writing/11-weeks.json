@@ -1,0 +1,44 @@
+{
+  "title": "11 weeks",
+  "slug": "11-weeks",
+  "date": "2026-07-30",
+  "description": "What 11 weeks and a 50-participant cap reveal about bounded execution, ambition, and visible progress.",
+  "tldr": "11 weeks with a maximum of 50 participants creates an operating constraint with teeth. It gives ambition a bounded execution season and leaves less room for vague progress to hide.",
+  "sections": [
+    {
+      "h2": "what changes when execution has an 11-week boundary?",
+      "body": [
+        "An 11-week window turns ambition into a defined operating season. The work has a visible beginning and end, which gives plans a period in which they must become real.",
+        "A bounded season creates pressure to act while the constraint is still active. Progress has less room to drift into an open-ended future."
+      ],
+      "code": null
+    },
+    {
+      "h2": "why does capping participation at 50 matter?",
+      "body": [
+        "A cap of 50 participants gives the operating constraint teeth. Participation has a clear limit, so the season carries a defined scope alongside its defined duration.",
+        "The cap makes the commitment easier to see. Everyone involved is operating inside the same boundary."
+      ],
+      "code": null
+    },
+    {
+      "h2": "how does a bounded season expose vague progress?",
+      "body": [
+        "Vague progress can survive inside an unlimited timeline because there is always more time to explain the gap. An 11-week season leaves less room for that gap to hide.",
+        "The constraint makes execution easier to judge. Ambition has a fixed window, participation has a fixed ceiling, and progress has to show up inside both."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is a bounded execution season?",
+      "a": "It is a defined period in which ambition has to become execution. In this field note, the season lasts 11 weeks and is capped at 50 participants."
+    },
+    {
+      "q": "Why do operating constraints help reveal progress?",
+      "a": "A fixed duration and participant cap reduce the space available for vague progress. The work has to show up within a visible boundary."
+    }
+  ],
+  "related_slugs": []
+}
