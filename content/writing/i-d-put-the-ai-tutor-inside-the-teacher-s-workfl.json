@@ -1,0 +1,48 @@
+{
+  "title": "i’d put the AI tutor inside the teacher’s workflow",
+  "slug": "i-d-put-the-ai-tutor-inside-the-teacher-s-workfl",
+  "date": "2026-08-01",
+  "description": "Why AI tutors earn trust when goals, notes, and next actions stay inside the teacher’s workflow.",
+  "tldr": "AI tutors become easier to trust when they live inside the teacher’s workflow. Set the goal, save tutor notes in the same record, and keep the next action visible there.",
+  "sections": [
+    {
+      "h2": "where should an AI tutor live during a teaching session?",
+      "body": [
+        "i’d put it inside the teacher’s workflow, where the session already has its context and follow-up.",
+        "That keeps the tutor connected to the work the teacher is already doing."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should the teacher define before the session starts?",
+      "body": [
+        "set the goal before the session. A clear goal gives the tutor and teacher a shared point of reference.",
+        "The goal also makes the session easier to understand after it ends."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what makes an AI tutor feel accountable after the session?",
+      "body": [
+        "save tutor notes in the same record and make the next action visible there too.",
+        "That puts context and accountability in one place. That’s where trust starts."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "how do you build trust in an AI tutor?",
+      "a": "Put the AI tutor inside the teacher’s workflow. Keep the goal, tutor notes, and next action connected in one place."
+    },
+    {
+      "q": "what should an AI tutor record after a session?",
+      "a": "The tutor should save its notes in the same record as the session. The next action should be visible there too."
+    },
+    {
+      "q": "why should the session goal be set in advance?",
+      "a": "A goal gives the session a clear direction. It also keeps the tutor’s work connected to what the teacher intended to accomplish."
+    }
+  ],
+  "related_slugs": []
+}
