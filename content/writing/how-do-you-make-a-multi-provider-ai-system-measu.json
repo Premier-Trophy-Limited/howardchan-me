@@ -1,0 +1,48 @@
+{
+  "title": "how do you make a multi-provider AI system measurable?",
+  "slug": "how-do-you-make-a-multi-provider-ai-system-measu",
+  "date": "2026-08-03",
+  "description": "How to make a multi-provider AI system measurable by observing every model call at one chokepoint.",
+  "tldr": "A multi-provider AI system becomes measurable when observability sits at the single model-call chokepoint. Record the model, usage, latency, and outcome there.",
+  "sections": [
+    {
+      "h2": "where should observability sit in a multi-provider AI system?",
+      "body": [
+        "Put it at the single model-call chokepoint. Every provider call passes through that integration, giving the system one place to capture the same measurements.",
+        "One well-placed integration can make the whole system measurable without scattering observability across every provider-specific path."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should you record at the model-call chokepoint?",
+      "body": [
+        "Record the model, usage, latency, and outcome for each call. Those fields create a consistent view across the system's model providers.",
+        "The point is to capture the receipt where the call happens, while the model choice, resource usage, timing, and result are all available together."
+      ],
+      "code": null
+    },
+    {
+      "h2": "why does one integration make the whole system measurable?",
+      "body": [
+        "A shared model-call chokepoint gives every provider call the same observability boundary. The integration becomes the place where the system's model activity can be measured consistently.",
+        "The practical question is simple: where is your model-call chokepoint today? That location determines whether measurement is centralized or scattered."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How do you measure a multi-provider AI system?",
+      "a": "Place observability at the single model-call chokepoint. Record the model, usage, latency, and outcome for each call."
+    },
+    {
+      "q": "What metrics should be recorded for every model call?",
+      "a": "Record the model, usage, latency, and outcome. These are the measurements identified for the model-call chokepoint."
+    },
+    {
+      "q": "Why use a model-call chokepoint for observability?",
+      "a": "A single integration can cover the whole multi-provider system when every model call passes through it. This creates one place to record consistent measurements."
+    }
+  ],
+  "related_slugs": []
+}
