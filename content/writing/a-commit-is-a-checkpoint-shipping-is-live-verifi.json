@@ -1,0 +1,60 @@
+{
+  "title": "a commit is a checkpoint, shipping is live verification",
+  "slug": "a-commit-is-a-checkpoint-shipping-is-live-verifi",
+  "date": "2026-08-04",
+  "description": "A field note on why clean commits do not equal shipped software, and why live customer-visible verification defines completion.",
+  "tldr": "a commit is a checkpoint. shipping means verifying that the product, route, or behavior works live where customers can see it.",
+  "sections": [
+    {
+      "h2": "what does shipped actually mean?",
+      "body": [
+        "shipped means the work has been verified live. The repository can be clean while the product, route, or behavior remains broken.",
+        "The useful finish line is customer-visible evidence that the change works in the real product."
+      ],
+      "code": null
+    },
+    {
+      "h2": "why can a clean repo still hide broken work?",
+      "body": [
+        "A clean repository records a checkpoint in the code. It does not prove that the running product reflects that checkpoint or that the intended behavior works.",
+        "That gap is where teams can mistake completed development work for a finished product change."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should a team verify before calling something finished?",
+      "body": [
+        "Verify the live product, the relevant route, or the behavior customers are meant to use. The question is whether customers can see it working.",
+        "If customers cannot see the result working, the work remains unfinished regardless of the repository state."
+      ],
+      "code": null
+    },
+    {
+      "h2": "how should we define shipping for our team?",
+      "body": [
+        "Define shipped around live verification and customer visibility. A commit can mark progress, while live evidence marks completion.",
+        "The definition should make clear what working means in the product customers actually encounter."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "does a clean git commit mean the feature is shipped?",
+      "a": "A clean commit marks a checkpoint in the repository. Shipping requires live verification that the product, route, or behavior works."
+    },
+    {
+      "q": "what is the difference between committing and shipping software?",
+      "a": "Committing records code progress. Shipping confirms that customers can see the intended result working live."
+    },
+    {
+      "q": "how do you know when software work is finished?",
+      "a": "The work is finished when the relevant product, route, or behavior has been verified live and customers can see it working."
+    },
+    {
+      "q": "what should shipped mean for a software team?",
+      "a": "Shipped should mean live, customer-visible verification. Each team should define the evidence that proves the intended result works."
+    }
+  ],
+  "related_slugs": []
+}
