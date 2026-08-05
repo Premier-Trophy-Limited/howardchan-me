@@ -1,0 +1,48 @@
+{
+  "title": "send the boring work to a free local model",
+  "slug": "send-the-boring-work-to-a-free-local-model",
+  "date": "2026-08-05",
+  "description": "A field note on routing routine AI work to a free local model and reserving stronger models for judgment.",
+  "tldr": "routing boring work to a free local model and sending important survivors to a stronger model kept decision quality steady while lowering overall cost. A lot of AI spend comes from routing every task to the smartest model.",
+  "sections": [
+    {
+      "h2": "why should every task pay for the smartest model?",
+      "body": [
+        "I started separating routine work from the tasks that actually need judgment. The boring work goes to a free local model, while the important survivors move to a stronger model.",
+        "That simple routing change exposed how much spend comes from treating every task as equally difficult. Most tasks do not need the same level of reasoning."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what happens when only the important work reaches a stronger model?",
+      "body": [
+        "The important survivors still receive stronger-model judgment, which keeps quality where decisions matter. The result was the same quality on those decisions with lower cost overall.",
+        "The model choice becomes part of the workflow. Routine work gets filtered locally, and the stronger model spends its capacity on the cases that deserve it."
+      ],
+      "code": null
+    },
+    {
+      "h2": "is AI spend really a model problem or a routing problem?",
+      "body": [
+        "The receipt points toward routing. When every task pays for the smartest model, the budget carries the cost of high-end judgment even when the task is boring.",
+        "A better split sends routine work to the free local model and reserves the stronger model for important survivors. That makes model spend follow decision value more closely."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How can I lower AI costs without reducing decision quality?",
+      "a": "Route routine work to a free local model and send important survivors to a stronger model. This keeps stronger-model judgment focused where decisions matter."
+    },
+    {
+      "q": "Should every AI task use the strongest model?",
+      "a": "Every task does not need the same model. Use a free local model for boring work and reserve the stronger model for important survivors."
+    },
+    {
+      "q": "Why is AI spending higher than expected?",
+      "a": "Routing may be sending every task to the smartest model. That makes routine work carry the cost of high-end judgment."
+    }
+  ],
+  "related_slugs": []
+}
