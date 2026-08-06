@@ -1,0 +1,44 @@
+{
+  "title": "small AI experiments deserve a price check before they run",
+  "slug": "small-ai-experiments-deserve-a-price-check-befor",
+  "date": "2026-08-06",
+  "description": "Why small AI experiments need exact pricing and a run ceiling before they start.",
+  "tldr": "A quick AI test can quietly become an expensive batch job. Check the exact model, endpoint price, and run ceiling before it runs.",
+  "sections": [
+    {
+      "h2": "why can a quick AI test become expensive?",
+      "body": [
+        "Small experiments can expand into batch jobs without making the cost obvious at the start.",
+        "That shift turns a quick test into an expensive run, especially when the pricing and execution limit were never checked."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what should i verify before running a small experiment?",
+      "body": [
+        "Verify the exact model being used, the price for its endpoint, and the ceiling for the run.",
+        "Those three checks make the intended scope visible before the experiment starts."
+      ],
+      "code": null
+    },
+    {
+      "h2": "why does a run ceiling matter?",
+      "body": [
+        "A run ceiling keeps a small experiment bounded. Without one, a test can continue quietly and grow into a batch job with a much larger bill.",
+        "The price check belongs before execution, while the experiment is still small enough to control."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How do I prevent a quick AI test from becoming expensive?",
+      "a": "Verify the exact model, endpoint price, and run ceiling before the test runs. These checks keep the experiment within its intended scope."
+    },
+    {
+      "q": "What should I check before running an AI experiment?",
+      "a": "Check which exact model will run, what the endpoint costs, and how many runs are allowed. The source finding is that these details should be confirmed before execution."
+    }
+  ],
+  "related_slugs": []
+}
