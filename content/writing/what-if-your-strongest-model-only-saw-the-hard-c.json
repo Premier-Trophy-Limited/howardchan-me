@@ -1,0 +1,53 @@
+{
+  "title": "what if your strongest model only saw the hard cases?",
+  "slug": "what-if-your-strongest-model-only-saw-the-hard-c",
+  "date": "2026-08-07",
+  "description": "A field note on routing high-volume classification through a free local model and sending difficult cases to a stronger model.",
+  "tldr": "A free local model handled high-volume classification and extraction first, while a stronger model reviewed the difficult survivors. This lowered cost and latency while reserving judgment for cases that needed it.",
+  "sections": [
+    {
+      "h2": "why should the strongest model see every case?",
+      "body": [
+        "High-volume classification and extraction can begin with a free local model. The stronger model then focuses on the cases that survive the first pass as difficult.",
+        "That routing keeps expensive judgment concentrated where it matters most."
+      ],
+      "code": null
+    },
+    {
+      "h2": "what changed when we routed difficult cases separately?",
+      "body": [
+        "The result was lower cost and lower latency. The stronger model spent its effort on difficult survivors instead of processing the full high-volume workload."
+      ],
+      "code": null
+    },
+    {
+      "h2": "which cases deserve the expensive model?",
+      "body": [
+        "The difficult cases deserve the stronger model. The first model acts as the initial classification and extraction layer, leaving the stronger model with the cases that need more judgment."
+      ],
+      "code": null
+    },
+    {
+      "h2": "can a free local model handle the first pass?",
+      "body": [
+        "In this field note, a free local model ran high-volume classification and extraction before the difficult survivors moved to a stronger model. The finding is about routing work according to difficulty."
+      ],
+      "code": null
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How do you reduce LLM cost for high-volume classification?",
+      "a": "Run a free local model through the initial classification and extraction pass. Send the difficult survivors to a stronger model so expensive judgment is applied to fewer cases."
+    },
+    {
+      "q": "When should a case be sent to a stronger AI model?",
+      "a": "Send cases that survive the first pass as difficult. The stronger model can then focus its judgment where it actually matters."
+    },
+    {
+      "q": "Can local models handle high-volume extraction?",
+      "a": "A free local model handled the high-volume classification and extraction pass in this field note. Difficult survivors were routed to a stronger model afterward."
+    }
+  ],
+  "related_slugs": []
+}
